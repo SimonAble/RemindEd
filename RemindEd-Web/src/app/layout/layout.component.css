@@ -1,0 +1,15 @@
+.content {
+  background-color: var(--black-blue);
+}
+.content-nav {
+  height: 65px;
+  border-bottom: 6px solid var(--black-blue);
+  border-left: 6px solid var(--black-blue);
+  background-color: white;
+}
+
+.content-container {
+  background-color: white;
+  min-height: 96vh;
+  border-left: 6px solid var(--black-blue);
+}
