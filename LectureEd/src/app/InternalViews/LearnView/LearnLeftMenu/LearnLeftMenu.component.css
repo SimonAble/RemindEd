@@ -63,6 +63,7 @@ a, a:hover, a:focus {
   text-overflow: ellipsis;
   color: var(--star-white);
 }
+
 #sidebar ul li a:hover {
   background:var(--lab-accent);
 }

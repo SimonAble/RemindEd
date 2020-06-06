@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-LearnLayout',
@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./LearnLayout.component.css']
 })
 export class LearnLayoutComponent implements OnInit {
+  public leftMenuCollapsed: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  public toggleLeftMenu(event) {
+    console.log("In parent toggling");
+    this.leftMenuCollapsed = event;
+  }
 }

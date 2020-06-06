@@ -147,3 +147,13 @@ body { margin: 0; background-color: var(--lightest-blue); }
 .col-md-9-5 { width: 79.16667%; }
 .col-md-10-5 { width: 87.5%; }
 .col-md-11-5 { width: 95.8333%; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.custom-tooltip-blue {
+  background-color: #0C6A9E;
+  color: #ffffff;
+  font-size: 1.1em;
+  margin-right: none;
+}

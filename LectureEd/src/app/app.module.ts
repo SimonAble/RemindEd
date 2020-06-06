@@ -10,6 +10,8 @@ import { TopNavLoginComponent } from './Authentication/TopNavLogin/TopNavLogin.c
 import { RegistrationComponent } from './Authentication/Registration/Registration.component';
 import { LearnLayoutComponent } from './InternalViews/LearnView/LearnLayout/LearnLayout/LearnLayout.component';
 import { LearnLeftMenuComponent } from './InternalViews/LearnView/LearnLeftMenu/LearnLeftMenu.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTooltipModule } from '@angular/material/';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { LearnLeftMenuComponent } from './InternalViews/LearnView/LearnLeftMenu/
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

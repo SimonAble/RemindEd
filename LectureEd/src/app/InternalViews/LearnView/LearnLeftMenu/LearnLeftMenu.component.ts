@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-LearnLeftMenu',
@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LearnLeftMenuComponent implements OnInit {
 
+  @Output() emitToggleLeftMenu = new EventEmitter<boolean>();
+  public leftMenuToggled: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
   }
+
+  toggleLeftMenu() {
+    console.log("Toggling Left Menu");
+    this.leftMenuToggled = ! this.leftMenuToggled;
+    this.emitToggleLeftMenu.emit(this.leftMenuToggled);
+  }
+
 
 }
