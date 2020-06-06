@@ -1,0 +1,16 @@
+.base_nav_color {
+  background-color:  var(--medium-blue);
+}
+
+.nav-item a {
+  color:white;
+  font-weight: 500;
+}
+
+.lab-text {
+  color: #02C39A;
+}
+
+.colab-text {
+  font-size: 1.4em;
+}

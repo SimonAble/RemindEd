@@ -1,0 +1,25 @@
+
+.loginInput {
+  background-color: var(--medium-blue);
+}
+
+.loginInput::placeholder {
+  color:white;
+}
+
+.loginInput {
+  color: white;;
+}
+
+.invalidInput {
+  border: 1px solid rgb(204, 39, 39);
+}
+
+.login-btn {
+  color:white;
+  border:2px solid white;
+}
+
+.login-btn:hover{
+  background-color: var(--lab-accent);
+}

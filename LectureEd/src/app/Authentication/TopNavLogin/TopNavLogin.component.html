@@ -1,0 +1,31 @@
+
+<div *ngIf="loginCheck()">
+  <div class="dropdown show">
+    <a class="btn btn-secondary" href="#" id="dropdownMenuLink">
+      <i class="fa fa-user"></i>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <a class="dropdown-item" href="#">Profile</a>
+      <a class="dropdown-item" href="#">Account</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" (click)="logout()">Logout</a>
+    </div>
+  </div>
+</div>
+<div *ngIf="!loginCheck()" class="form-inline">
+  <div *ngIf="!loginToggled">
+    <button class="btn btn-outline-info login-btn mr-2" (click)="toggleLogin()">Login</button>
+  </div>
+  <div *ngIf="!loginCheck()">
+    <button class="btn btn-outline-info login-btn" (click)="toggleLogin()">Sign Up</button>
+  </div>
+  <form class="form-inline" *ngIf="loginToggled" #loginForm="ngForm" (ngSubmit)="login()">
+    <div class="form-group mx-1">
+      <input type="email" class="form-control loginInput" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" #email="ngModel" [(ngModel)]="loginModel.username" required email [ngClass]="{'invalidInput' : !email.valid && (email.touched || email.dirty)}">
+    </div>
+    <div class="form-group mx-1">
+      <input type="password" class="form-control loginInput" id="exampleInputPassword1" placeholder="Password" name="password" #password="ngModel" [(ngModel)]="loginModel.password" required maxlength="25" minlength="8" [ngClass]="{'invalidInput' : !password.valid && (password.touched || password.dirty)}">
+    </div>
+    <button class="btn login-btn mx-1" (click)="login()" [disabled]="!loginForm.valid">Submit</button>
+  </form>
+</div>

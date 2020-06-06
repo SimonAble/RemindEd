@@ -1,0 +1,149 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '../node_modules/font-awesome/css/font-awesome.min.css';
+
+:root {
+  /* Blue */
+  --black-blue: rgb(1, 24, 38);
+  --darker-blue: rgb(2, 35, 65);
+  --dark-blue: rgb(3, 48, 87);
+  --medium-blue: rgb(13, 76, 115);
+  --light-blue: rgb(41, 118, 166);
+  --lighter-blue: rgb(41, 118, 166);
+  --lightest-blue:rgb(235, 243, 252);
+
+  /* Grey */
+  --dark-grey: rgb(42, 43, 46);
+  --medium-grey: rgb(132, 146, 165);
+  --lighter-grey: rgb(231, 234, 238);
+  --light-grey: rgb(191, 191, 206);
+
+  /* white */
+  --star-white: rgb(255, 255, 246);
+  --main-background: white;
+
+  /* Green */
+  --active-green: #5BA28B;
+  --lab-accent: #02C39A;
+
+  /* Yellow */
+  --background-yellow: rgb(255, 255, 210);
+
+  /* Purple */
+  --light-purple: rgb(211, 207, 230);
+  --medium-purple: rgb(117, 92, 172);
+  --purple-background: rgb(44, 31, 75);
+  --purple-hovered: rgb(79, 60, 124);
+
+  /* Warning Background */
+  --orange-warning-bg: rgb(248, 194, 95);
+
+  /* Component Types */
+  --nav-bar: var(--dark-blue);
+  --menu-break: var(--light-blue);
+  --nav-bar-highlight: linear-gradient(to right, red , yellow);
+
+  /* Text Colors */
+  --red: rgb(209, 46, 46);
+  --orange: rgb(233, 125, 24);
+  --yellow: rgb(245, 229, 82);
+  --green: rgb(56, 155, 56);
+  --blue: rgb(19, 38, 145);
+  --purple: rgb(83, 41, 95);
+  --grey: rgb(81, 81, 87);
+
+  /* Shadow */
+  --shadow: 5px 5px 10px rgb(182, 182, 182);
+}
+
+/* Base Browser Reset */
+html,body {
+  height:100%;
+  margin:0;
+  padding:0;
+}
+
+/* Default Text Styling */
+
+p {
+  font-size: 23px;
+  color: var(--grey);
+}
+
+h1 {
+  color: var(--medium-blue) ;
+  font-size: 50px;
+  font-weight: 400;
+  padding-top: 8px;
+}
+h2 {
+  color: var(--light-blue) ;
+  font-size: 34px;
+  font-weight: 400;
+}
+h3 {
+  color: var(--medium-purple) ;
+  font-size: 28px;
+  font-weight: 400;
+}
+h4 {
+  color: var(--dark-blue) ;
+  font-size: 24px;
+  font-weight: 400;
+}
+h5 {
+  color: var(--light-blue) ;
+  font-size: 32px;
+  font-weight: 400;
+}
+h6 {
+  color: var(--light-blue) ;
+  font-size: 32px;
+  font-weight: 400;
+}
+
+/* Text Color Classes */
+.red {
+  color: var(--red);
+}
+
+.orange {
+  color: var(--orange);
+}
+
+.yellow {
+  color: var(--yellow);
+}
+
+.green {
+  color: var(--green);
+}
+
+.blue {
+  color: var(--blue);
+}
+
+.purple {
+  color: var(--purple);
+}
+
+/* Bootstrap Modal Patch */
+.modal {
+  width:800px;
+}
+
+html, body { height: 100%; width:100% }
+body { margin: 0; background-color: var(--lightest-blue); }
+
+.col-md-0-5 { width: 4.16667%; }
+.col-md-1-5 { width: 12.5%; }
+.col-md-2-5 { width: 20.83333%; }
+.col-md-3-5 { width: 29.16667%; }
+.col-md-4-5 { width: 37.5%; }
+.col-md-5-5 { width: 45.83333%; }
+.col-md-6-5 { width: 54.16667%; }
+.col-md-7-5 { width: 62.5%; }
+.col-md-8-5 { width: 70.83333%; }
+.col-md-9-5 { width: 79.16667%; }
+.col-md-10-5 { width: 87.5%; }
+.col-md-11-5 { width: 95.8333%; }
