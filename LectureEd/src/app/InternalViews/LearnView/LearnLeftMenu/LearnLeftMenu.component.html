@@ -1,0 +1,60 @@
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <h3 class="pl-3">Course Content</h3>
+  </div>
+
+  <!--Left Menu Expanded-->
+  <ul *ngIf="!leftMenuToggled" class="list-unstyled components pt-0">
+      <li placement="right" ngbTooltip="Tooltip on right">
+          <a href="#" class="pl-4"><i class="fa fa-book sidebarIcon mr-3 "></i>Lecture 1</a>
+      </li>
+      <li>
+          <a href="#" class="pl-4"><i class="fa fa-book sidebarIcon mr-3"></i>Lecture 2</a>
+      </li>
+      <li>
+          <a href="#" class="pl-4"><i class="fa fa-book sidebarIcon mr-3"></i>Lecture 3</a>
+      </li>
+          <li>
+          <a href="#" class="pl-4"><i class="fa fa-book sidebarIcon mr-3"></i>Lecture 4</a>
+      </li>
+      <li>
+          <a href="#" class="pl-4"><i class="fa fa-book sidebarIcon mr-3"></i>Lecture 5</a>
+      </li>
+      <li>
+          <a href="#" class="pl-4"><i class="fa fa-plus-circle sidebarIcon mr-3"></i>New Lecture</a>
+      </li>
+      <li (click)="toggleLeftMenu()">
+        <a class="pl-4"><i class="fa fa-arrow-left sidebarIcon mr-3"></i>Collapse</a>
+      </li>
+  </ul>
+
+  <!--Left Menu Collapsed-->
+  <ul *ngIf="leftMenuToggled" class="list-unstyled components pt-0">
+    <li>
+        <a href="#" class="pl-4" data-toggle="tooltip" title="Hooray!"><i class="fa fa-book sidebarIcon mr-3"></i></a>
+    </li>
+    <li>
+        <a href="#" class="pl-4"><i class="fa fa-book sidebarIcon mr-3"></i>Lecture 2</a>
+    </li>
+    <li>
+        <a href="#" class="pl-4"><i class="fa fa-book sidebarIcon mr-3"></i>Lecture 3</a>
+    </li>
+        <li>
+        <a href="#" class="pl-4"><i class="fa fa-book sidebarIcon mr-3"></i>Lecture 4</a>
+    </li>
+    <li>
+        <a href="#" class="pl-4"><i class="fa fa-book sidebarIcon mr-3"></i>Lecture 5</a>
+    </li>
+    <li>
+        <a href="#" class="pl-4"><i class="fa fa-plus-circle sidebarIcon mr-3"></i>New Lecture</a>
+    </li>
+    <li (click)="toggleLeftMenu()">
+      <a class="pl-4"
+      matTooltip="Info about the action"
+      matTooltipPosition="after"
+      matTooltipClass="custom-tooltip-blue"
+      matTooltipPosition="right"><i class="fa fa-arrow-left sidebarIcon mr-3"></i>Collapse</a>
+    </li>
+  </ul>
+</nav>
+
