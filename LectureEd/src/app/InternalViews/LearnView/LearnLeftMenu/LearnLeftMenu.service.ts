@@ -19,9 +19,7 @@ public getLearnLeftMenuItems() {
       new Lecture('Test Lecture 5'),
       new Lecture('Test Lecture 6'),
       new Lecture('Test Lecture 7'),
-      new Lecture('Test Lecture 8'),
-      new Lecture('Test Lecture 9'),
-      new Lecture('Test Lecture 10')
+      new Lecture('Test Lecture 8')
     ]
   )
 

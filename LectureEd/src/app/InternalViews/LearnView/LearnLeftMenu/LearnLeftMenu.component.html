@@ -2,11 +2,7 @@
 
   <!--Left Menu Header Expanded-->
   <div *ngIf="!leftMenuToggled" class="sidebar-header mb-1">
-    <h3 class="pl-3"
-    matTooltip="{{leftMenu.leftMenuTitle}}"
-    matTooltipPosition="after"
-    matTooltipClass="custom-tooltip-blue"
-    matTooltipPosition="right">{{leftMenu.leftMenuTitle}}</h3>
+    <h3 class="pl-3">{{leftMenu.leftMenuTitle}}</h3>
   </div>
 
   <!--Left Menu Header Collapsed-->
@@ -44,7 +40,7 @@
   <div *ngIf="!leftMenuToggled" class="toggleLeftMenu expanded">
     <ul class="list-unstyled components pt-0">
       <li (click)="toggleLeftMenu()">
-        <a class="pl-4"><i class="fa fa-arrow-left sidebarIcon mr-3"></i>Collapse</a>
+        <a class="pl-4"><i class="fa fa-arrow-left sidebarIcon mr-3"></i>Collapse Menu</a>
       </li>
     </ul>
   </div>
