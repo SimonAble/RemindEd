@@ -1,60 +1,62 @@
 <nav id="sidebar">
-  <div class="sidebar-header">
-    <h3 class="pl-3">Course Content</h3>
+
+  <!--Left Menu Header Expanded-->
+  <div *ngIf="!leftMenuToggled" class="sidebar-header mb-1">
+    <h3 class="pl-3">{{leftMenu.leftMenuTitle}}</h3>
+  </div>
+
+  <!--Left Menu Header Collapsed-->
+  <div *ngIf="leftMenuToggled" class="sidebar-header-collapsed mb-1">
+    <h3 class="text-center"
+    matTooltip="{{leftMenu.leftMenuTitle}}"
+    matTooltipPosition="after"
+    matTooltipClass="custom-tooltip-blue"
+    matTooltipPosition="right"><i class="fa fa-compass"></i></h3>
   </div>
 
   <!--Left Menu Expanded-->
-  <ul *ngIf="!leftMenuToggled" class="list-unstyled components pt-0">
-      <li placement="right" ngbTooltip="Tooltip on right">
-          <a href="#" class="pl-4"><i class="fa fa-book sidebarIcon mr-3 "></i>Lecture 1</a>
+  <div *ngIf="!leftMenuToggled" class="list-container">
+    <ul class="list-unstyled components pt-0">
+      <li *ngFor="let lecture of leftMenu.lectures">
+          <a class="pl-4"><i class="fa fa-book sidebarIcon mr-3"></i>{{lecture.lectureName}}</a>
       </li>
-      <li>
-          <a href="#" class="pl-4"><i class="fa fa-book sidebarIcon mr-3"></i>Lecture 2</a>
-      </li>
-      <li>
-          <a href="#" class="pl-4"><i class="fa fa-book sidebarIcon mr-3"></i>Lecture 3</a>
-      </li>
-          <li>
-          <a href="#" class="pl-4"><i class="fa fa-book sidebarIcon mr-3"></i>Lecture 4</a>
-      </li>
-      <li>
-          <a href="#" class="pl-4"><i class="fa fa-book sidebarIcon mr-3"></i>Lecture 5</a>
-      </li>
-      <li>
-          <a href="#" class="pl-4"><i class="fa fa-plus-circle sidebarIcon mr-3"></i>New Lecture</a>
-      </li>
-      <li (click)="toggleLeftMenu()">
-        <a class="pl-4"><i class="fa fa-arrow-left sidebarIcon mr-3"></i>Collapse</a>
-      </li>
-  </ul>
+    </ul>
+  </div>
+
 
   <!--Left Menu Collapsed-->
   <ul *ngIf="leftMenuToggled" class="list-unstyled components pt-0">
-    <li>
-        <a href="#" class="pl-4" data-toggle="tooltip" title="Hooray!"><i class="fa fa-book sidebarIcon mr-3"></i></a>
-    </li>
-    <li>
-        <a href="#" class="pl-4"><i class="fa fa-book sidebarIcon mr-3"></i>Lecture 2</a>
-    </li>
-    <li>
-        <a href="#" class="pl-4"><i class="fa fa-book sidebarIcon mr-3"></i>Lecture 3</a>
-    </li>
-        <li>
-        <a href="#" class="pl-4"><i class="fa fa-book sidebarIcon mr-3"></i>Lecture 4</a>
-    </li>
-    <li>
-        <a href="#" class="pl-4"><i class="fa fa-book sidebarIcon mr-3"></i>Lecture 5</a>
-    </li>
-    <li>
-        <a href="#" class="pl-4"><i class="fa fa-plus-circle sidebarIcon mr-3"></i>New Lecture</a>
-    </li>
-    <li (click)="toggleLeftMenu()">
-      <a class="pl-4"
-      matTooltip="Info about the action"
+    <li *ngFor="let lecture of leftMenu.lectures">
+      <a class="text-center"
+      matTooltip="{{lecture.lectureName}}"
       matTooltipPosition="after"
       matTooltipClass="custom-tooltip-blue"
-      matTooltipPosition="right"><i class="fa fa-arrow-left sidebarIcon mr-3"></i>Collapse</a>
+      matTooltipPosition="right">
+      <i class="fa fa-book sidebarIcon"></i></a>
     </li>
   </ul>
+
+  <!--Left Menu Toggler Expanded-->
+  <div *ngIf="!leftMenuToggled" class="toggleLeftMenu expanded">
+    <ul class="list-unstyled components pt-0">
+      <li (click)="toggleLeftMenu()">
+        <a class="pl-4"><i class="fa fa-arrow-left sidebarIcon mr-3"></i>Collapse Menu</a>
+      </li>
+    </ul>
+  </div>
+
+
+  <!--Left Menu Toggler Collapsed-->
+  <div *ngIf="leftMenuToggled" class="toggleLeftMenu collapsed">
+    <ul class="list-unstyled components pt-0">
+      <li (click)="toggleLeftMenu()">
+        <a class="text-center"
+        matTooltip="Expand"
+        matTooltipPosition="after"
+        matTooltipClass="custom-tooltip-blue"
+        matTooltipPosition="right"><i class="fa fa-arrow-right sidebarIcon"></i></a>
+      </li>
+    </ul>
+  </div>
 </nav>
 
