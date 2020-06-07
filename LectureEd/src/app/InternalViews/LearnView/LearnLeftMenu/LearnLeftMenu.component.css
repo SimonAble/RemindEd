@@ -32,7 +32,6 @@ a, a:hover, a:focus {
 }
 
 #sidebar {
-  /* don't forget to add all the previously mentioned styles here too */
   background: var(--dark-blue);
   color: var(--dark-grey);
   transition: all 0.3s;
@@ -100,6 +99,7 @@ a, a:hover, a:focus {
   position: fixed;
   left: 0;
   bottom: 0;
+  background: var(--dark-blue);
 }
 
 .expanded {
@@ -109,6 +109,6 @@ a, a:hover, a:focus {
 
 .collapsed {
     /* dependent on .col-md-0-5 { width: 4.16667%; } width in styles.css */
-    width: 4.16667%;
+    width: 5%;
 }
 

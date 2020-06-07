@@ -54,6 +54,9 @@
 
   /* Shadow */
   --shadow: 5px 5px 10px rgb(182, 182, 182);
+
+  --leftnav-collapsed-width: 6%;
+  --leftnav-expanded-width: ;
 }
 
 /* Base Browser Reset */
@@ -135,7 +138,7 @@ h6 {
 html, body { height: 100%; width:100% }
 body { margin: 0; background-color: var(--lightest-blue); }
 
-.col-md-0-5 { width: 4.16667%; }
+.col-md-0-5 { width: 5%; }
 .col-md-1-5 { width: 12.5%; }
 .col-md-2-5 { width: 20.83333%; }
 .col-md-3-5 { width: 29.16667%; }

@@ -12,6 +12,7 @@ import { LearnLayoutComponent } from './InternalViews/LearnView/LearnLayout/Lear
 import { LearnLeftMenuComponent } from './InternalViews/LearnView/LearnLeftMenu/LearnLeftMenu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/';
+import { LearnLectureContentComponent } from './InternalViews/LearnView/LearnLectureContent/LearnLectureContent/LearnLectureContent.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MatTooltipModule } from '@angular/material/';
     TopNavLoginComponent,
     RegistrationComponent,
     LearnLayoutComponent,
-    LearnLeftMenuComponent
+    LearnLeftMenuComponent,
+    LearnLectureContentComponent
   ],
   imports: [
     BrowserModule,
