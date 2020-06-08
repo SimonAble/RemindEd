@@ -2,7 +2,13 @@
 
   <!--Left Menu Header Expanded-->
   <div *ngIf="!leftMenuToggled" class="sidebar-header mb-1">
-    <h3 class="pl-3">{{leftMenu.leftMenuTitle}}</h3>
+    <h3 class="pl-3"
+    matTooltip="{{leftMenu.leftMenuTitle}}"
+    matTooltipPosition="after"
+    matTooltipClass="custom-tooltip-blue"
+    matTooltipPosition="right"
+    [matTooltipShowDelay]="showDelay.value"
+    [matTooltipHideDelay]="hideDelay.value">{{leftMenu.leftMenuTitle}}</h3>
   </div>
 
   <!--Left Menu Header Collapsed-->

@@ -1,3 +1,103 @@
-<p>
-  CreateLeftMenu works!
-</p>
+<nav id="sidebar">
+  <form #createLeftMenuForm="ngForm" (ngSubmit)="saveLeftMenu()">
+    <!--Left Menu Header Expanded-->
+    <div *ngIf="!leftMenuToggled" class="sidebar-header mb-1">
+
+      <h3 *ngIf="leftMenu.leftMenuTitle && !editMenuTitle" class="pl-4 displayHeader"><button (click)="toggleEditCourseTitle()" class="btn hoverBtn p-0 mr-3"><i class="fa fa-edit"></i></button>{{leftMenu.leftMenuTitle}}</h3>
+
+      <div *ngIf="!leftMenu.leftMenuTitle || editMenuTitle" class="input-group titleInput editHeader">
+        <input type="text" class="form-control" placeholder="Enter a Course Title" aria-label="Enter Course Title" name="leftMenuTitle" [(ngModel)] = "leftMenuTitle">
+        <div class="input-group-append">
+          <button (click)="addCourseTitle()" class="btn btn-outline-secondary px-2" type="button"><i class="fa fa-plus"></i></button>
+        </div>
+        <div class="input-group-append">
+          <button (click)="toggleEditCourseTitle()" class="btn btn-outline-secondary delete px-2" type="button"><i class="fa fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!--Left Menu Header Collapsed-->
+    <div *ngIf="leftMenuToggled" class="sidebar-header-collapsed mb-1">
+      <h3 class="text-center"
+      matTooltip="{{leftMenu.leftMenuTitle}}"
+      matTooltipPosition="after"
+      matTooltipClass="custom-tooltip-blue"
+      matTooltipPosition="right"><i class="fa fa-compass"></i></h3>
+    </div>
+
+    <!--Left Menu Expanded-->
+    <div *ngIf="!leftMenuToggled" class="list-container">
+
+      <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box pl-4 py-3" *ngFor="let lecture of leftMenu.lectures" cdkDrag cdkDragLockAxis="y">
+          <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+          <button (click)="toggleEditCourseTitle()" class="btn hoverBtn p-0 mr-3"><i class="fa fa-times"></i></button>
+            <a><i class="fa fa-book sidebarIcon mr-3"></i>{{lecture.lectureName}}</a>
+            <div class="example-handle" cdkDragHandle>
+              <i class="fa fa-arrows-alt"></i>
+            </div>
+        </div>
+        <div *ngIf="!addNewLectureToggled" class="example-box addCourse-box pl-4 py-3" cdkDrag cdkDragDisabled="true" (click)="toggleLectureItemInput()">
+            <i class="fa fa-plus sidebarIcon mr-3"></i>Add Button
+        </div>
+        <div *ngIf="addNewLectureToggled" class="example-box course-input-box py-3 px-0" cdkDrag cdkDragDisabled="true">
+          <div class="input-group lectureInput pl-4">
+            <input type="text" class="form-control" placeholder="Enter lecture title" aria-label="Enter Lecture Title" name="lectureInput" [(ngModel)]="lectureItem">
+            <div class="input-group-append">
+              <button (click)="addNewLectureItem()" class="btn btn-outline-secondary px-2" type="button"><i class="fa fa-plus"></i></button>
+            </div>
+            <div class="input-group-append">
+              <button (click)="toggleLectureItemInput()" class="btn btn-outline-secondary px-2 delete" type="button"><i class="fa fa-trash"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--Left Menu Collapsed-->
+    <ul *ngIf="leftMenuToggled" class="list-unstyled components pt-0">
+      <li *ngFor="let lecture of leftMenu.lectures">
+        <a class="text-center"
+        matTooltip="{{lecture.lectureName}}"
+        matTooltipPosition="after"
+        matTooltipClass="custom-tooltip-blue"
+        matTooltipPosition="right">
+        <i class="fa fa-book sidebarIcon"></i></a>
+      </li>
+      <!--Add new lecture-->
+      <li>
+        <a class="text-center"
+        matTooltip="Add new lecture"
+        matTooltipPosition="after"
+        matTooltipClass="custom-tooltip-blue"
+        matTooltipPosition="right">
+        <i class="fa fa-plus sidebarIcon"></i></a>
+      </li>
+    </ul>
+
+    <!--Left Menu Toggler Expanded-->
+    <div *ngIf="!leftMenuToggled" class="toggleLeftMenu expanded">
+      <ul class="list-unstyled components pt-0">
+        <li (click)="toggleLeftMenu()">
+          <a class="pl-4"><i class="fa fa-arrow-left sidebarIcon mr-3"></i>Collapse Menu</a>
+        </li>
+      </ul>
+    </div>
+
+
+    <!--Left Menu Toggler Collapsed-->
+    <div *ngIf="leftMenuToggled" class="toggleLeftMenu collapsed">
+      <ul class="list-unstyled components pt-0">
+        <li (click)="toggleLeftMenu()">
+          <a class="text-center"
+          matTooltip="Expand"
+          matTooltipPosition="after"
+          matTooltipClass="custom-tooltip-blue"
+          matTooltipPosition="right"><i class="fa fa-arrow-right sidebarIcon"></i></a>
+        </li>
+      </ul>
+    </div>
+  </form>
+</nav>
+

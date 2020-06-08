@@ -1,3 +1,38 @@
-<p>
-  CreateLectureContent works!
-</p>
+<div class="col-md-12 content-nav p-0 m-0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light p-0 px-3 h-100">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="newTopic">
+          <a class="nav-link"><i class="fa fa-plus mr-2"></i>Add new topic</a>
+        </li>
+        <li *ngFor="let topic of navTopicModel.lectureTopics" class="nav-item">
+          <a class="nav-link" href="#">{{topic.topicName}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="ml-md-auto">
+      <a class="nav-link"><i class="fa fa-save saveIcon mr-2"
+        matTooltip="Save Course"
+        matTooltipPosition="after"
+        matTooltipClass="custom-tooltip-blue"
+        matTooltipPosition="right"
+        [matTooltipShowDelay]="showDelay.value"
+        [matTooltipHideDelay]="hideDelay.value"></i></a>
+    </div>
+  </nav>
+</div>
+<div class="col-md-12 content-container p-0 m-0">
+
+  <div class="mx-auto pt-5">
+    <div class="container editTopicContent">
+
+    </div>
+  </div>
+
+
+
+</div>

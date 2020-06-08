@@ -24,7 +24,7 @@
 
   /* Green */
   --active-green: #5BA28B;
-  --lab-accent: #02C39A;
+  --lab-accent: rgb(17, 182, 146);
 
   /* Yellow */
   --background-yellow: rgb(255, 255, 210);

@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 //Material Imports
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 //App Imports
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +19,9 @@ import { TopNavLoginComponent } from './Authentication/TopNavLogin/TopNavLogin.c
 
 //Authentication
 import { RegistrationComponent } from './Authentication/Registration/Registration.component';
+
+//External Views
+import { ExternalHomeComponent } from './GlobalViews/ExternalHome/ExternalHome.component';
 
 //Learn Views
 import { LearnLayoutComponent } from './InternalViews/LearnView/LearnLayout/LearnLayout.component';
@@ -32,6 +36,7 @@ import { CreateLeftMenuComponent } from './InternalViews/CreateView/CreateLeftMe
 @NgModule({
   declarations: [
     AppComponent,
+    ExternalHomeComponent,
     TopNavigationComponent,
     TopNavLoginComponent,
     RegistrationComponent,
@@ -48,7 +53,8 @@ import { CreateLeftMenuComponent } from './InternalViews/CreateView/CreateLeftMe
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

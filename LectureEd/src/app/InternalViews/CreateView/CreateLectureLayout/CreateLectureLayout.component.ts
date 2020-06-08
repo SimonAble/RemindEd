@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateLectureLayoutComponent implements OnInit {
 
+  public leftMenuCollapsed: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public toggleLeftMenu(event) {
+    console.log("In parent toggling");
+    this.leftMenuCollapsed = event;
   }
 
 }

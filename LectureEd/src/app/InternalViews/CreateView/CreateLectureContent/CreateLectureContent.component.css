@@ -1,0 +1,32 @@
+.content-nav {
+  height: 65px;
+  background-color: white;
+  box-shadow: 0 4px 5px -2px rgb(161, 161, 161);
+  z-index: 1;
+}
+
+.content-container {
+  background-color: white;
+  min-height: 96vh;
+}
+
+.saveIcon {
+  font-size: 30px;
+  color: var(--medium-blue);
+}
+
+.saveIcon:hover {
+  color:var(--lab-accent);
+}
+
+.newTopic {
+  background-color: var(--lighter-grey);
+  border-radius: 6px;
+}
+
+.editTopicContent {
+  width:80%;
+  background-color: var(--lighter-grey);
+  border-radius: 6px;
+  height:100px;
+}
