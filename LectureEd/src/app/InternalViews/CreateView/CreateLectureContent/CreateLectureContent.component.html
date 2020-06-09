@@ -1,29 +1,25 @@
 <div class="col-md-12 content-nav p-0 m-0">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light p-0 px-3 h-100">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="newTopic">
-          <a class="nav-link"><i class="fa fa-plus mr-2"></i>Add new topic</a>
-        </li>
-        <li *ngFor="let topic of navTopicModel.lectureTopics" class="nav-item">
-          <a class="nav-link" href="#">{{topic.topicName}}</a>
-        </li>
-      </ul>
+  <div cdkDropList cdkDropListOrientation="horizontal" class="example-list w-100" (cdkDropListDropped)="drop($event)">
+    <div *ngIf="!addNewNavTopic" class="example-box addCourse-box py-3" cdkDrag cdkDragDisabled="true" (click)="toggleNavItemInput()">
+      <i class="fa fa-plus sidebarIcon mr-3"></i>Add Button
+  </div>
+    <div *ngIf="addNewNavTopic" class="example-box course-input-box py-3 px-0" cdkDrag cdkDragDisabled="true" cdkDragLockAxis="y">
+      <div class="input-group lectureInput p-0">
+        <input type="text" class="form-control" placeholder="Enter lecture title" aria-label="Enter Lecture Title" name="lectureInput" [(ngModel)]="navTopicItem">
+        <div class="input-group-append">
+          <button (click)="addNewNavTopicItem()" class="btn px-2 add" type="button"><i class="fa fa-plus"></i></button>
+        </div>
+        <div class="input-group-append">
+          <button (click)="toggleNavItemInput()" class="btn px-2 delete" type="button"><i class="fa fa-trash"></i></button>
+        </div>
+      </div>
     </div>
-    <div class="ml-md-auto">
-      <a class="nav-link"><i class="fa fa-save saveIcon mr-2"
-        matTooltip="Save Course"
-        matTooltipPosition="after"
-        matTooltipClass="custom-tooltip-blue"
-        matTooltipPosition="right"
-        [matTooltipShowDelay]="showDelay.value"
-        [matTooltipHideDelay]="hideDelay.value"></i></a>
+    <div class="example-box" *ngFor="let topic of navTopicModel.lectureTopics" cdkDrag cdkDragLockAxis="x">
+      {{topic.topicName}}
+      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+      <div class="example-handle" cdkDragHandle><i class="fa fa-arrows-alt"></i></div>
     </div>
-  </nav>
+  </div>
 </div>
 <div class="col-md-12 content-container p-0 m-0">
 
