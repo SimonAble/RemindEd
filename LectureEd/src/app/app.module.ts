@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatIconModule } from '@angular/material/icon';
 
 //App Imports
 import { AppRoutingModule } from './app-routing.module';
@@ -54,7 +55,8 @@ import { CreateLeftMenuComponent } from './InternalViews/CreateView/CreateLeftMe
     FormsModule,
     BrowserAnimationsModule,
     MatTooltipModule,
-    DragDropModule
+    DragDropModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

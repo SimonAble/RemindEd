@@ -1,9 +1,9 @@
 <div class="col-md-12 content-nav p-0 m-0">
   <div cdkDropList cdkDropListOrientation="horizontal" class="example-list w-100" (cdkDropListDropped)="drop($event)">
-    <div *ngIf="!addNewNavTopic" class="example-box addCourse-box py-3" cdkDrag cdkDragDisabled="true" (click)="toggleNavItemInput()">
+    <div *ngIf="!addNewNavTopic" class="example-box addCourse-box py-3" (click)="toggleNavItemInput()">
       <i class="fa fa-plus sidebarIcon mr-3"></i>Add Button
   </div>
-    <div *ngIf="addNewNavTopic" class="example-box course-input-box py-3 px-0" cdkDrag cdkDragDisabled="true" cdkDragLockAxis="y">
+    <div *ngIf="addNewNavTopic" class="example-box course-input-box py-3 px-0">
       <div class="input-group lectureInput p-0">
         <input type="text" class="form-control" placeholder="Enter lecture title" aria-label="Enter Lecture Title" name="lectureInput" [(ngModel)]="navTopicItem">
         <div class="input-group-append">
@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    <div class="example-box" *ngFor="let topic of navTopicModel.lectureTopics" cdkDrag cdkDragLockAxis="x">
+    <div class="example-box" [ngClass]="{'active' : topic.topicActive}"*ngFor="let topic of navTopicModel.lectureTopics" cdkDrag cdkDragLockAxis="x">
       {{topic.topicName}}
       <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
       <div class="example-handle" cdkDragHandle><i class="fa fa-arrows-alt"></i></div>
@@ -23,9 +23,25 @@
 </div>
 <div class="col-md-12 content-container p-0 m-0">
 
-  <div class="mx-auto pt-5">
-    <div class="container editTopicContent">
-
+  <div class="mx-auto pt-4">
+    <div class="container editTopicContent p-2">
+      <div cdkDropList class="content-list h-100 overflow-auto" (cdkDropListDropped)="dropMovie($event)">
+        <div class="editor-box rounded">
+          <div class="w-100 d-flex justify-content-around">
+            <div><i class="fa fa-plus-square icon"></i></div>
+            <div><i class="fa fa-minus-square icon"></i></div>
+            <div><mat-icon aria-hidden="false" aria-label="Example home icon" class="icon">add_photo_alternate</mat-icon></div>
+            <div><i class="fa fa-flask icon flask"></i></div>
+            <div><i class="fa fa-flask icon flask"></i></div>
+            <div><i class="fa fa-flask icon flask"></i></div>
+            <div><i class="fa fa-flask icon flask"></i></div>
+          </div>
+        </div>
+        <div class="content-box" *ngFor="let movie of movies" cdkDrag cdkDragLockAxis="y" cdkDragBoundary=".editTopicContent">
+          <div class="content-custom-placeholder" *cdkDragPlaceholder ></div>
+          <mat-icon aria-hidden="false" aria-label="Example home icon" class="hoverBtn">fullscreen</mat-icon>{{movie}}
+        </div>
+      </div>
     </div>
   </div>
 

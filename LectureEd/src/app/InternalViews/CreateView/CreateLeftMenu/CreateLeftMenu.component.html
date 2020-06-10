@@ -37,10 +37,10 @@
               <i class="fa fa-arrows-alt"></i>
             </div>
         </div>
-        <div *ngIf="!addNewLectureToggled" class="example-box addCourse-box pl-4 py-3" cdkDrag cdkDragDisabled="true" (click)="toggleLectureItemInput()">
+        <div *ngIf="!addNewLectureToggled" class="example-box addCourse-box pl-4 py-3" (click)="toggleLectureItemInput()">
             <i class="fa fa-plus sidebarIcon mr-3"></i>Add Button
         </div>
-        <div *ngIf="addNewLectureToggled" class="example-box course-input-box py-3 px-0" cdkDrag cdkDragDisabled="true">
+        <div *ngIf="addNewLectureToggled" class="example-box course-input-box py-3 px-0">
           <div class="input-group lectureInput pl-4">
             <input type="text" class="form-control" placeholder="Enter lecture title" aria-label="Enter Lecture Title" name="lectureInput" [(ngModel)]="lectureItem">
             <div class="input-group-append">

@@ -11,7 +11,7 @@ constructor() { }
 getNavigationTopics() {
   let lectureTopicNavigationItems = new LectureNavigationModel(
     [
-      new LectureTopic('Concept'),
+      new LectureTopic('Concept', true),
       new LectureTopic('History'),
       new LectureTopic('Application'),
       new LectureTopic('Quiz'),

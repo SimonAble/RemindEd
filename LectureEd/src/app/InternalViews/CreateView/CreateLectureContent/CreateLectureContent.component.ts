@@ -16,6 +16,14 @@ export class CreateLectureContentComponent implements OnInit {
   public hideDelay = new FormControl(500);
   public addNewNavTopic: boolean = false;
   public navTopicItem: string;
+  public activeTabName: string;
+  public movies = [
+    'Episode I - The Phantom Menace',
+    'Episode II - Attack of the Clones',
+    'Episode III - Revenge of the Sith',
+    'Episode IV - A New Hope',
+    'Episode V - The Empire Strikes Back'
+  ];
 
   constructor(private lectureContentService: CreateLectureContentService) { }
 
@@ -25,10 +33,15 @@ export class CreateLectureContentComponent implements OnInit {
 
   public getLectureNavigationTopics() {
     this.navTopicModel = this.lectureContentService.getNavigationTopics();
+    this.getActiveTab();
   }
 
   public drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.navTopicModel.lectureTopics, event.previousIndex, event.currentIndex);
+  }
+
+  public dropMovie(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
   }
 
   public toggleNavItemInput() {
@@ -41,6 +54,15 @@ export class CreateLectureContentComponent implements OnInit {
       this.navTopicItem = "";
       this.addNewNavTopic = false;
     }
+  }
+
+  public getActiveTab() {
+
+    this.navTopicModel.lectureTopics.forEach(topic => {
+      if( topic.topicActive ) {
+        this.activeTabName = topic.topicName;
+      }
+    });
   }
 
 }
