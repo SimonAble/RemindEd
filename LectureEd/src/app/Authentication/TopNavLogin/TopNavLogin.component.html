@@ -2,7 +2,7 @@
 <div *ngIf="loginCheck()">
   <div class="dropdown show">
     <a class="btn profile-menu p-0 pt-1" href="#" id="dropdownMenuLink">
-      <i class="fa fa-user"></i>
+      <mat-icon aria-hidden="false" aria-label="Profile Icon" class="icon">account_circle</mat-icon>
     </a>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
       <a class="dropdown-item" href="#">Profile</a>
@@ -14,10 +14,10 @@
 </div>
 <div *ngIf="!loginCheck()" class="form-inline">
   <div *ngIf="!loginToggled">
-    <button class="btn btn-outline-info login-btn mr-2" (click)="toggleLogin()">Login</button>
+    <button class="btn btn-outline-info login-btn mr-2" (click)="openLoginModal()">Login</button>
   </div>
   <div *ngIf="!loginCheck()">
-    <button class="btn btn-outline-info login-btn" (click)="toggleLogin()">Sign Up</button>
+    <button class="btn btn-outline-info login-btn" (click)="openRegistrationModal()">Sign Up</button>
   </div>
   <form class="form-inline" *ngIf="loginToggled" #loginForm="ngForm" (ngSubmit)="login()">
     <div class="form-group mx-1">

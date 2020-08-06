@@ -26,20 +26,13 @@
   <div class="mx-auto pt-4">
     <div class="container editTopicContent p-2">
       <div cdkDropList class="content-list h-100 overflow-auto" (cdkDropListDropped)="dropMovie($event)">
-        <div class="editor-box rounded">
-          <div class="w-100 d-flex justify-content-around">
-            <div><i class="fa fa-plus-square icon"></i></div>
-            <div><i class="fa fa-minus-square icon"></i></div>
-            <div><mat-icon aria-hidden="false" aria-label="Example home icon" class="icon">add_photo_alternate</mat-icon></div>
-            <div><i class="fa fa-flask icon flask"></i></div>
-            <div><i class="fa fa-flask icon flask"></i></div>
-            <div><i class="fa fa-flask icon flask"></i></div>
-            <div><i class="fa fa-flask icon flask"></i></div>
-          </div>
-        </div>
         <div class="content-box" *ngFor="let movie of movies" cdkDrag cdkDragLockAxis="y" cdkDragBoundary=".editTopicContent">
           <div class="content-custom-placeholder" *cdkDragPlaceholder ></div>
           <mat-icon aria-hidden="false" aria-label="Example home icon" class="hoverBtn">fullscreen</mat-icon>{{movie}}
+          <div class="content-handle" cdkDragHandle><i class="fa fa-arrows-alt"></i></div>
+        </div>
+        <div class="add-new-box">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" class="add-new-icon mr-3">add_box</mat-icon>
         </div>
       </div>
     </div>

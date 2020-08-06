@@ -1,0 +1,26 @@
+<h1 mat-dialog-title class="text-center loginHeader mb-2">Register and join CoLab</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content class="mt-2">
+
+  <div class="loginContainer">
+    <mat-form-field class="mb-3 w-75">
+      <mat-label>Enter your email</mat-label>
+      <input matInput [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="mb-3 w-75">
+      <mat-label>Enter your password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+  </div>
+</div>
+
+<div mat-dialog-actions class="text-center loginActions mb-1">
+    <button mat-stroked-button color="primary" class="w-75" (click)="onNoClick()">Register</button>
+</div>

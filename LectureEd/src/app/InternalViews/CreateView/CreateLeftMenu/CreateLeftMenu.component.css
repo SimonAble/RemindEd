@@ -45,11 +45,15 @@ a, a:hover, a:focus {
 }
 
 #sidebar .sidebar-header .displayHeader{
-  padding: 22px 10px 10px 10px;
-  height:65px;
+  padding: 18px 10px 10px 10px;
+  height:55px;
   background: var(--darker-blue);
   box-shadow: 0 3px 5px -2px rgb(12, 12, 15);
   /* border-bottom: 6px solid var(--black-blue); */
+}
+
+.input-group-append {
+  height: 38px;
 }
 
 .displayHeader i {
@@ -161,7 +165,7 @@ a, a:hover, a:focus {
   cursor: pointer;
 }
 
-#sidebar ul li a i{
+#sidebar ul li a .icon{
   font-size: 1.2em;
 }
 
@@ -305,4 +309,8 @@ a, a:hover, a:focus {
   cursor: move;
   width: 24px;
   height: 24px;
+}
+
+.icon {
+  line-height: 0;
 }

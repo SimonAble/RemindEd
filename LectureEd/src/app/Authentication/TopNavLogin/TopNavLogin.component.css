@@ -26,12 +26,17 @@
 
 .profile-menu {
   border-radius: 50%;
-  border:1px solid white;
   height:30px;
   width: 30px;
+  padding-bottom: 4px;
 }
 
-.profile-menu i{
+.profile-menu .icon{
   color: white;
-  font-size: 20px;
+  font-size: 28px;
+  transition: .3s;
+}
+
+.profile-menu:hover .icon{
+  color: var(--lab-accent);
 }

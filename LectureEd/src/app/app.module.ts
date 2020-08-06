@@ -2,11 +2,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
 
 //Material Imports
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTooltipModule } from '@angular/material/';
+import { MatTooltipModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule } from '@angular/material/';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -19,7 +19,8 @@ import { TopNavigationComponent } from './Layout/TopNavigation/TopNavigation.com
 import { TopNavLoginComponent } from './Authentication/TopNavLogin/TopNavLogin.component';
 
 //Authentication
-import { RegistrationComponent } from './Authentication/Registration/Registration.component';
+import { LoginModalComponent } from './Authentication/LoginModal/LoginModal.component';
+import { RegistrationModalComponent } from './Authentication/RegistrationModal/RegistrationModal.component';
 
 //External Views
 import { ExternalHomeComponent } from './GlobalViews/ExternalHome/ExternalHome.component';
@@ -40,13 +41,14 @@ import { CreateLeftMenuComponent } from './InternalViews/CreateView/CreateLeftMe
     ExternalHomeComponent,
     TopNavigationComponent,
     TopNavLoginComponent,
-    RegistrationComponent,
     LearnLayoutComponent,
     LearnLeftMenuComponent,
     LearnLectureContentComponent,
     CreateLectureLayoutComponent,
     CreateLeftMenuComponent,
-    CreateLectureContentComponent
+    CreateLectureContentComponent,
+    LoginModalComponent,
+    RegistrationModalComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,17 @@ import { CreateLeftMenuComponent } from './InternalViews/CreateView/CreateLeftMe
     BrowserAnimationsModule,
     MatTooltipModule,
     DragDropModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatDividerModule
+  ],
+  entryComponents: [
+    LoginModalComponent,
+    RegistrationModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

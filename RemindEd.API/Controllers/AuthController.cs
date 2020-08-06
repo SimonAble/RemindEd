@@ -47,8 +47,17 @@ namespace RemindEd.API.Controllers
             //Create User
             var createdUser = await this.authRepository.Register(userToCreate, userForRegister.Password);
 
-            //Return Created at Route
-            return StatusCode(201);
+            //Check if user exists
+            if (createdUser == null)
+            {
+                return Unauthorized();
+            }
+
+            //Write token into response sent to client
+            return Ok(new
+            {
+                token = GenerateAuthToken(createdUser)
+            });
         }
 
         [AllowAnonymous]
@@ -59,10 +68,19 @@ namespace RemindEd.API.Controllers
             var dbUser = await this.authRepository.Login(userToLogin.Username.ToLower(), userToLogin.Password);
 
             //Check if user exists
-            if(dbUser == null) 
+            if (dbUser == null)
             {
                 return Unauthorized();
             }
+
+            //Write token into response sent to client
+            return Ok(new {
+                token = GenerateAuthToken(dbUser)
+            });
+        }
+
+        public SecurityToken GenerateAuthToken(User dbUser)
+        {
 
             //Providing claims for Id and Username
             var claims = new[]
@@ -78,7 +96,7 @@ namespace RemindEd.API.Controllers
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
             //Create the token
-            var tokenDescriptor = new SecurityTokenDescriptor() 
+            var tokenDescriptor = new SecurityTokenDescriptor()
             {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now.AddDays(1),
@@ -91,10 +109,7 @@ namespace RemindEd.API.Controllers
             //Create a token based on descriptor
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            //Write token into response sent to client
-            return Ok(new {
-                token = tokenHandler.WriteToken(token)
-            });
+            return token;
         }
     }
 }

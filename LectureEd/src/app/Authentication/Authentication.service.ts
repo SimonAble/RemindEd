@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { LoginModel } from './Login.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { RegistrationModel } from './Registration/Registration.model';
+import { RegistrationModel } from './Registration.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +15,19 @@ export class AuthenticationService {
 
     public register(registrationModel: RegistrationModel) {
       console.log("Registering");
-      return this.http.post(this.baseUrl + 'register', registrationModel);
+      return this.http.post(this.baseUrl + 'register', registrationModel)
+        .pipe(
+          map((res: any) => {
+            const user = res;
+            if(user) {
+              localStorage.setItem('token', user.token);
+            }
+          })
+        )
     }
 
     public login(loginModel:LoginModel) {
-      console.log("Logging in:");
+      console.log("Logging in");
       console.log(JSON.stringify(loginModel));
       return this.http.post(this.baseUrl + 'login', loginModel)
         .pipe(
