@@ -2,7 +2,7 @@ export class LectureNavigationModel {
   lectureId: string;
   lectureTopics: LectureTopic[];
 
-  constructor(lectureTopics: LectureTopic[]) {
+  constructor(lectureTopics: LectureTopic[] = []) {
     this.lectureTopics = lectureTopics;
   }
 }

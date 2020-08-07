@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from './Course.model';
+import { CourseModel } from './Course.model';
+import { CreateCourseService } from './CreateCourse.service';
+import { LectureNavigationModel, LectureTopic } from '../CreateLectureContent/CreateLectureContent.model';
 
 @Component({
   selector: 'app-CreateLectureLayout',
@@ -9,11 +11,22 @@ import { Course } from './Course.model';
 export class CreateLectureLayoutComponent implements OnInit {
 
   public leftMenuCollapsed: boolean = false;
-  public courseModel: Course;
+  public courseModel: CourseModel;
+  public activeLecture: LectureNavigationModel;
 
-  constructor() { }
+  constructor(private courseService: CreateCourseService) { }
 
   ngOnInit() {
+    this.getCourse();
+  }
+
+  public getCourse() {
+    this.courseModel = this.courseService.getCourse();
+    console.log("Getting course model: ", JSON.stringify(this.courseModel));
+    let lectures = this.courseModel.leftMenu.lectures;
+    if(lectures.length > 0) {
+      this.activeLecture = this.courseModel.leftMenu.lectures[0].lectureContent;
+    }
   }
 
   public toggleLeftMenu(event) {
@@ -21,4 +34,28 @@ export class CreateLectureLayoutComponent implements OnInit {
     this.leftMenuCollapsed = event;
   }
 
+  public changeActiveLecture(event) {
+    console.log("Event emitted from left menu: ", event);
+    this.activeLecture = this.courseModel.leftMenu.lectures[event].lectureContent;
+    this.switchActiveLecture(event);
+  }
+
+  public createNewLectureContent(event) {
+    console.log("Creating new lecture content: ", event);
+    this.courseModel.leftMenu.lectures[event].lectureContent = new LectureNavigationModel([new LectureTopic("Mock Topic", true)]);
+    this.activeLecture = this.courseModel.leftMenu.lectures[event].lectureContent;
+
+    this.switchActiveLecture(event);
+  }
+
+  public switchActiveLecture(index) {
+    for(let i = 0; i < this.courseModel.leftMenu.lectures.length; i++) {
+      if (i === index) {
+        this.courseModel.leftMenu.lectures[i].lectureActive = true;
+      }
+      else {
+        this.courseModel.leftMenu.lectures[i].lectureActive = false;
+      }
+    }
+  }
 }

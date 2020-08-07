@@ -28,7 +28,7 @@
     <!--Left Menu Expanded-->
     <div *ngIf="!leftMenuToggled" class="list-container">
       <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of leftMenu.lectures; let i = index" cdkDrag cdkDragLockAxis="y">
+        <div class="example-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of leftMenu.lectures; let i = index" cdkDrag cdkDragLockAxis="y" (click)="viewLecture(lecture, i)">
           <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
             <a><i class="fa fa-book sidebarIcon mr-3"></i>{{lecture.lectureName}}</a>
             <button (click)="deleteLecture(lecture, i)" class="btn hoverBtn p-0 ml-3"><i class="fa fa-times"></i></button>
@@ -57,7 +57,7 @@
     <!--Left Menu Collapsed-->
     <div *ngIf="leftMenuToggled" class="list-container">
       <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of leftMenu.lectures" cdkDrag cdkDragLockAxis="y">
+        <div class="example-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of leftMenu.lectures; let i = index" cdkDrag cdkDragLockAxis="y" (click)="viewLecture(lecture, i)">
           <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
             <a><i class="fa fa-book sidebarIcon mr-3" cdkDragHandle></i></a>
         </div>

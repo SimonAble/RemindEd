@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { CreateLeftMenuModel, Lecture } from './CreateLeftMenu.model';
 import { CreateLeftMenuService } from './CreateLeftMenu.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { LectureNavigationModel } from '../CreateLectureContent/CreateLectureContent.model';
 
 @Component({
   selector: 'app-CreateLeftMenu',
@@ -11,9 +12,14 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 export class CreateLeftMenuComponent implements OnInit {
 
   @Output() emitToggleLeftMenu = new EventEmitter<boolean>();
+  @Output() emitChangeActiveLecture = new EventEmitter<number>();
+  @Output() emitCreateLectureContent = new EventEmitter<number>();
+
+  @Input() leftMenu: CreateLeftMenuModel;
+
   public leftMenuToggled: boolean = false;
   public editMenuTitle: boolean = false;
-  public leftMenu: CreateLeftMenuModel;
+  //public leftMenu: CreateLeftMenuModel;
   public leftMenuTitle: string;
   public lectureItem: string;
   public addNewLectureToggled: boolean = false;
@@ -25,7 +31,7 @@ export class CreateLeftMenuComponent implements OnInit {
   constructor(private leftMenuService: CreateLeftMenuService) { }
 
   ngOnInit() {
-    this.getLeftMenu();
+    // this.getLeftMenu();
   }
 
   toggleLeftMenu() {
@@ -34,10 +40,10 @@ export class CreateLeftMenuComponent implements OnInit {
     this.emitToggleLeftMenu.emit(this.leftMenuToggled);
   }
 
-  getLeftMenu() {
-    this.leftMenu = this.leftMenuService.getCreateLeftMenuItems();
-    console.log(JSON.stringify(this.leftMenu));
-  }
+  // getLeftMenu() {
+  //   this.leftMenu = this.leftMenuService.getCreateLeftMenuItems();
+  //   console.log(JSON.stringify(this.leftMenu));
+  // }
 
   saveLeftMenu() {
     this.leftMenuService.saveCreateLeftMenuItems(this.leftMenu);
@@ -59,9 +65,14 @@ export class CreateLeftMenuComponent implements OnInit {
 
   addNewLectureItem() {
     if(this.lectureItem !== "") {
-      this.leftMenu.lectures.push(new Lecture(this.lectureItem, false));
+      console.log("Adding new Lecture item");
+      this.leftMenu.lectures.push(new Lecture(this.lectureItem, false, new LectureNavigationModel()));
       this.lectureItem = "";
       this.addNewLectureToggled = false;
+
+      let newLecturePosition = this.leftMenu.lectures.length - 1;
+      console.log("New lecture position: ", newLecturePosition);
+      this.emitCreateLectureContent.emit(newLecturePosition);
     }
   }
 
@@ -74,6 +85,6 @@ export class CreateLeftMenuComponent implements OnInit {
   viewLecture(lecture, index) {
     console.log(JSON.stringify(lecture));
     console.log(index);
-    this.leftMenu.lectures.splice(index, 1);
+    this.emitChangeActiveLecture.emit(index);
   }
 }

@@ -2,10 +2,17 @@
   <div class="row p-0 m-0 h-100">
     <!-- <div class="col-md-0-5 p-0 m-0"> -->
     <div class="p-0 m-0" [class]="leftMenuCollapsed ? 'col-md-0-5' : 'col-md-2-5' ">
-      <app-CreateLeftMenu (emitToggleLeftMenu)="toggleLeftMenu($event)"></app-CreateLeftMenu>
+      <app-CreateLeftMenu
+      (emitToggleLeftMenu)="toggleLeftMenu($event)"
+      (emitChangeActiveLecture)="changeActiveLecture($event)"
+      (emitCreateLectureContent)="createNewLectureContent($event)"
+      [leftMenu]="courseModel.leftMenu">
+      </app-CreateLeftMenu>
     </div>
     <div id="content" class="content col p-0 m-0">
-      <app-CreateLectureContent></app-CreateLectureContent>
+      <app-CreateLectureContent
+      [activeLecture]="activeLecture"
+      ></app-CreateLectureContent>
     </div>
   </div>
 
