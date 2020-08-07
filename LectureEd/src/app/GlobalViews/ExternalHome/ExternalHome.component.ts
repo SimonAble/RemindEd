@@ -12,4 +12,8 @@ export class ExternalHomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  public openRegisterModal() {
+
+  }
+
 }

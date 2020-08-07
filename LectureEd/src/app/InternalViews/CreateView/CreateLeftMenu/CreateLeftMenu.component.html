@@ -27,18 +27,17 @@
 
     <!--Left Menu Expanded-->
     <div *ngIf="!leftMenuToggled" class="list-container">
-
       <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box pl-4 py-3" *ngFor="let lecture of leftMenu.lectures" cdkDrag cdkDragLockAxis="y">
+        <div class="example-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of leftMenu.lectures; let i = index" cdkDrag cdkDragLockAxis="y">
           <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-          <button (click)="toggleEditCourseTitle()" class="btn hoverBtn p-0 mr-3"><i class="fa fa-times"></i></button>
             <a><i class="fa fa-book sidebarIcon mr-3"></i>{{lecture.lectureName}}</a>
+            <button (click)="deleteLecture(lecture, i)" class="btn hoverBtn p-0 ml-3"><i class="fa fa-times"></i></button>
             <div class="example-handle" cdkDragHandle>
               <i class="fa fa-arrows-alt"></i>
             </div>
         </div>
         <div *ngIf="!addNewLectureToggled" class="example-box addCourse-box pl-4 py-3" (click)="toggleLectureItemInput()">
-            <i class="fa fa-plus sidebarIcon mr-3"></i>Add Button
+            <i class="fa fa-plus sidebarIcon mr-3"></i>Add Lecture
         </div>
         <div *ngIf="addNewLectureToggled" class="example-box course-input-box py-3 px-0">
           <div class="input-group lectureInput pl-4">
@@ -56,25 +55,17 @@
 
 
     <!--Left Menu Collapsed-->
-    <ul *ngIf="leftMenuToggled" class="list-unstyled components pt-0">
-      <li *ngFor="let lecture of leftMenu.lectures">
-        <a class="text-center"
-        matTooltip="{{lecture.lectureName}}"
-        matTooltipPosition="after"
-        matTooltipClass="custom-tooltip-blue"
-        matTooltipPosition="right">
-        <i class="fa fa-book sidebarIcon"></i></a>
-      </li>
-      <!--Add new lecture-->
-      <li>
-        <a class="text-center"
-        matTooltip="Add new lecture"
-        matTooltipPosition="after"
-        matTooltipClass="custom-tooltip-blue"
-        matTooltipPosition="right">
-        <i class="fa fa-plus sidebarIcon"></i></a>
-      </li>
-    </ul>
+    <div *ngIf="leftMenuToggled" class="list-container">
+      <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of leftMenu.lectures" cdkDrag cdkDragLockAxis="y">
+          <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+            <a><i class="fa fa-book sidebarIcon mr-3" cdkDragHandle></i></a>
+        </div>
+        <div *ngIf="!addNewLectureToggled" class="example-box addCourse-box pl-4 py-3" (click)="toggleLectureItemInput()">
+            <i class="fa fa-plus sidebarIcon mr-3"></i>
+        </div>
+      </div>
+    </div>
 
     <!--Left Menu Toggler Expanded-->
     <div *ngIf="!leftMenuToggled" class="toggleLeftMenu expanded">
@@ -84,7 +75,6 @@
         </li>
       </ul>
     </div>
-
 
     <!--Left Menu Toggler Collapsed-->
     <div *ngIf="leftMenuToggled" class="toggleLeftMenu collapsed">

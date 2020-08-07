@@ -59,10 +59,21 @@ export class CreateLeftMenuComponent implements OnInit {
 
   addNewLectureItem() {
     if(this.lectureItem !== "") {
-      this.leftMenu.lectures.push(new Lecture(this.lectureItem));
+      this.leftMenu.lectures.push(new Lecture(this.lectureItem, false));
       this.lectureItem = "";
       this.addNewLectureToggled = false;
     }
   }
 
+  deleteLecture(lecture, index) {
+    console.log(JSON.stringify(lecture));
+    console.log(index);
+    this.leftMenu.lectures.splice(index, 1);
+  }
+
+  viewLecture(lecture, index) {
+    console.log(JSON.stringify(lecture));
+    console.log(index);
+    this.leftMenu.lectures.splice(index, 1);
+  }
 }

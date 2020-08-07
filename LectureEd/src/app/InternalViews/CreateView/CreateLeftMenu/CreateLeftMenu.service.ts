@@ -14,9 +14,9 @@ public getCreateLeftMenuItems() {
   let leftMenu = new CreateLeftMenuModel(
     "Mock Course Title",
     [
-      new Lecture('Test Lecture 1'),
-      new Lecture('Test Lecture 2'),
-      new Lecture('Test Lecture 3')
+      new Lecture('Test Lecture 1', true),
+      new Lecture('Test Lecture 2', false),
+      new Lecture('Test Lecture 3', false)
     ]
   )
 

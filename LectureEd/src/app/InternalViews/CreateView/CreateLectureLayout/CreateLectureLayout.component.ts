@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Course } from './Course.model';
 
 @Component({
   selector: 'app-CreateLectureLayout',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class CreateLectureLayoutComponent implements OnInit {
 
   public leftMenuCollapsed: boolean = false;
+  public courseModel: Course;
 
   constructor() { }
 

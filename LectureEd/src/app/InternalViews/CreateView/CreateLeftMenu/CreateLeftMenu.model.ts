@@ -15,9 +15,11 @@ export class Lecture {
   lectureViewed: boolean;
   lectureCompleted: boolean;
   lectureLocked: boolean;
+  lectureActive: boolean;
 
   //Todo: remove this once db tables are completed
-  constructor(lectureName: string) {
+  constructor(lectureName: string, lectureActive: boolean) {
     this.lectureName = lectureName;
+    this.lectureActive = lectureActive;
   }
 }
