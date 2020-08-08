@@ -27,11 +27,12 @@
 
 .editTopicContent {
   width:94%;
-  background-color: var(--lighter-grey);
+  background-color: white;
   border-radius: 6px;
   height: 78vh;
   overflow: hidden;
   overflow: scroll;
+  border: 3px solid var(--light-grey);
 }
 
 
@@ -96,7 +97,7 @@
 }
 
 .example-custom-placeholder {
-  background: var(--lighter-grey);;
+  background: var(--lighter-grey);
   border: dotted 3px #999;
   min-height: 55px;
   min-width: 140px;
@@ -127,7 +128,6 @@
   /* border: solid 1px #ccc; */
   min-height: 55px;
   display: block;
-  background: var(--lighter-grey);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -195,17 +195,18 @@
 
 .add-new-box {
   margin-bottom: 10px;
-  border:4px solid var(--light-grey)!important;
-  padding: 10px 10px;
+  border-bottom:1px solid var(--light-grey)!important;
+  padding: 6px 10px;
   color: rgba(0, 0, 0, 0.87);
   box-sizing: border-box;
   background: white;
   font-size: 14px;
   transition: .1s;
-  height:60px;
-  border-bottom-right-radius: 6px;
-  border-bottom-left-radius: 6px;
+  height:45px;
   text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  cursor: pointer;
 }
 
 .icon{
@@ -226,12 +227,9 @@
   transition: .5s;
 }
 
-.add-new-box:hover {
-  border:4px solid var(--lab-accent);
-}
-
-.add-new-box:hover .add-new-icon {
+.add-new-icon:hover {
   color:var(--lab-accent);
+  cursor: pointer;
 }
 
 .add-new-icon {
@@ -249,9 +247,14 @@
 
 .newContentPlaceholder {
   font-size: 36px;
-  color: var(--medium-grey);
+  color: var(--light-grey);
   text-align: center;
-  margin-top: 200px;
+  margin-top: 100px;
+  height: 114px;
+  border-bottom: 3px dotted var(--light-grey);
+  padding-top: 24px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .add-new-topic-icon {
@@ -262,4 +265,11 @@
 
 .add-new-topic-icon:hover {
   color: var(--lab-accent);
+}
+
+.newContentArrow {
+  height:60px;
+  width:60px;
+  font-size: 60px;
+  vertical-align: bottom;
 }

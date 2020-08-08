@@ -18,6 +18,8 @@
   --lighter-grey: rgb(231, 234, 238);
   --light-grey: rgb(191, 191, 206);
 
+  --background-grey:rgb(220, 220, 231);
+
   --text-grey: rgb(67, 69, 75);
 
   /* white */
@@ -130,6 +132,10 @@ h6 {
 
 .purple {
   color: var(--purple);
+}
+
+.focusText {
+  color: var(--lab-accent);
 }
 
 /* Bootstrap Modal Patch */

@@ -87,6 +87,10 @@ a, a:hover, a:focus {
   background-color: var(--dark-blue);
 }
 
+.lectureInput input::placeholder{
+  color:rgba(255, 255, 255, 0.603);
+}
+
 .lectureInput input {
   color:var(--star-white);
   border:none;
@@ -342,4 +346,8 @@ a, a:hover, a:focus {
   color: var(--star-white);
   position: relative;
   transition: .2s;
+}
+
+.add-new-topic-icon {
+  vertical-align: sub;
 }

@@ -42,10 +42,17 @@ export class CreateLectureLayoutComponent implements OnInit {
 
   public createNewLectureContent(event) {
     console.log("Creating new lecture content: ", event);
-    this.courseModel.leftMenu.lectures[event].lectureContent = new LectureNavigationModel([new LectureTopic("Mock Topic", true)]);
+    this.courseModel.leftMenu.lectures[event].lectureContent = new LectureNavigationModel();
     this.activeLecture = this.courseModel.leftMenu.lectures[event].lectureContent;
 
     this.switchActiveLecture(event);
+  }
+
+  public deleteLectureContent(event) {
+    this.courseModel.leftMenu.lectures.splice(event, 1);
+    if(this.courseModel.leftMenu.lectures.length > 0) {
+      this.activeLecture = this.courseModel.leftMenu.lectures[0].lectureContent;
+    }
   }
 
   public switchActiveLecture(index) {

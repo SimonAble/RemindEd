@@ -14,7 +14,7 @@ export class CreateLeftMenuComponent implements OnInit {
   @Output() emitToggleLeftMenu = new EventEmitter<boolean>();
   @Output() emitChangeActiveLecture = new EventEmitter<number>();
   @Output() emitCreateLectureContent = new EventEmitter<number>();
-
+  @Output() emitDeleteLectureContent = new EventEmitter<number>();
   @Input() leftMenu: CreateLeftMenuModel;
 
   public leftMenuToggled: boolean = false;
@@ -60,6 +60,8 @@ export class CreateLeftMenuComponent implements OnInit {
   }
 
   toggleLectureItemInput() {
+    this.leftMenuToggled = false;
+    this.emitToggleLeftMenu.emit(this.leftMenuToggled);
     this.addNewLectureToggled = !this.addNewLectureToggled;
   }
 
@@ -79,7 +81,7 @@ export class CreateLeftMenuComponent implements OnInit {
   deleteLecture(lecture, index) {
     console.log(JSON.stringify(lecture));
     console.log(index);
-    this.leftMenu.lectures.splice(index, 1);
+    this.emitDeleteLectureContent.emit(index);
   }
 
   viewLecture(lecture, index) {

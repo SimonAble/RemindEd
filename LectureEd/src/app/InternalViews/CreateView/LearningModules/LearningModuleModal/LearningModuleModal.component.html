@@ -1,0 +1,76 @@
+<h1 mat-dialog-title class="text-center learningModuleHeader mb-2">{{data.topicName}} Topic Customization</h1>
+
+<mat-dialog-content class="mat-typography py-4">
+  <div class="moduleContainer mx-auto">
+    <p class="text-center">Choose a learning module for <span class="focusText">{{data.topicName}}</span> this tab. You can pick from pre-made modules or create a custom one.</p>
+  </div>
+  <div class="row moduleContainer mx-auto">
+    <div class="col-md-4 my-3">
+      <div class="moduleCard mx-auto">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">settings_applications</mat-icon>
+        <p class="cardText mt-4">Custom</p>
+        <p class="cardDetailText mx-auto">Explanation text that will describe the current module</p>
+      </div>
+    </div>
+    <div class="col-md-4 my-3">
+      <div class="moduleCard mx-auto">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon fa-flip-vertical">wb_incandescent</mat-icon>
+        <p class="cardText mt-4">Concept</p>
+        <p class="cardDetailText mx-auto">Explanation text that will describe the current module</p>
+      </div>
+    </div>
+    <div class="col-md-4 my-3">
+      <div class="moduleCard mx-auto">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">history_edu</mat-icon>
+        <p class="cardText mt-4">History</p>
+        <p class="cardDetailText mx-auto">Explanation text that will describe the current module</p>
+      </div>
+    </div>
+    <div class="col-md-4 my-3">
+      <div class="moduleCard mx-auto">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">movie</mat-icon>
+        <p class="cardText mt-4">Video</p>
+        <p class="cardDetailText mx-auto">Explanation text that will describe the current module</p>
+      </div>
+    </div>
+    <div class="col-md-4 my-3">
+      <div class="moduleCard mx-auto">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">receipt_long</mat-icon>
+        <p class="cardText mt-4">Resource</p>
+        <p class="cardDetailText mx-auto">Explanation text that will describe the current module</p>
+      </div>
+    </div>
+    <div class="col-md-4 my-3">
+      <div class="moduleCard mx-auto">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">question_answer</mat-icon>
+        <p class="cardText mt-4">Discussion</p>
+        <p class="cardDetailText mx-auto">Explanation text that will describe the current module</p>
+      </div>
+    </div>
+    <div class="col-md-4 my-3">
+      <div class="moduleCard mx-auto">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">contact_support</mat-icon>
+        <p class="cardText mt-4">Quiz</p>
+        <p class="cardDetailText mx-auto">Explanation text that will describe the current module</p>
+      </div>
+    </div>
+    <div class="col-md-4 my-3">
+      <div class="moduleCard mx-auto">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">bubble_chart</mat-icon>
+        <p class="cardText mt-4">Application</p>
+        <p class="cardDetailText mx-auto">Explanation text that will describe the current module</p>
+      </div>
+    </div>
+    <div class="col-md-4 my-3">
+      <div class="moduleCard mx-auto">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">pan_tool</mat-icon>
+        <p class="cardText mt-4">Make a suggestion</p>
+        <p class="cardDetailText mx-auto">Don't see what you are looking for? Make a suggestion for a new module here!</p>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Create Topic</button>
+</mat-dialog-actions>

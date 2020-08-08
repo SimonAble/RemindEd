@@ -3,6 +3,9 @@ import { LectureNavigationModel, LectureTopic } from './CreateLectureContent.mod
 import { CreateLectureContentService } from './CreateLectureContent.service';
 import { FormControl } from '@angular/forms';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { LearningModuleModalComponent } from '../LearningModules/LearningModuleModal/LearningModuleModal.component';
+import { MatDialog } from '@angular/material';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-CreateLectureContent',
@@ -18,14 +21,13 @@ export class CreateLectureContentComponent implements OnInit {
   public addNewNavTopic: boolean = false;
   public navTopicItem: string;
   public activeTabName: string;
-  public movies = [
+  public activeTopic: LectureTopic;
 
-  ];
-
-  constructor(private lectureContentService: CreateLectureContentService) { }
+  constructor(private titleService: Title, private lectureContentService: CreateLectureContentService, public dialog: MatDialog) { }
 
   ngOnInit() {
     //this.getLectureNavigationTopics();
+    this.titleService.setTitle("CoLab | Create")
   }
 
   // public getLectureNavigationTopics() {
@@ -38,18 +40,42 @@ export class CreateLectureContentComponent implements OnInit {
   }
 
   public dropMovie(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+    //moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
   }
 
   public toggleNavItemInput() {
     this.addNewNavTopic = !this.addNewNavTopic;
   }
 
-  public addNewNavTopicItem() {
-    if(this.navTopicItem !== "") {
-      this.activeLecture.lectureTopics.push(new LectureTopic(this.navTopicItem));
-      this.navTopicItem = "";
-      this.addNewNavTopic = false;
+  // public addNewNavTopicItem() {
+  //   if(this.navTopicItem !== "") {
+  //     this.activeLecture.lectureTopics.push(new LectureTopic(this.navTopicItem));
+  //     this.navTopicItem = "";
+  //     this.addNewNavTopic = false;
+
+  //     let newTopicIndex = this.activeLecture.lectureTopics.length - 1;
+  //     this.activeTopic = this.activeLecture.lectureTopics[newTopicIndex];
+  //   }
+  // }
+
+  public addNewNavTopicItem(): void {
+
+      if(this.navTopicItem !== "") {
+
+        const dialogRef = this.dialog.open(LearningModuleModalComponent, {
+          data: { topicName: this.navTopicItem }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed', result);
+
+          this.activeLecture.lectureTopics.push(new LectureTopic(this.navTopicItem));
+          this.navTopicItem = "";
+          this.addNewNavTopic = false;
+
+          let newTopicIndex = this.activeLecture.lectureTopics.length - 1;
+          this.activeTopic = this.activeLecture.lectureTopics[newTopicIndex];
+        });
     }
   }
 

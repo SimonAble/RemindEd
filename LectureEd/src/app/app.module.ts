@@ -1,5 +1,5 @@
 //Angular imports
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -29,11 +29,12 @@ import { ExternalHomeComponent } from './GlobalViews/ExternalHome/ExternalHome.c
 import { LearnLayoutComponent } from './InternalViews/LearnView/LearnLayout/LearnLayout.component';
 import { LearnLeftMenuComponent } from './InternalViews/LearnView/LearnLeftMenu/LearnLeftMenu.component';
 import { LearnLectureContentComponent } from './InternalViews/LearnView/LearnLectureContent/LearnLectureContent.component';
+
+//Create Views
 import { CreateLectureLayoutComponent } from './InternalViews/CreateView/CreateLectureLayout/CreateLectureLayout.component';
 import { CreateLectureContentComponent } from './InternalViews/CreateView/CreateLectureContent/CreateLectureContent.component';
 import { CreateLeftMenuComponent } from './InternalViews/CreateView/CreateLeftMenu/CreateLeftMenu.component';
-
-//Create Views
+import { LearningModuleModalComponent } from './InternalViews/CreateView/LearningModules/LearningModuleModal/LearningModuleModal.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { CreateLeftMenuComponent } from './InternalViews/CreateView/CreateLeftMe
     CreateLeftMenuComponent,
     CreateLectureContentComponent,
     LoginModalComponent,
-    RegistrationModalComponent
+    RegistrationModalComponent,
+    LearningModuleModalComponent
   ],
   imports: [
     BrowserModule,
@@ -68,9 +70,12 @@ import { CreateLeftMenuComponent } from './InternalViews/CreateView/CreateLeftMe
   ],
   entryComponents: [
     LoginModalComponent,
-    RegistrationModalComponent
+    RegistrationModalComponent,
+    LearningModuleModalComponent
   ],
-  providers: [],
+  providers: [
+    Title
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
