@@ -69,12 +69,17 @@ export class CreateLectureContentComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
           console.log('The dialog was closed', result);
 
-          this.activeLecture.lectureTopics.push(new LectureTopic(this.navTopicItem));
-          this.navTopicItem = "";
-          this.addNewNavTopic = false;
+          let topicType = result.topicType;
 
-          let newTopicIndex = this.activeLecture.lectureTopics.length - 1;
-          this.activeTopic = this.activeLecture.lectureTopics[newTopicIndex];
+          console.log("Topic Type: ", topicType);
+          if(topicType) {
+            this.activeLecture.lectureTopics.push(new LectureTopic(this.navTopicItem));
+            this.navTopicItem = "";
+            this.addNewNavTopic = false;
+
+            let newTopicIndex = this.activeLecture.lectureTopics.length - 1;
+            this.activeTopic = this.activeLecture.lectureTopics[newTopicIndex];
+          }
         });
     }
   }

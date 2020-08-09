@@ -11,7 +11,7 @@ export class LectureTopic {
   topicId: string;
   topicName: string;
   topicActive: boolean;
-  topicTypeCode: TopicTypes;
+  topicTypeCode: TopicTabTypes;
 
   constructor(topicName: string, topicActive: boolean = false) {
     this.topicName = topicName;
@@ -19,12 +19,14 @@ export class LectureTopic {
   }
 }
 
-export enum TopicTypes {
+export enum TopicTabTypes {
   Custom = "custom",
   History = "history",
   Resources = "resources",
   Questions = "questions",
   Concept = "concept",
   Video = "video",
-  Discussion = "discussion"
+  Discussion = "discussion",
+  Application = "application",
+  Movie = "movie"
 }

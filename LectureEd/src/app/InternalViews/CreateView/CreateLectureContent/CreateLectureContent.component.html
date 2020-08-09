@@ -25,11 +25,15 @@
 
     <div class="mx-auto pt-4">
       <div class="container editTopicContent p-0">
-        <div *ngIf="!activeLecture" class="newContentPlaceholder">
+        <!-- <div *ngIf="!activeLecture" class="newContentPlaceholder">
           <mat-icon aria-hidden="false" aria-label="Example home icon" class="newContentArrow mr-3">keyboard_backspace</mat-icon>Add a new lecture to start creating content
         </div>
         <div *ngIf="!activeTopic && activeLecture" class="newContentPlaceholder">
           <mat-icon aria-hidden="false" aria-label="Example home icon" class="newContentArrow mr-3">arrow_upward</mat-icon>Add a new topic and pick a learning module
+        </div> -->
+        <!-- <div *ngIf="activeTopic && activeLecture" class="newContentPlaceholder"> -->
+        <div class="mt-4">
+          <app-CoLabEditor></app-CoLabEditor>
         </div>
 
 

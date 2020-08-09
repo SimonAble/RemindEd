@@ -61,6 +61,8 @@
 
   --leftnav-collapsed-width: 6%;
   --leftnav-expanded-width: ;
+
+  --editorFont:'Antic Slab', serif;
 }
 
 /* Base Browser Reset */

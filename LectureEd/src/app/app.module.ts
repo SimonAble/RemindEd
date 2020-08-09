@@ -36,6 +36,11 @@ import { CreateLectureContentComponent } from './InternalViews/CreateView/Create
 import { CreateLeftMenuComponent } from './InternalViews/CreateView/CreateLeftMenu/CreateLeftMenu.component';
 import { LearningModuleModalComponent } from './InternalViews/CreateView/LearningModules/LearningModuleModal/LearningModuleModal.component';
 
+//Core Components
+import { CoLabEditorComponent } from './CoreComponents/CoLabEditor/CoLabEditor.component';
+import { CoLabViewerComponent } from './CoreComponents/CoLabViewer/CoLabViewer.component';
+import { MediumEditorDirective } from 'angular-medium-editor/medium-editor.directive.ts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +55,10 @@ import { LearningModuleModalComponent } from './InternalViews/CreateView/Learnin
     CreateLectureContentComponent,
     LoginModalComponent,
     RegistrationModalComponent,
-    LearningModuleModalComponent
+    LearningModuleModalComponent,
+    CoLabEditorComponent,
+    CoLabViewerComponent,
+    MediumEditorDirective
   ],
   imports: [
     BrowserModule,
