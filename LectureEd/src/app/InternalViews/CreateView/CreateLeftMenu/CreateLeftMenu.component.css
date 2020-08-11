@@ -216,11 +216,11 @@ a, a:hover, a:focus {
   visibility: hidden;
   display: none;
   color:white;
-  transition: .5s;
+  transition: .2s;
 }
 
 .hoverBtn:hover {
-  color: var(--red)
+  color: var(--light-purple);
 }
 
 #sidebar .sidebar-header:hover .hoverBtn {
@@ -358,4 +358,33 @@ a, a:hover, a:focus {
 
 .add-new-topic-icon {
   vertical-align: sub;
+}
+
+
+.editLectureInput input{
+  background-color: var(--dark-blue);
+  color:var(--star-white);
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-radius: 0;
+}
+
+.editLectureInput .input-group-append .btn-outline-secondary {
+  color:white;
+  border: 1px solid #ced4da;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-radius: 0;
+}
+
+.editLectureInput .input-group-append .btn-outline-secondary:hover {
+  background-color: var(--medium-blue);
+  border:none;
+  border-bottom: 1px solid #ced4da;
+}
+
+.example-box:hover .editLectureInput input {
+  background-color: var(--medium-blue);
 }

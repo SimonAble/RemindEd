@@ -30,7 +30,7 @@ export class CreateLectureLayoutComponent implements OnInit {
   }
 
   public toggleLeftMenu(event) {
-    console.log("In parent toggling");
+    console.log("Toggling left menu: ", event);
     this.leftMenuCollapsed = event;
   }
 
@@ -49,13 +49,18 @@ export class CreateLectureLayoutComponent implements OnInit {
   }
 
   public deleteLectureContent(event) {
+    console.log("Deleting lecture content: ", event);
     this.courseModel.leftMenu.lectures.splice(event, 1);
     if(this.courseModel.leftMenu.lectures.length > 0) {
       this.activeLecture = this.courseModel.leftMenu.lectures[0].lectureContent;
     }
+    if(this.courseModel.leftMenu.lectures.length === 0) {
+      this.activeLecture = null;
+    }
   }
 
   public switchActiveLecture(index) {
+    console.log("Switching active lecture: ", event);
     for(let i = 0; i < this.courseModel.leftMenu.lectures.length; i++) {
       if (i === index) {
         this.courseModel.leftMenu.lectures[i].lectureActive = true;

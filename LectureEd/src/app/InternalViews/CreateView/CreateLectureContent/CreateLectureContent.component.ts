@@ -28,6 +28,9 @@ export class CreateLectureContentComponent implements OnInit {
   public activeTopic: LectureTopic;
   public activeTopicIndex: number;
 
+  public editTopicToggled: boolean;
+  public editTopicIndex: number;
+
   constructor(private titleService: Title,
     private lectureContentService: CreateLectureContentService,
     public dialog: MatDialog,
@@ -108,7 +111,30 @@ export class CreateLectureContentComponent implements OnInit {
     this.activeLecture.lectureTopics[this.activeTopicIndex].topicContents.title = topicContents.title;
     this.activeLecture.lectureTopics[this.activeTopicIndex].topicContents.contents = topicContents.contents;
 
-    this.openSnackBar("Topic Saved Successfully!");
+    this.openSnackBar("Course Saved Successfully!");
+  }
+
+  public toggleEditTopic(topic, index) {
+    this.editTopicToggled = true;
+    this.editTopicIndex = index;
+  }
+
+  public addTopicName() {
+    this.editTopicToggled = false;
+    this.editTopicIndex = null;
+  }
+
+  public  deleteTopic(topic, index) {
+    console.log(JSON.stringify(topic));
+    console.log(index);
+    this.activeLecture.lectureTopics.splice(index, 1);
+
+    if(this.activeLecture.lectureTopics.length > 0) {
+      this.activeTopic = this.activeLecture.lectureTopics[0];
+    }
+    if(this.activeLecture.lectureTopics.length === 0) {
+      this.activeTopic = null;
+    }
   }
 
   public openSnackBar(message: string) {

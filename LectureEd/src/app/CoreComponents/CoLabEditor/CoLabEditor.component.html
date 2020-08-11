@@ -1,4 +1,9 @@
-
+<div class="save">
+  <button (click)="saveContents()" class="btn px-2 saveButton" type="button"><mat-icon aria-hidden="false"    aria-label="Example home icon" class="add-new-topic-icon saveIcon inline-icon--round"
+  matTooltip="Save Course"
+  matTooltipClass="custom-tooltip-blue"
+  matTooltipPosition="left">save</mat-icon></button>
+</div>
 <div class="editorContainer">
   <ckeditor
     #titleEditor
@@ -12,11 +17,7 @@
   [editor]="ContentEditor"
   [config]="{ placeholder:'You can talk about the subject more here...'}"
   data = {{this.topicContents}}
-  class="ckTitle">
+  class="ckContent">
 </ckeditor>
-</div>
-
-<div>
-<button (click)="saveContents()" class="btn px-2 add" type="button"><mat-icon aria-hidden="false" aria-label="Example home icon" class="add-new-topic-icon mr-3">save</mat-icon></button>
 </div>
 

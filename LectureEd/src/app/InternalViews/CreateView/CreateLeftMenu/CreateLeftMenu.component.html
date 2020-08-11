@@ -28,12 +28,24 @@
     <!--Left Menu Expanded-->
     <div *ngIf="!leftMenuToggled" class="list-container">
       <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of leftMenu.lectures; let i = index" cdkDrag cdkDragLockAxis="y" (click)="viewLecture(lecture, i)">
-          <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-            <a><i class="fa fa-book sidebarIcon mr-3"></i>{{lecture.lectureName}}</a>
-            <button (click)="deleteLecture(lecture, i)" class="btn hoverBtn p-0 ml-3"><i class="fa fa-times"></i></button>
-            <div class="example-handle" cdkDragHandle>
-              <i class="fa fa-arrows-alt"></i>
+        <div class="example-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of leftMenu.lectures; let i = index" cdkDrag cdkDragLockAxis="y" [cdkDragDisabled]="editLectureIndex === i" (click)="viewLecture(lecture, i)">
+            <div *ngIf="!editLectureToggled || editLectureIndex !== i">
+              <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+              <a><i class="fa fa-book sidebarIcon mr-3"></i>{{lecture.lectureName}}</a>
+              <button (click)="editLecture(lecture, i)" class="btn hoverBtn p-0 ml-2"><i class="fa fa-edit"></i></button>
+              <div class="example-handle" cdkDragHandle>
+                <i class="fa fa-arrows-alt"></i>
+              </div>
+            </div>
+
+            <div *ngIf="editLectureToggled && editLectureIndex === i" class="input-group editLectureInput">
+              <input type="text" class="form-control" placeholder="{{lecture.lectureName}}" aria-label="Enter Course Title" name="leftMenuTitle" [(ngModel)] = "lecture.lectureName">
+              <div class="input-group-append">
+                <button (click)="addLectureName()" class="btn btn-outline-secondary px-2" type="button"><i class="fa fa-plus"></i></button>
+              </div>
+              <div class="input-group-append">
+                <button (click)="deleteLecture()" class="btn btn-outline-secondary delete px-2" type="button"><i class="fa fa-trash"></i></button>
+              </div>
             </div>
         </div>
         <div *ngIf="!addNewLectureToggled" class="example-box addCourse-box pl-4 py-3" (click)="toggleLectureItemInput()">

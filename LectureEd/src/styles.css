@@ -15,11 +15,11 @@
   /* Grey */
   --dark-grey: rgb(42, 43, 46);
   --medium-grey: rgb(132, 146, 165);
-  --lighter-grey: rgb(231, 234, 238);
+  --lighter-grey: rgb(231, 233, 235);
   --light-grey: rgb(191, 191, 206);
 
   --background-grey:rgb(220, 220, 231);
-
+  --highlight-grey: rgb(236, 236, 240);
   --text-grey: rgb(67, 69, 75);
 
   /* white */
@@ -34,7 +34,7 @@
   --background-yellow: rgb(255, 255, 210);
 
   /* Purple */
-  --light-purple: rgb(211, 207, 230);
+  --light-purple: rgb(188, 178, 238);
   --medium-purple: rgb(117, 92, 172);
   --purple-background: rgb(44, 31, 75);
   --purple-hovered: rgb(79, 60, 124);
@@ -58,6 +58,8 @@
 
   /* Shadow */
   --shadow: 5px 5px 10px rgb(182, 182, 182);
+  --float-shadow: 0px 0px 4px -1px var(--gray);
+  --hover-shadow: 0px 0px 12px -1px var(--gray);
 
   --leftnav-collapsed-width: 6%;
   --leftnav-expanded-width: ;

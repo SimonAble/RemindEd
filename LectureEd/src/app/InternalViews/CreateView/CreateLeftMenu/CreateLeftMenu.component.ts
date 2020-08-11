@@ -19,6 +19,9 @@ export class CreateLeftMenuComponent implements OnInit {
 
   public leftMenuToggled: boolean = false;
   public editMenuTitle: boolean = false;
+  public editLectureIndex: number;
+  public editLectureToggled: boolean = false;
+
   //public leftMenu: CreateLeftMenuModel;
   public leftMenuTitle: string;
   public lectureItem: string;
@@ -76,6 +79,16 @@ export class CreateLeftMenuComponent implements OnInit {
       console.log("New lecture position: ", newLecturePosition);
       this.emitCreateLectureContent.emit(newLecturePosition);
     }
+  }
+
+  editLecture(lecture, index) {
+    this.editLectureToggled = true;
+    this.editLectureIndex = index;
+  }
+
+  addLectureName() {
+    this.editLectureToggled = true;
+    this.editLectureIndex = null;
   }
 
   deleteLecture(lecture, index) {
