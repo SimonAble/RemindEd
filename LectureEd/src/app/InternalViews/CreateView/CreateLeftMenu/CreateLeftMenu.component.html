@@ -59,9 +59,16 @@
       <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
         <div class="example-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of leftMenu.lectures; let i = index" cdkDrag cdkDragLockAxis="y" (click)="viewLecture(lecture, i)">
           <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-            <a><i class="fa fa-book sidebarIcon mr-3" cdkDragHandle></i></a>
+            <a matTooltip="{{lecture.lectureName}}"
+            matTooltipPosition="after"
+            matTooltipClass="custom-tooltip-blue"
+            matTooltipPosition="right"><i class="fa fa-book sidebarIcon mr-3" cdkDragHandle></i></a>
         </div>
-        <div *ngIf="!addNewLectureToggled" class="example-box addCourse-box pl-4 py-3" (click)="toggleLectureItemInput()">
+        <div *ngIf="!addNewLectureToggled" class="example-box addCourse-box pl-4 py-3" (click)="toggleLectureItemInput()"
+        matTooltip="Add Lecture"
+        matTooltipPosition="after"
+        matTooltipClass="custom-tooltip-blue"
+        matTooltipPosition="right">
             <i class="fa fa-plus sidebarIcon mr-3"></i>
         </div>
       </div>

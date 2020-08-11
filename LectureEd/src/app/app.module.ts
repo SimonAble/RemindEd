@@ -6,7 +6,7 @@ import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
 
 //Material Imports
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTooltipModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule } from '@angular/material/';
+import { MatTooltipModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule, MatSnackBarModule } from '@angular/material/';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -39,7 +39,7 @@ import { LearningModuleModalComponent } from './InternalViews/CreateView/Learnin
 //Core Components
 import { CoLabEditorComponent } from './CoreComponents/CoLabEditor/CoLabEditor.component';
 import { CoLabViewerComponent } from './CoreComponents/CoLabViewer/CoLabViewer.component';
-import { MediumEditorDirective } from 'angular-medium-editor/medium-editor.directive.ts';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -57,8 +57,7 @@ import { MediumEditorDirective } from 'angular-medium-editor/medium-editor.direc
     RegistrationModalComponent,
     LearningModuleModalComponent,
     CoLabEditorComponent,
-    CoLabViewerComponent,
-    MediumEditorDirective
+    CoLabViewerComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +73,9 @@ import { MediumEditorDirective } from 'angular-medium-editor/medium-editor.direc
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatDividerModule
+    MatDividerModule,
+    CKEditorModule,
+    MatSnackBarModule
   ],
   entryComponents: [
     LoginModalComponent,

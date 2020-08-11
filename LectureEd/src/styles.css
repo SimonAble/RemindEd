@@ -62,7 +62,7 @@
   --leftnav-collapsed-width: 6%;
   --leftnav-expanded-width: ;
 
-  --editorFont:'Antic Slab', serif;
+  --editorFont:'Georgia', serif;
 }
 
 /* Base Browser Reset */
@@ -75,8 +75,9 @@ html,body {
 /* Default Text Styling */
 
 p {
-  font-size: 23px;
+  font-size: 20px;
   color: var(--grey);
+  font-family: var(--editorFont) ;
 }
 
 h1 {
@@ -84,31 +85,37 @@ h1 {
   font-size: 50px;
   font-weight: 400;
   padding-top: 8px;
+  font-family: var(--editorFont) ;
 }
 h2 {
   color: var(--light-blue) ;
   font-size: 34px;
   font-weight: 400;
+  font-family: var(--editorFont) ;
 }
 h3 {
   color: var(--medium-purple) ;
   font-size: 28px;
   font-weight: 400;
+  font-family: var(--editorFont) ;
 }
 h4 {
   color: var(--dark-blue) ;
   font-size: 24px;
   font-weight: 400;
+  font-family: var(--editorFont) ;
 }
 h5 {
   color: var(--light-blue) ;
   font-size: 20px;
   font-weight: 400;
+  font-family: var(--editorFont) ;
 }
 h6 {
   color: var(--light-blue) ;
   font-size: 32px;
   font-weight: 400;
+  font-family: var(--editorFont) ;
 }
 
 /* Text Color Classes */
@@ -169,4 +176,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: #ffffff;
   font-size: 1.1em;
   margin-right: none;
+}
+
+.snackbarSuccess {
+  background-color: var(--lab-accent);
+}
+
+.snackbarSuccess .mat-simple-snackbar .mat-simple-snackbar-action .mat-button .mat-button-wrapper {
+  color: var(--star-white);
 }

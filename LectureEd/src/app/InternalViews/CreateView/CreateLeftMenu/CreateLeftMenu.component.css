@@ -232,6 +232,10 @@ a, a:hover, a:focus {
   cursor: pointer;
 }
 
+.addCourse-box:hover {
+  border:none !important;
+}
+
 .course-input-box:hover {
   background-color: var(--dark-blue)!important;
 }
@@ -346,6 +350,10 @@ a, a:hover, a:focus {
   color: var(--star-white);
   position: relative;
   transition: .2s;
+}
+
+.active:hover {
+  border-right: 4px solid var(--lab-accent);
 }
 
 .add-new-topic-icon {

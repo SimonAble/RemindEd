@@ -12,10 +12,22 @@ export class LectureTopic {
   topicName: string;
   topicActive: boolean;
   topicTypeCode: TopicTabTypes;
+  topicContents: TopicContentModel;
 
   constructor(topicName: string, topicActive: boolean = false) {
     this.topicName = topicName;
     this.topicActive = topicActive;
+    this.topicContents = new TopicContentModel();
+  }
+}
+
+export class TopicContentModel {
+  title: string;
+  contents: string;
+
+  constructor(title: string = "", contents: string = "") {
+    this.title = title;
+    this.contents = contents;
   }
 }
 

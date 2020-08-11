@@ -1,11 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { LectureNavigationModel, LectureTopic } from './CreateLectureContent.model';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { LectureNavigationModel, LectureTopic, TopicContentModel } from './CreateLectureContent.model';
 import { CreateLectureContentService } from './CreateLectureContent.service';
 import { FormControl } from '@angular/forms';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { LearningModuleModalComponent } from '../LearningModules/LearningModuleModal/LearningModuleModal.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { Title } from '@angular/platform-browser';
+import { EACCES } from 'constants';
+import { CoLabEditorComponent } from 'src/app/CoreComponents/CoLabEditor/CoLabEditor.component';
 
 @Component({
   selector: 'app-CreateLectureContent',
@@ -14,20 +16,34 @@ import { Title } from '@angular/platform-browser';
 })
 export class CreateLectureContentComponent implements OnInit {
 
+  @ViewChild('editor') editorComponent: CoLabEditorComponent;
   @Input() activeLecture: LectureNavigationModel;
-  //public activeLecture: LectureNavigationModel;
+
   public showDelay = new FormControl(500);
   public hideDelay = new FormControl(500);
+
   public addNewNavTopic: boolean = false;
   public navTopicItem: string;
-  public activeTabName: string;
-  public activeTopic: LectureTopic;
 
-  constructor(private titleService: Title, private lectureContentService: CreateLectureContentService, public dialog: MatDialog) { }
+  public activeTopic: LectureTopic;
+  public activeTopicIndex: number;
+
+  constructor(private titleService: Title,
+    private lectureContentService: CreateLectureContentService,
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     //this.getLectureNavigationTopics();
-    this.titleService.setTitle("CoLab | Create")
+    this.titleService.setTitle("CoLab | Create");
+  }
+
+  ngOnChanges() {
+    console.log("OnChanges Event Triggered in Lecture Content");
+    if(this.activeLecture && this.activeLecture.lectureTopics.length > 0) {
+      console.log(JSON.stringify(this.activeLecture));
+      this.activeTopic = this.activeLecture.lectureTopics[0];
+    }
   }
 
   // public getLectureNavigationTopics() {
@@ -47,17 +63,6 @@ export class CreateLectureContentComponent implements OnInit {
     this.addNewNavTopic = !this.addNewNavTopic;
   }
 
-  // public addNewNavTopicItem() {
-  //   if(this.navTopicItem !== "") {
-  //     this.activeLecture.lectureTopics.push(new LectureTopic(this.navTopicItem));
-  //     this.navTopicItem = "";
-  //     this.addNewNavTopic = false;
-
-  //     let newTopicIndex = this.activeLecture.lectureTopics.length - 1;
-  //     this.activeTopic = this.activeLecture.lectureTopics[newTopicIndex];
-  //   }
-  // }
-
   public addNewNavTopicItem(): void {
 
       if(this.navTopicItem !== "") {
@@ -67,30 +72,49 @@ export class CreateLectureContentComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-          console.log('The dialog was closed', result);
-
           let topicType = result.topicType;
 
-          console.log("Topic Type: ", topicType);
           if(topicType) {
             this.activeLecture.lectureTopics.push(new LectureTopic(this.navTopicItem));
-            this.navTopicItem = "";
-            this.addNewNavTopic = false;
 
             let newTopicIndex = this.activeLecture.lectureTopics.length - 1;
             this.activeTopic = this.activeLecture.lectureTopics[newTopicIndex];
+            this.activeTopic.topicContents = new TopicContentModel();
+
+            this.switchActiveTopic(newTopicIndex);
+
+            this.navTopicItem = "";
+            this.addNewNavTopic = false;
           }
         });
     }
   }
 
-  public getActiveTab() {
+  public switchActiveTopic(activeIndex:number) {
 
-    this.activeLecture.lectureTopics.forEach(topic => {
-      if( topic.topicActive ) {
-        this.activeTabName = topic.topicName;
+    this.activeTopic = this.activeLecture.lectureTopics[activeIndex];
+    this.activeTopic.topicActive = true;
+    this.activeTopicIndex = activeIndex;
+
+    for(let i = 0; i < this.activeLecture.lectureTopics.length; i++) {
+      if(i != activeIndex) {
+        this.activeLecture.lectureTopics[i].topicActive = false;
       }
-    });
+    }
   }
 
+  public setActiveTopicContents(topicContents: TopicContentModel) {
+
+    this.activeLecture.lectureTopics[this.activeTopicIndex].topicContents.title = topicContents.title;
+    this.activeLecture.lectureTopics[this.activeTopicIndex].topicContents.contents = topicContents.contents;
+
+    this.openSnackBar("Topic Saved Successfully!");
+  }
+
+  public openSnackBar(message: string) {
+    let config = new MatSnackBarConfig();
+    config.panelClass = ['snackbarSuccess'];
+    config.duration = 2000;
+    this._snackBar.open(message, "Close", config);
+  }
 }
