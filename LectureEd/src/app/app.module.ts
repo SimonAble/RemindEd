@@ -35,11 +35,13 @@ import { CreateLectureLayoutComponent } from './InternalViews/CreateView/CreateL
 import { CreateLectureContentComponent } from './InternalViews/CreateView/CreateLectureContent/CreateLectureContent.component';
 import { CreateLeftMenuComponent } from './InternalViews/CreateView/CreateLeftMenu/CreateLeftMenu.component';
 import { LearningModuleModalComponent } from './InternalViews/CreateView/LearningModules/LearningModuleModal/LearningModuleModal.component';
+import { CreateCourseComponent } from './InternalViews/CreateView/CreateCourse/CreateCourse.component';
 
 //Core Components
 import { CoLabEditorComponent } from './CoreComponents/CoLabEditor/CoLabEditor.component';
 import { CoLabViewerComponent } from './CoreComponents/CoLabViewer/CoLabViewer.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { CreateArticleLayoutComponent } from './InternalViews/CreateView/CreateArticleLayout/CreateArticleLayout.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     RegistrationModalComponent,
     LearningModuleModalComponent,
     CoLabEditorComponent,
-    CoLabViewerComponent
+    CoLabViewerComponent,
+    CreateCourseComponent,
+    CreateArticleLayoutComponent
   ],
   imports: [
     BrowserModule,

@@ -31,7 +31,11 @@
         <div class="example-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of leftMenu.lectures; let i = index" cdkDrag cdkDragLockAxis="y" [cdkDragDisabled]="editLectureIndex === i" (click)="viewLecture(lecture, i)">
             <div *ngIf="!editLectureToggled || editLectureIndex !== i">
               <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-              <a><i class="fa fa-book sidebarIcon mr-3"></i>{{lecture.lectureName}}</a>
+              <a>
+                <span class="d-inline-block text-truncate lectureText">
+                  {{lecture.lectureName}}
+                </span>
+              </a>
               <button (click)="editLecture(lecture, i)" class="btn hoverBtn p-0 ml-2"><i class="fa fa-edit"></i></button>
               <div class="example-handle" cdkDragHandle>
                 <i class="fa fa-arrows-alt"></i>

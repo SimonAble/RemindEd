@@ -2,63 +2,56 @@
 
 <mat-dialog-content class="mat-typography py-4">
   <div class="moduleContainer mx-auto">
-    <p class="text-center">Choose a learning module for <span class="focusText">{{data.topicName}}</span> this tab. You can pick from pre-made modules or create a custom one.</p>
+    <p class="text-center">Choose a learning module for <span class="focusText">{{data.topicName}}</span> this tab. These modules can help you provide a more engaging learning experience for learners.</p>
   </div>
   <div class="row moduleContainer mx-auto">
-    <div class="col-md-4 my-3">
-      <div class="moduleCard mx-auto" (click) = "onNoClick(topicType.Custom)">
-        <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">settings_applications</mat-icon>
-        <p class="cardText mt-4">Custom</p>
-        <p class="cardDetailText mx-auto">Explanation text that will describe the current module</p>
-      </div>
-    </div>
     <div class="col-md-4 my-3">
       <div class="moduleCard mx-auto" (click) = "onNoClick(topicType.Concept)">
         <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon fa-flip-vertical">wb_incandescent</mat-icon>
         <p class="cardText mt-4">Concept</p>
-        <p class="cardDetailText mx-auto">Explanation text that will describe the current module</p>
+        <p class="cardDetailText mx-auto">Show a short overview of the concept in your lecture.</p>
       </div>
     </div>
     <div class="col-md-4 my-3">
       <div class="moduleCard mx-auto" (click) = "onNoClick(topicType.History)">
         <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">history_edu</mat-icon>
-        <p class="cardText mt-4">History</p>
-        <p class="cardDetailText mx-auto">Explanation text that will describe the current module</p>
+        <p class="cardText mt-4">Article</p>
+        <p class="cardDetailText mx-auto">Use this for conveying more detailed information.</p>
+      </div>
+    </div>
+    <div class="col-md-4 my-3">
+      <div class="moduleCard mx-auto" (click) = "onNoClick(topicType.Application)">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">bubble_chart</mat-icon>
+        <p class="cardText mt-4">Applications</p>
+        <p class="cardDetailText mx-auto">Show learners different applications of the subject you are teaching.</p>
       </div>
     </div>
     <div class="col-md-4 my-3">
       <div class="moduleCard mx-auto" (click) = "onNoClick(topicType.Movie)">
         <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">movie</mat-icon>
         <p class="cardText mt-4">Video</p>
-        <p class="cardDetailText mx-auto">Explanation text that will describe the current module</p>
+        <p class="cardDetailText mx-auto">Use this to show a video for your topic.</p>
       </div>
     </div>
     <div class="col-md-4 my-3">
       <div class="moduleCard mx-auto" (click) = "onNoClick(topicType.Resources)">
         <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">receipt_long</mat-icon>
         <p class="cardText mt-4">Resources</p>
-        <p class="cardDetailText mx-auto">Explanation text that will describe the current module</p>
-      </div>
-    </div>
-    <div class="col-md-4 my-3">
-      <div class="moduleCard mx-auto" (click) = "onNoClick(topicType.Discussion)">
-        <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">question_answer</mat-icon>
-        <p class="cardText mt-4">Discussion</p>
-        <p class="cardDetailText mx-auto">Explanation text that will describe the current module</p>
+        <p class="cardDetailText mx-auto">Point learners to helfpul resources for further learning.</p>
       </div>
     </div>
     <div class="col-md-4 my-3">
       <div class="moduleCard mx-auto" (click) = "onNoClick(topicType.Questions)">
         <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">contact_support</mat-icon>
         <p class="cardText mt-4">Quiz</p>
-        <p class="cardDetailText mx-auto">Explanation text that will describe the current module</p>
+        <p class="cardDetailText mx-auto">Test the knolwedge learned in your lecture.</p>
       </div>
     </div>
     <div class="col-md-4 my-3">
-      <div class="moduleCard mx-auto" (click) = "onNoClick(topicType.Application)">
-        <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">bubble_chart</mat-icon>
-        <p class="cardText mt-4">Application</p>
-        <p class="cardDetailText mx-auto">Explanation text that will describe the current module</p>
+      <div class="moduleCard mx-auto" (click) = "onNoClick(topicType.Discussion)">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">question_answer</mat-icon>
+        <p class="cardText mt-4">Discussion</p>
+        <p class="cardDetailText mx-auto">Let learners discuss with eachother about the subject.</p>
       </div>
     </div>
     <div class="col-md-4 my-3">

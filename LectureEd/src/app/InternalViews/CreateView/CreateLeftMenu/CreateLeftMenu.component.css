@@ -388,3 +388,8 @@ a, a:hover, a:focus {
 .example-box:hover .editLectureInput input {
   background-color: var(--medium-blue);
 }
+
+.lectureText {
+  max-width: 65%;
+  vertical-align: bottom;
+}
