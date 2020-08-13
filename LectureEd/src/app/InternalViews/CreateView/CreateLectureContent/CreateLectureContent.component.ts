@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { LectureNavigationModel, LectureTopic, TopicContentModel } from './CreateLectureContent.model';
+import { LectureNavigationModel, Topic, TopicContentModel } from './CreateLectureContent.model';
 import { CreateLectureContentService } from './CreateLectureContent.service';
 import { FormControl } from '@angular/forms';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
@@ -25,7 +25,7 @@ export class CreateLectureContentComponent implements OnInit {
   public addNewNavTopic: boolean = false;
   public navTopicItem: string;
 
-  public activeTopic: LectureTopic;
+  public activeTopic: Topic;
   public activeTopicIndex: number;
 
   public editTopicToggled: boolean;
@@ -78,12 +78,12 @@ export class CreateLectureContentComponent implements OnInit {
           let topicType = result.topicType;
 
           if(topicType) {
-            this.activeLecture.lectureTopics.push(new LectureTopic(this.navTopicItem));
+            this.activeLecture.lectureTopics.push(new Topic(this.navTopicItem));
 
             let newTopicIndex = this.activeLecture.lectureTopics.length - 1;
             this.activeTopic = this.activeLecture.lectureTopics[newTopicIndex];
             this.activeTopic.topicContents = new TopicContentModel();
-
+            this.activeTopic.topicTypeCode = topicType;
             this.switchActiveTopic(newTopicIndex);
 
             this.navTopicItem = "";

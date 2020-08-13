@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule, MatSnackBarModule } from '@angular/material/';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 //App Imports
 import { AppRoutingModule } from './app-routing.module';
@@ -79,7 +80,8 @@ import { CreateArticleLayoutComponent } from './InternalViews/CreateView/CreateA
     ReactiveFormsModule,
     MatDividerModule,
     CKEditorModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule
   ],
   entryComponents: [
     LoginModalComponent,

@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { LoginModel } from '../Login.model';
 import { AuthenticationService } from '../Authentication.service';
 import { LoginModalComponent } from '../LoginModal/LoginModal.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBarConfig, MatSnackBar } from '@angular/material';
 import { RegistrationModalComponent } from '../RegistrationModal/RegistrationModal.component';
 import { RegistrationModel } from '../Registration.model';
-import { CloseScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-TopNavLogin',
@@ -19,7 +18,10 @@ export class TopNavLoginComponent implements OnInit {
   public registrationModel: RegistrationModel = new RegistrationModel();
   public userIsLoggedIn: boolean = false;
 
-  constructor(private authenticationService: AuthenticationService, public dialog: MatDialog) { }
+  constructor(
+    private authenticationService: AuthenticationService,
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -41,7 +43,7 @@ export class TopNavLoginComponent implements OnInit {
     this.authenticationService.login(this.loginModel)
       .subscribe(
         next => {
-        console.log("Login Successfull: ", next);
+        this.openSnackBar("Login Succesful!")
       }, error => {
         console.log("Error: ", error)
       })
@@ -55,7 +57,7 @@ export class TopNavLoginComponent implements OnInit {
     this.authenticationService.register(this.registrationModel)
       .subscribe(
         next => {
-        console.log("Registration Successfull: ", next);
+        this.openSnackBar("Registration Succesful!")
       }, error => {
         console.log("Error: ", error)
       })
@@ -67,17 +69,12 @@ export class TopNavLoginComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
       this.loginModel.username = result.email;
       this.loginModel.password = result.password;
-      console.log("Username: ", this.loginModel.username, " Password: ", this.loginModel.password);
 
       if(this.loginModel) {
-        console.log("Logging in user:");
         this.login();
       }
-      //this.city = result;
-      //this.food_from_modal = result.food;
     });
   }
 
@@ -87,13 +84,10 @@ export class TopNavLoginComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
       this.registrationModel.username = result.email;
       this.registrationModel.password = result.password;
-      console.log("Username: ", this.registrationModel.username, " Password: ", this.registrationModel.password);
 
       if(this.registrationModel) {
-        console.log("Registering user:");
         this.register();
       }
     });
@@ -115,6 +109,15 @@ export class TopNavLoginComponent implements OnInit {
     localStorage.removeItem('token');
     this.loginToggled = false;
     console.log("User Logged Out");
+
+    this.openSnackBar("Logout Succesful!")
+  }
+
+  public openSnackBar(message: string) {
+    let config = new MatSnackBarConfig();
+    config.panelClass = ['snackbarSuccess'];
+    config.duration = 2000;
+    this._snackBar.open(message, "Close", config);
   }
 
 }

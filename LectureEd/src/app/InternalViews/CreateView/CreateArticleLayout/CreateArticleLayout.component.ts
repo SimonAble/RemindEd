@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LectureTopic, TopicContentModel } from '../CreateLectureContent/CreateLectureContent.model';
+import { Topic, TopicContentModel, TopicTypes } from '../CreateLectureContent/CreateLectureContent.model';
 import { Article } from './Article.model';
 import { MatSnackBarConfig, MatSnackBar } from '@angular/material';
 
@@ -10,11 +10,13 @@ import { MatSnackBarConfig, MatSnackBar } from '@angular/material';
 })
 export class CreateArticleLayoutComponent implements OnInit {
 
-  public article: Article = new Article();
+  public article: Topic = new Topic("Test");
+  public topicTypes = TopicTypes;
 
   constructor(private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    this.article.topicTypeCode = this.topicTypes.Article;
   }
 
   public setActiveTopicContents(topicContents: TopicContentModel) {

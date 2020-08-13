@@ -18,25 +18,20 @@
 .login-btn {
   color:white;
   border:2px solid white;
+  width: 90px;
 }
 
 .login-btn:hover{
   background-color: var(--lab-accent);
 }
 
-.profile-menu {
-  border-radius: 50%;
-  height:38px;
-  width: 38px;
-  padding-bottom: 4px;
-}
-
-.profile-menu .icon{
-  color: white;
-  font-size: 28px;
-  transition: .3s;
-}
-
 .profile-menu:hover .icon{
   color: var(--lab-accent);
+}
+
+.accountIcon {
+  color:white;
+  font-size: 30px;
+  height:30px;
+  width:30px;
 }

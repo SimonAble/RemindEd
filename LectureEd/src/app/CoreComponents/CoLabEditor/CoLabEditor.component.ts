@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, EventEmitter, Input, Output } from '@angular/core';
 import * as BalloonBlockEditor from '@ckeditor/ckeditor5-build-balloon-block';
-import { TopicContentModel } from 'src/app/InternalViews/CreateView/CreateLectureContent/CreateLectureContent.model';
+import { TopicContentModel, TopicTypes, Topic } from 'src/app/InternalViews/CreateView/CreateLectureContent/CreateLectureContent.model';
 
 @Component({
   selector: 'app-CoLabEditor',
@@ -12,12 +12,13 @@ export class CoLabEditorComponent implements OnInit {
   public ContentEditor = BalloonBlockEditor;
 
   public topic: TopicContentModel = new TopicContentModel();
+  public topicType = TopicTypes;
 
   @ViewChild('titleEditor') titleEditor: any;
   @ViewChild('contentEditor') contentEditor: any;
 
-  @Input() topicTitle: string;
-  @Input() topicContents: string;
+  @Input() activeTopic: Topic;
+
   @Input() resetEditor: boolean;
   @Output() emitSetTopicContents = new EventEmitter<TopicContentModel>();
 
@@ -34,14 +35,12 @@ export class CoLabEditorComponent implements OnInit {
 
   public setEditorData() {
     console.log("Setting data");
-    console.log("Title: ", this.topicTitle);
-    console.log("Contents: ", this.topicContents);
     if (this.titleEditor && this.titleEditor.editorInstance) {
-      this.titleEditor.editorInstance.setData(this.topicTitle);
+      this.titleEditor.editorInstance.setData(this.activeTopic.topicContents.title);
       // return this.titleEditor.editorInstance.getData();
     }
     if (this.contentEditor && this.contentEditor.editorInstance) {
-      this.contentEditor.editorInstance.setData(this.topicContents);
+      this.contentEditor.editorInstance.setData(this.activeTopic.topicContents.contents);
       // return this.titleEditor.editorInstance.getData();
     }
   }

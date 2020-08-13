@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseModel } from './Course.model';
 import { CreateCourseService } from './CreateCourse.service';
-import { LectureNavigationModel, LectureTopic } from '../CreateLectureContent/CreateLectureContent.model';
+import { LectureNavigationModel, Topic } from '../CreateLectureContent/CreateLectureContent.model';
 
 @Component({
   selector: 'app-CreateLectureLayout',

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { TopicTabTypes } from '../../CreateLectureContent/CreateLectureContent.model';
+import { TopicTypes } from '../../CreateLectureContent/CreateLectureContent.model';
 
 @Component({
   selector: 'app-LearningModuleModal',
@@ -9,7 +9,7 @@ import { TopicTabTypes } from '../../CreateLectureContent/CreateLectureContent.m
 })
 export class LearningModuleModalComponent {
 
-  public topicType = TopicTabTypes;
+  public topicType = TopicTypes;
 
   constructor(
     public dialogRef: MatDialogRef<LearningModuleModalComponent>,

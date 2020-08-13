@@ -1,17 +1,17 @@
 export class LectureNavigationModel {
   lectureId: string;
-  lectureTopics: LectureTopic[];
+  lectureTopics: Topic[];
 
-  constructor(lectureTopics: LectureTopic[] = []) {
+  constructor(lectureTopics: Topic[] = []) {
     this.lectureTopics = lectureTopics;
   }
 }
 
-export class LectureTopic {
+export class Topic {
   topicId: string;
   topicName: string;
   topicActive: boolean;
-  topicTypeCode: TopicTabTypes;
+  topicTypeCode: TopicTypes;
   topicContents: TopicContentModel;
 
   constructor(topicName: string, topicActive: boolean = false) {
@@ -31,14 +31,16 @@ export class TopicContentModel {
   }
 }
 
-export enum TopicTabTypes {
+export enum TopicTypes {
   Custom = "custom",
-  History = "history",
+  Article = "article",
   Resources = "resources",
   Questions = "questions",
   Concept = "concept",
   Video = "video",
   Discussion = "discussion",
   Application = "application",
-  Movie = "movie"
+  Movie = "movie",
+  //Used to route user to suggestions page
+  Suggestion = "suggestion"
 }

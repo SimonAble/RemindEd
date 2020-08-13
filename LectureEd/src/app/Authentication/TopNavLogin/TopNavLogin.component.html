@@ -1,15 +1,54 @@
 
 <div *ngIf="loginCheck()">
   <div class="dropdown show">
-    <a class="btn profile-menu p-0 pt-1" href="#" id="dropdownMenuLink">
-      <mat-icon aria-hidden="false" aria-label="Profile Icon" class="icon">account_circle</mat-icon>
-    </a>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <a class="dropdown-item" href="#">Profile</a>
-      <a class="dropdown-item" href="#">Account</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" (click)="logout()">Logout</a>
-    </div>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon class="accountIcon">account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>account_box</mat-icon>
+        <span>Profile</span>
+      </button>
+
+      <mat-divider></mat-divider>
+
+      <button mat-menu-item>
+        <mat-icon>post_add</mat-icon>
+        <span>New Article</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>post_add</mat-icon>
+        <span>New Course</span>
+      </button>
+
+      <mat-divider></mat-divider>
+
+      <button mat-menu-item>
+        <mat-icon>edit</mat-icon>
+        <span>My Courses and Articles</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>visibility</mat-icon>
+        <span>Following</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>collections_bookmark</mat-icon>
+        <span>Saved Resources</span>
+      </button>
+
+      <mat-divider></mat-divider>
+
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>vpn_key</mat-icon>
+        <span>Logout</span>
+      </button>
+
+    </mat-menu>
   </div>
 </div>
 <div *ngIf="!loginCheck()" class="form-inline">
