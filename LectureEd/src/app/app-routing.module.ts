@@ -5,6 +5,11 @@ import { CreateLectureLayoutComponent } from './InternalViews/CreateView/CreateL
 import { ExternalHomeComponent } from './GlobalViews/ExternalHome/ExternalHome.component';
 import { CreateCourseComponent } from './InternalViews/CreateView/CreateCourse/CreateCourse.component';
 import { CreateArticleLayoutComponent } from './InternalViews/CreateView/CreateArticleLayout/CreateArticleLayout.component';
+import { DashboardComponent } from './InternalViews/Dashboard/Dashboard/Dashboard.component';
+import { UserSettingsComponent } from './InternalViews/Dashboard/UserSettings/UserSettings.component';
+import { ProfileManagementComponent } from './InternalViews/Dashboard/ProfileManagement/ProfileManagement.component';
+import { MyCoursesAndArticlesComponent } from './InternalViews/Dashboard/MyCoursesAndArticles/MyCoursesAndArticles.component';
+import { AuthGuardService } from './Authentication/AuthGuard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -13,7 +18,12 @@ const routes: Routes = [
   { path: 'learn', component: LearnLayoutComponent},
   { path: 'create', component: CreateCourseComponent},
   { path: 'create/course', component: CreateLectureLayoutComponent},
-  { path: 'create/article', component: CreateArticleLayoutComponent}
+  { path: 'create/article', component: CreateArticleLayoutComponent},
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService] },
+  { path: 'dashboard/myresources', component: MyCoursesAndArticlesComponent, canActivate: [AuthGuardService] },
+  { path: 'dashboard/following', component: DashboardComponent, canActivate: [AuthGuardService] },
+  { path: 'profile', component: ProfileManagementComponent, canActivate: [AuthGuardService] },
+  { path: 'profile/settings', component: UserSettingsComponent, canActivate: [AuthGuardService] },
 ];
 
 @NgModule({

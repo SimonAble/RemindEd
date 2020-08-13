@@ -5,6 +5,7 @@ import { LoginModalComponent } from '../LoginModal/LoginModal.component';
 import { MatDialog, MatSnackBarConfig, MatSnackBar } from '@angular/material';
 import { RegistrationModalComponent } from '../RegistrationModal/RegistrationModal.component';
 import { RegistrationModel } from '../Registration.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-TopNavLogin',
@@ -21,7 +22,8 @@ export class TopNavLoginComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     public dialog: MatDialog,
-    private _snackBar: MatSnackBar) { }
+    private _snackBar: MatSnackBar,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -111,6 +113,34 @@ export class TopNavLoginComponent implements OnInit {
     console.log("User Logged Out");
 
     this.openSnackBar("Logout Succesful!")
+  }
+
+  public navigateToDashboard() {
+    this.router.navigate(['dashboard']);
+  }
+
+  public navigateToProfile() {
+
+  }
+
+  public navigateToCreateArticle() {
+
+  }
+
+  public navigateToCreateCourse() {
+
+  }
+
+  public navigateToMyCoursesAndArticles() {
+
+  }
+
+  public navigateToFollowing() {
+
+  }
+
+  public navigateToSavedResources() {
+
   }
 
   public openSnackBar(message: string) {

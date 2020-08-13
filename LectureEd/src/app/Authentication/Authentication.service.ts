@@ -3,6 +3,7 @@ import { LoginModel } from './Login.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { RegistrationModel } from './Registration.model';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class AuthenticationService {
 
   private baseUrl = "http://localhost:5000/api/auth/"
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
     public register(registrationModel: RegistrationModel) {
       console.log("Registering");
@@ -34,10 +36,20 @@ export class AuthenticationService {
           map((res: any) => {
             const user = res;
             if(user) {
+              console.log(user.token);
               localStorage.setItem('token', user.token);
             }
           })
         )
+    }
+
+    public isAuthenticated() {
+      const helper = new JwtHelperService();
+      const token = localStorage.getItem('token');
+      console.log('token: ', JSON.stringify(token))
+      const isExpired = helper.isTokenExpired(token);
+
+      return !isExpired;
     }
 
 }

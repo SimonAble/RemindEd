@@ -79,7 +79,7 @@ namespace RemindEd.API.Controllers
             });
         }
 
-        public SecurityToken GenerateAuthToken(User dbUser)
+        public string GenerateAuthToken(User dbUser)
         {
 
             //Providing claims for Id and Username
@@ -109,7 +109,7 @@ namespace RemindEd.API.Controllers
             //Create a token based on descriptor
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return token;
+            return tokenHandler.WriteToken(token);
         }
     }
 }

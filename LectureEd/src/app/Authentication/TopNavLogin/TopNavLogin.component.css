@@ -35,3 +35,7 @@
   height:30px;
   width:30px;
 }
+
+.mat-icon-button .mat-icon, .mat-icon-button i {
+  line-height: 30px;
+}

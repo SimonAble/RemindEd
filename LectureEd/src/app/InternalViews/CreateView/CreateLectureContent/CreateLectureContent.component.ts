@@ -6,7 +6,6 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { LearningModuleModalComponent } from '../LearningModules/LearningModuleModal/LearningModuleModal.component';
 import { MatDialog, MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { Title } from '@angular/platform-browser';
-import { EACCES } from 'constants';
 import { CoLabEditorComponent } from 'src/app/CoreComponents/CoLabEditor/CoLabEditor.component';
 
 @Component({

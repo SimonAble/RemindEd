@@ -43,6 +43,12 @@ import { CoLabEditorComponent } from './CoreComponents/CoLabEditor/CoLabEditor.c
 import { CoLabViewerComponent } from './CoreComponents/CoLabViewer/CoLabViewer.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CreateArticleLayoutComponent } from './InternalViews/CreateView/CreateArticleLayout/CreateArticleLayout.component';
+import { DashboardComponent } from './InternalViews/Dashboard/Dashboard/Dashboard.component';
+import { MyCoursesAndArticlesComponent } from './InternalViews/Dashboard/MyCoursesAndArticles/MyCoursesAndArticles.component';
+import { FollowingComponent } from './InternalViews/Dashboard/Following/Following.component';
+import { ProfileManagementComponent } from './InternalViews/Dashboard/ProfileManagement/ProfileManagement.component';
+import { UserSettingsComponent } from './InternalViews/Dashboard/UserSettings/UserSettings.component';
+import { AuthGuardService } from './Authentication/AuthGuard.service';
 
 @NgModule({
   declarations: [
@@ -62,7 +68,12 @@ import { CreateArticleLayoutComponent } from './InternalViews/CreateView/CreateA
     CoLabEditorComponent,
     CoLabViewerComponent,
     CreateCourseComponent,
-    CreateArticleLayoutComponent
+    CreateArticleLayoutComponent,
+    DashboardComponent,
+    MyCoursesAndArticlesComponent,
+    FollowingComponent,
+    ProfileManagementComponent,
+    UserSettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +100,8 @@ import { CreateArticleLayoutComponent } from './InternalViews/CreateView/CreateA
     LearningModuleModalComponent
   ],
   providers: [
-    Title
+    Title,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

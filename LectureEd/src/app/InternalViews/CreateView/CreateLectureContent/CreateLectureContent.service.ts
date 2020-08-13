@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LectureNavigationModel, LectureTopic } from './CreateLectureContent.model';
+import { LectureNavigationModel, Topic } from './CreateLectureContent.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +11,12 @@ constructor() { }
 getNavigationTopics() {
   let lectureTopicNavigationItems = new LectureNavigationModel(
     [
-      new LectureTopic('Concept', true),
-      new LectureTopic('History'),
-      new LectureTopic('Application'),
-      new LectureTopic('Quiz'),
-      new LectureTopic('Discussion'),
-      new LectureTopic('Resources')
+      new Topic('Concept', true),
+      new Topic('History'),
+      new Topic('Application'),
+      new Topic('Quiz'),
+      new Topic('Discussion'),
+      new Topic('Resources')
     ]
   )
   return lectureTopicNavigationItems;
