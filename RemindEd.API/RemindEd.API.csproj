@@ -15,4 +15,7 @@
   <ItemGroup>
     <Compile Remove="DTO\CourseToSaveDTO.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
 </Project>

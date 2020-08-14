@@ -7,6 +7,7 @@ import { RegistrationModalComponent } from '../RegistrationModal/RegistrationMod
 import { RegistrationModel } from '../Registration.model';
 import { Router } from '@angular/router';
 import { MaterialService } from 'src/app/CoreServices/Material.service';
+import { SnackBarStateClass } from 'src/app/CoreModels/enum';
 
 @Component({
   selector: 'app-TopNavLogin',
@@ -49,6 +50,7 @@ export class TopNavLoginComponent implements OnInit {
         this.materialService.openSnackBar("Login Succesful!")
       }, error => {
         console.log("Error: ", error)
+        this.materialService.openSnackBar(error, SnackBarStateClass.Error)
       })
   }
 

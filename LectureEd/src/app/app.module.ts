@@ -49,6 +49,7 @@ import { FollowingComponent } from './InternalViews/Dashboard/Following/Followin
 import { ProfileManagementComponent } from './InternalViews/Dashboard/ProfileManagement/ProfileManagement.component';
 import { UserSettingsComponent } from './InternalViews/Dashboard/UserSettings/UserSettings.component';
 import { AuthGuardService } from './Authentication/AuthGuard.service';
+import { ErrorInterceptorProvider } from './CoreServices/Error.Interceptor';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { AuthGuardService } from './Authentication/AuthGuard.service';
   ],
   providers: [
     Title,
-    AuthGuardService
+    AuthGuardService,
+    ErrorInterceptorProvider
   ],
   bootstrap: [AppComponent]
 })
