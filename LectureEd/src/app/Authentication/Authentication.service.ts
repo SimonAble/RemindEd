@@ -10,7 +10,10 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthenticationService {
 
-  private baseUrl = "http://localhost:5000/api/auth/"
+  private baseUrl = "http://localhost:5000/api/auth/";
+  public decodedToken: any;
+  public helper = new JwtHelperService();
+  public userName: string;
 
   constructor(private http: HttpClient) {
   }
@@ -23,6 +26,8 @@ export class AuthenticationService {
             const user = res;
             if(user) {
               localStorage.setItem('token', user.token);
+              this.decodedToken = this.helper.decodeToken(user.token);
+              this.userName = this.decodedToken['unique_name'];
             }
           })
         )
@@ -35,8 +40,9 @@ export class AuthenticationService {
           map((res: any) => {
             const user = res;
             if(user) {
-              console.log(user.token);
               localStorage.setItem('token', user.token);
+              this.decodedToken = this.helper.decodeToken(user.token);
+              this.userName = this.decodedToken['unique_name'];
             }
           })
         )
@@ -49,5 +55,4 @@ export class AuthenticationService {
 
       return !isExpired;
     }
-
 }

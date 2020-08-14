@@ -65,6 +65,7 @@ export class TopNavLoginComponent implements OnInit {
         this.materialService.openSnackBar("Registration Succesful!")
       }, error => {
         console.log("Error: ", error)
+        this.materialService.openSnackBar(error, SnackBarStateClass.Error)
       })
   }
 

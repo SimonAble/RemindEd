@@ -6,6 +6,13 @@
       <mat-icon class="accountIcon">account_circle</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
+      <button mat-menu-item disabled>
+        <mat-icon>insert_emoticon</mat-icon>
+        <span>{{this.authenticationService.userName}}</span>
+      </button>
+
+      <mat-divider></mat-divider>
+
       <button mat-menu-item>
         <mat-icon>dashboard</mat-icon>
         <span>Dashboard</span>
