@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CourseModel } from './Course.model';
 import { CreateCourseService } from './CreateCourse.service';
 import { LectureNavigationModel, Topic } from '../CreateLectureContent/CreateLectureContent.model';
+import { MaterialService } from 'src/app/CoreServices/Material.service';
 
 @Component({
   selector: 'app-CreateLectureLayout',
@@ -14,7 +15,9 @@ export class CreateLectureLayoutComponent implements OnInit {
   public courseModel: CourseModel;
   public activeLecture: LectureNavigationModel;
 
-  constructor(private courseService: CreateCourseService) { }
+  constructor(
+    private courseService: CreateCourseService,
+    private materialService: MaterialService) { }
 
   ngOnInit() {
     this.getCourse();
@@ -23,9 +26,9 @@ export class CreateLectureLayoutComponent implements OnInit {
   public getCourse() {
     this.courseModel = this.courseService.getCourse();
     console.log("Getting course model: ", JSON.stringify(this.courseModel));
-    let lectures = this.courseModel.leftMenu.lectures;
+    let lectures = this.courseModel.lectures;
     if(lectures.length > 0) {
-      this.activeLecture = this.courseModel.leftMenu.lectures[0].lectureContent;
+      this.activeLecture = this.courseModel.lectures[0].lectureContent;
     }
   }
 
@@ -36,38 +39,45 @@ export class CreateLectureLayoutComponent implements OnInit {
 
   public changeActiveLecture(event) {
     console.log("Event emitted from left menu: ", event);
-    this.activeLecture = this.courseModel.leftMenu.lectures[event].lectureContent;
+    this.activeLecture = this.courseModel.lectures[event].lectureContent;
     this.switchActiveLecture(event);
   }
 
   public createNewLectureContent(event) {
     console.log("Creating new lecture content: ", event);
-    this.courseModel.leftMenu.lectures[event].lectureContent = new LectureNavigationModel();
-    this.activeLecture = this.courseModel.leftMenu.lectures[event].lectureContent;
+    this.courseModel.lectures[event].lectureContent = new LectureNavigationModel();
+    this.activeLecture = this.courseModel.lectures[event].lectureContent;
 
     this.switchActiveLecture(event);
   }
 
   public deleteLectureContent(event) {
     console.log("Deleting lecture content: ", event);
-    this.courseModel.leftMenu.lectures.splice(event, 1);
-    if(this.courseModel.leftMenu.lectures.length > 0) {
-      this.activeLecture = this.courseModel.leftMenu.lectures[0].lectureContent;
+    this.courseModel.lectures.splice(event, 1);
+    if(this.courseModel.lectures.length > 0) {
+      this.activeLecture = this.courseModel.lectures[0].lectureContent;
     }
-    if(this.courseModel.leftMenu.lectures.length === 0) {
+    if(this.courseModel.lectures.length === 0) {
       this.activeLecture = null;
     }
   }
 
   public switchActiveLecture(index) {
     console.log("Switching active lecture: ", event);
-    for(let i = 0; i < this.courseModel.leftMenu.lectures.length; i++) {
+    for(let i = 0; i < this.courseModel.lectures.length; i++) {
       if (i === index) {
-        this.courseModel.leftMenu.lectures[i].lectureActive = true;
+        this.courseModel.lectures[i].lectureActive = true;
       }
       else {
-        this.courseModel.leftMenu.lectures[i].lectureActive = false;
+        this.courseModel.lectures[i].lectureActive = false;
       }
     }
+  }
+
+  public saveCourse(lecture) {
+    console.log("Saving course");
+    console.log(this.courseModel);
+
+    this.materialService.openSnackBar("Course Saved Successfully!");
   }
 }

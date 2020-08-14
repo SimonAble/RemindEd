@@ -1,12 +1,13 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { LectureNavigationModel, Topic, TopicContentModel } from './CreateLectureContent.model';
-import { CreateLectureContentService } from './CreateLectureContent.service';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { LectureNavigationModel, Topic } from './CreateLectureContent.model';
 import { FormControl } from '@angular/forms';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { LearningModuleModalComponent } from '../LearningModules/LearningModuleModal/LearningModuleModal.component';
-import { MatDialog, MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { Title } from '@angular/platform-browser';
 import { CoLabEditorComponent } from 'src/app/CoreComponents/CoLabEditor/CoLabEditor.component';
+import { MaterialService } from 'src/app/CoreServices/Material.service';
+import { CourseModel } from '../CreateLectureLayout/Course.model';
 
 @Component({
   selector: 'app-CreateLectureContent',
@@ -16,7 +17,9 @@ import { CoLabEditorComponent } from 'src/app/CoreComponents/CoLabEditor/CoLabEd
 export class CreateLectureContentComponent implements OnInit {
 
   @ViewChild('editor') editorComponent: CoLabEditorComponent;
+
   @Input() activeLecture: LectureNavigationModel;
+  @Output() emitSaveCourse = new EventEmitter<LectureNavigationModel>();
 
   public showDelay = new FormControl(500);
   public hideDelay = new FormControl(500);
@@ -31,9 +34,8 @@ export class CreateLectureContentComponent implements OnInit {
   public editTopicIndex: number;
 
   constructor(private titleService: Title,
-    private lectureContentService: CreateLectureContentService,
-    public dialog: MatDialog,
-    private _snackBar: MatSnackBar) { }
+    private materialService: MaterialService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     //this.getLectureNavigationTopics();
@@ -81,7 +83,7 @@ export class CreateLectureContentComponent implements OnInit {
 
             let newTopicIndex = this.activeLecture.lectureTopics.length - 1;
             this.activeTopic = this.activeLecture.lectureTopics[newTopicIndex];
-            this.activeTopic.topicContents = new TopicContentModel();
+            // this.activeTopic.topicContents = new TopicContentModel();
             this.activeTopic.topicTypeCode = topicType;
             this.switchActiveTopic(newTopicIndex);
 
@@ -105,12 +107,12 @@ export class CreateLectureContentComponent implements OnInit {
     }
   }
 
-  public setActiveTopicContents(topicContents: TopicContentModel) {
+  public saveCourseContents(topicContents: Topic) {
 
-    this.activeLecture.lectureTopics[this.activeTopicIndex].topicContents.title = topicContents.title;
-    this.activeLecture.lectureTopics[this.activeTopicIndex].topicContents.contents = topicContents.contents;
+    this.activeLecture.lectureTopics[this.activeTopicIndex].title = topicContents.title;
+    this.activeLecture.lectureTopics[this.activeTopicIndex].contents = topicContents.contents;
 
-    this.openSnackBar("Course Saved Successfully!");
+    this.emitSaveCourse.emit(this.activeLecture);
   }
 
   public toggleEditTopic(topic, index) {
@@ -123,7 +125,7 @@ export class CreateLectureContentComponent implements OnInit {
     this.editTopicIndex = null;
   }
 
-  public  deleteTopic(topic, index) {
+  public deleteTopic(topic, index) {
     console.log(JSON.stringify(topic));
     console.log(index);
     this.activeLecture.lectureTopics.splice(index, 1);
@@ -134,12 +136,5 @@ export class CreateLectureContentComponent implements OnInit {
     if(this.activeLecture.lectureTopics.length === 0) {
       this.activeTopic = null;
     }
-  }
-
-  public openSnackBar(message: string) {
-    let config = new MatSnackBarConfig();
-    config.panelClass = ['snackbarSuccess'];
-    config.duration = 2000;
-    this._snackBar.open(message, "Close", config);
   }
 }

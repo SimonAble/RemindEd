@@ -5,9 +5,8 @@ export class CreateLeftMenuModel {
   leftMenuTitle: string;
   lectures: Lecture[];
 
-  constructor(leftMenuTitle: string, lectures: Lecture[] = []) {
-    this.leftMenuTitle = leftMenuTitle;
-    this.lectures = lectures;
+  constructor() {
+    this.lectures = [];
   }
 }
 

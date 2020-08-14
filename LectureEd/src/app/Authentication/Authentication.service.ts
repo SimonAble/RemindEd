@@ -30,7 +30,6 @@ export class AuthenticationService {
 
     public login(loginModel:LoginModel) {
       console.log("Logging in");
-      console.log(JSON.stringify(loginModel));
       return this.http.post(this.baseUrl + 'login', loginModel)
         .pipe(
           map((res: any) => {
@@ -46,7 +45,6 @@ export class AuthenticationService {
     public isAuthenticated() {
       const helper = new JwtHelperService();
       const token = localStorage.getItem('token');
-      console.log('token: ', JSON.stringify(token))
       const isExpired = helper.isTokenExpired(token);
 
       return !isExpired;

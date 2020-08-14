@@ -6,6 +6,7 @@ import { MatDialog, MatSnackBarConfig, MatSnackBar } from '@angular/material';
 import { RegistrationModalComponent } from '../RegistrationModal/RegistrationModal.component';
 import { RegistrationModel } from '../Registration.model';
 import { Router } from '@angular/router';
+import { MaterialService } from 'src/app/CoreServices/Material.service';
 
 @Component({
   selector: 'app-TopNavLogin',
@@ -21,8 +22,8 @@ export class TopNavLoginComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
+    private materialService: MaterialService,
     public dialog: MatDialog,
-    private _snackBar: MatSnackBar,
     private router: Router) { }
 
   ngOnInit() {
@@ -45,7 +46,7 @@ export class TopNavLoginComponent implements OnInit {
     this.authenticationService.login(this.loginModel)
       .subscribe(
         next => {
-        this.openSnackBar("Login Succesful!")
+        this.materialService.openSnackBar("Login Succesful!")
       }, error => {
         console.log("Error: ", error)
       })
@@ -59,7 +60,7 @@ export class TopNavLoginComponent implements OnInit {
     this.authenticationService.register(this.registrationModel)
       .subscribe(
         next => {
-        this.openSnackBar("Registration Succesful!")
+        this.materialService.openSnackBar("Registration Succesful!")
       }, error => {
         console.log("Error: ", error)
       })
@@ -96,15 +97,6 @@ export class TopNavLoginComponent implements OnInit {
   }
 
   /**
-   * Login check identifies whether the user has a valid login token
-   */
-  public loginCheck() {
-    const token = localStorage.getItem('token');
-    //returns true if token is present
-    return !!token;
-  }
-
-  /**
    * Logs the user out of the application
    */
   public logout() {
@@ -112,7 +104,7 @@ export class TopNavLoginComponent implements OnInit {
     this.loginToggled = false;
     console.log("User Logged Out");
 
-    this.openSnackBar("Logout Succesful!")
+    this.materialService.openSnackBar("Logout Succesful!")
   }
 
   public navigateToDashboard() {
@@ -142,12 +134,4 @@ export class TopNavLoginComponent implements OnInit {
   public navigateToSavedResources() {
 
   }
-
-  public openSnackBar(message: string) {
-    let config = new MatSnackBarConfig();
-    config.panelClass = ['snackbarSuccess'];
-    config.duration = 2000;
-    this._snackBar.open(message, "Close", config);
-  }
-
 }

@@ -99,7 +99,7 @@
 
 .example-custom-placeholder {
   background: var(--lighter-grey);
-  border: dotted 3px #999;
+  border: dashed 3px #999;
   min-height: 55px;
   min-width: 140px;
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
@@ -172,7 +172,7 @@
 
 .content-custom-placeholder {
   background: var(--lightest-blue);
-  border: dotted 3px var(--light-grey);
+  border: dashed 3px var(--light-grey);
   min-height: 100px;
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   display: block;

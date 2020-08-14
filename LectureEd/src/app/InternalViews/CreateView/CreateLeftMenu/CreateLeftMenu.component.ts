@@ -3,6 +3,7 @@ import { CreateLeftMenuModel, Lecture } from './CreateLeftMenu.model';
 import { CreateLeftMenuService } from './CreateLeftMenu.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { LectureNavigationModel } from '../CreateLectureContent/CreateLectureContent.model';
+import { CourseModel } from '../CreateLectureLayout/Course.model';
 
 @Component({
   selector: 'app-CreateLeftMenu',
@@ -15,7 +16,7 @@ export class CreateLeftMenuComponent implements OnInit {
   @Output() emitChangeActiveLecture = new EventEmitter<number>();
   @Output() emitCreateLectureContent = new EventEmitter<number>();
   @Output() emitDeleteLectureContent = new EventEmitter<number>();
-  @Input() leftMenu: CreateLeftMenuModel;
+  @Input() course: CourseModel;
 
   public leftMenuToggled: boolean = false;
   public editMenuTitle: boolean = false;
@@ -28,13 +29,14 @@ export class CreateLeftMenuComponent implements OnInit {
   public addNewLectureToggled: boolean = false;
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.leftMenu.lectures, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.course.lectures, event.previousIndex, event.currentIndex);
   }
 
   constructor(private leftMenuService: CreateLeftMenuService) { }
 
   ngOnInit() {
     // this.getLeftMenu();
+    // this.leftMenu.leftMenuTitle = "Title";
   }
 
   toggleLeftMenu() {
@@ -43,19 +45,10 @@ export class CreateLeftMenuComponent implements OnInit {
     this.emitToggleLeftMenu.emit(this.leftMenuToggled);
   }
 
-  // getLeftMenu() {
-  //   this.leftMenu = this.leftMenuService.getCreateLeftMenuItems();
-  //   console.log(JSON.stringify(this.leftMenu));
-  // }
-
-  saveLeftMenu() {
-    this.leftMenuService.saveCreateLeftMenuItems(this.leftMenu);
-  }
-
   addCourseTitle() {
-    this.leftMenu.leftMenuTitle = this.leftMenuTitle;
+    this.course.courseTitle = this.leftMenuTitle;
     this.editMenuTitle = false;
-    console.log(this.leftMenu.leftMenuTitle);
+    console.log(this.course.courseTitle);
   }
 
   toggleEditCourseTitle() {
@@ -71,11 +64,11 @@ export class CreateLeftMenuComponent implements OnInit {
   addNewLectureItem() {
     if(this.lectureItem !== "") {
       console.log("Adding new Lecture item");
-      this.leftMenu.lectures.push(new Lecture(this.lectureItem, false, new LectureNavigationModel()));
+      this.course.lectures.push(new Lecture(this.lectureItem, false, new LectureNavigationModel()));
       this.lectureItem = "";
       this.addNewLectureToggled = false;
 
-      let newLecturePosition = this.leftMenu.lectures.length - 1;
+      let newLecturePosition = this.course.lectures.length - 1;
       console.log("New lecture position: ", newLecturePosition);
       this.emitCreateLectureContent.emit(newLecturePosition);
     }

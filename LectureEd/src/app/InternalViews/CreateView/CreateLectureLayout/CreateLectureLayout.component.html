@@ -7,12 +7,13 @@
       (emitChangeActiveLecture)="changeActiveLecture($event)"
       (emitCreateLectureContent)="createNewLectureContent($event)"
       (emitDeleteLectureContent)="deleteLectureContent($event)"
-      [leftMenu]="courseModel.leftMenu">
+      [course]="courseModel">
       </app-CreateLeftMenu>
     </div>
     <div id="content" class="content col p-0 m-0">
       <app-CreateLectureContent
       [activeLecture]="activeLecture"
+      (emitSaveCourse)="saveCourse($event)"
       ></app-CreateLectureContent>
     </div>
   </div>

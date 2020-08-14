@@ -13,6 +13,7 @@
   --lightest-blue:rgb(235, 243, 252);
 
   /* Grey */
+  --black-grey: rgb(28, 29, 31);
   --dark-grey: rgb(42, 43, 46);
   --medium-grey: rgb(132, 146, 165);
   --lighter-grey: rgb(231, 233, 235);
@@ -29,6 +30,7 @@
   /* Green */
   --active-green: #5BA28B;
   --lab-accent: rgb(17, 182, 146);
+  --background-green: #97cfba;
 
   /* Yellow */
   --background-yellow: rgb(255, 255, 210);
@@ -38,6 +40,9 @@
   --medium-purple: rgb(117, 92, 172);
   --purple-background: rgb(44, 31, 75);
   --purple-hovered: rgb(79, 60, 124);
+
+  /* Red */
+  --error-background: rgb(199, 36, 36);
 
   /* Warning Background */
   --orange-warning-bg: rgb(248, 194, 95);
@@ -182,8 +187,27 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .snackbarSuccess {
   background-color: var(--lab-accent);
+  width:800px;
+  height:70px;
 }
 
 .snackbarSuccess .mat-simple-snackbar .mat-simple-snackbar-action .mat-button .mat-button-wrapper {
   color: var(--star-white);
 }
+
+.snackbarError {
+  background-color: var(--error-background);
+  width:800px;
+  height:70px;
+  font-size: 30px;
+}
+
+.snackbarError .mat-simple-snackbar .mat-simple-snackbar-action .mat-button .mat-button-wrapper {
+  color: var(--star-white);
+  font-size: 18px;
+}
+
+.mat-simple-snackbar span {
+  font-size: 18px;
+}
+

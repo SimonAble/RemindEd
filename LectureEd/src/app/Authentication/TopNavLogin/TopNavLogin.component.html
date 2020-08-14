@@ -1,5 +1,5 @@
 
-<div *ngIf="loginCheck()">
+<div *ngIf="authenticationService.isAuthenticated()">
   <div class="dropdown show">
 
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
@@ -51,11 +51,11 @@
     </mat-menu>
   </div>
 </div>
-<div *ngIf="!loginCheck()" class="form-inline">
+<div *ngIf="!authenticationService.isAuthenticated()" class="form-inline">
   <div *ngIf="!loginToggled">
     <button class="btn btn-outline-info login-btn mr-2" (click)="openLoginModal()">Login</button>
   </div>
-  <div *ngIf="!loginCheck()">
+  <div *ngIf="!authenticationService.isAuthenticated()">
     <button class="btn btn-outline-info login-btn" (click)="openRegistrationModal()">Sign Up</button>
   </div>
   <form class="form-inline" *ngIf="loginToggled" #loginForm="ngForm" (ngSubmit)="login()">

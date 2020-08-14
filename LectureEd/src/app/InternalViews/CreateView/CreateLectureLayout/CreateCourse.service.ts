@@ -11,9 +11,7 @@ export class CreateCourseService {
 constructor() { }
 
   public getCourse() {
-    let course = new CourseModel(
-      new CreateLeftMenuModel("CourseModel Test", [])
-    )
+    let course = new CourseModel();
     return course;
   }
 }
