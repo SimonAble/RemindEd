@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RemindEd.API.Data;
+using RemindEd.API.DTO;
 
 namespace RemindEd.API.Controllers
 {
@@ -13,10 +16,11 @@ namespace RemindEd.API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserRepository userRepository;
-
-        public UsersController(IUserRepository userRepository)
+        private readonly IMapper mapper;
+        public UsersController(IUserRepository userRepository, IMapper mapper)
         {
             this.userRepository = userRepository;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -24,14 +28,19 @@ namespace RemindEd.API.Controllers
         {
             var users = await userRepository.GetUsers();
 
-            return Ok(users);
+            var usersInfo = mapper.Map<IEnumerable<UserForListDTO>>(users);
+
+            return Ok(usersInfo);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
             var user = await userRepository.GetUser(id);
-            return Ok(user);
+
+            var userInfo = mapper.Map<UserDetailsDTO>(user);
+
+            return Ok(userInfo);
         }
 
     }

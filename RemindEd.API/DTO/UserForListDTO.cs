@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace RemindEd.API.DTO
 {
     public class UserForListDTO
@@ -13,6 +15,7 @@ namespace RemindEd.API.DTO
         public string Language { get; set; }
         public string ProfilePhotoUrl { get; set; }
         public string BackgroundPhotoUrl { get; set; }
+        public ICollection<PhotosForUserDTO> Photos { get; set; }
 
         //Table Utility
         public DateTime LastActive { get; set; }

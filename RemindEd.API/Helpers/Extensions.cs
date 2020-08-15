@@ -11,5 +11,15 @@ namespace RemindEd.API.Helpers
             response.Headers.Add("Access-Control-Expose-Headers", "Application-Error");
             response.Headers.Add("Access-Control-Allow-Origin", "*");
         }
+
+        public static int GetAgeFromDOB(this DateTime dobDateTime)
+        {
+            var age = DateTime.Today.Year - dobDateTime.Year;
+
+            if (dobDateTime.AddYears(age) > DateTime.Today)
+                age--;
+
+            return age;
+        }
     }
 }

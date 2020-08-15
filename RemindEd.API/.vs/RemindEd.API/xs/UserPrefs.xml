@@ -1,29 +1,30 @@
 ﻿<Properties StartupConfiguration="{1CA15D32-B270-4F3C-A636-E3EEDE0DE4CA}|Default">
   <MonoDevelop.Ide.ItemProperties.RemindEd.API PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Helpers/Extensions.cs">
     <Files>
-      <File FileName="Helpers/Extensions.cs" Line="12" Column="70" />
-      <File FileName="Models/User.cs" />
-      <File FileName="Models/Photo.cs" />
-      <File FileName="Data/DataContext.cs" />
-      <File FileName="Migrations/20200814031427_AddedCourseLectureTopicModels.cs" />
-      <File FileName="Models/Course.cs" />
-      <File FileName="Data/UserSeedData.json" />
-      <File FileName="Data/Seed.cs" />
-      <File FileName="Data/AuthRepository.cs" />
-      <File FileName="Startup.cs" />
-      <File FileName="Program.cs" Line="24" Column="45" />
+      <File FileName="Startup.cs" Line="44" Column="69" />
+      <File FileName="Controllers/UsersController.cs" Line="31" Column="59" />
+      <File FileName="Helpers/AutoMapperProfiles.cs" Line="16" Column="83" />
+      <File FileName="Models/Photo.cs" Line="7" Column="1" />
+      <File FileName="Data/UserRepository.cs" Line="40" Column="56" />
+      <File FileName="DTO/PhotosForUserDTO.cs" Line="10" Column="54" />
+      <File FileName="DTO/UserDetailsDTO.cs" Line="16" Column="38" />
+      <File FileName="DTO/UserForListDTO.cs" Line="16" Column="38" />
+      <File FileName="Helpers/Extensions.cs" Line="15" Column="28" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="RemindEd.API" expanded="True">
             <Node name="RemindEd.API" expanded="True">
+              <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
               <Node name="DTO" expanded="True" />
-              <Node name="Migrations" expanded="True" />
+              <Node name="Helpers" expanded="True">
+                <Node name="Extensions.cs" selected="True" />
+              </Node>
               <Node name="Models" expanded="True" />
-              <Node name="Program.cs" selected="True" />
+              <Node name="Properties" expanded="True" />
             </Node>
           </Node>
         </State>
