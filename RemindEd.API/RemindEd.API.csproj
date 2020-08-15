@@ -11,11 +11,27 @@
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.5.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="DTO\CourseToSaveDTO.cs" />
+    <Compile Remove="Migrations\20200504160903_InitialCreation.Designer.cs" />
+    <Compile Remove="Migrations\20200504160903_InitialCreation.cs" />
+    <Compile Remove="Migrations\20200504212855_AddedUsers.cs" />
+    <Compile Remove="Migrations\20200814220959_ExtendedUserClass.cs" />
+    <Compile Remove="Migrations\20200814031427_AddedCourseLectureTopicModels.Designer.cs" />
+    <Compile Remove="Migrations\20200814220959_ExtendedUserClass.Designer.cs" />
+    <Compile Remove="Migrations\20200814031427_AddedCourseLectureTopicModels.cs" />
+    <Compile Remove="Migrations\20200504212855_AddedUsers.Designer.cs" />
+    <Compile Remove="Migrations\20200815012503_AddedLastActiveToUserClass.cs" />
+    <Compile Remove="Migrations\20200815012503_AddedLastActiveToUserClass.Designer.cs" />
+    <Compile Remove="Migrations\20200815013053_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200815013053_InitialMigration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="RemindeEd.db-wal" />
   </ItemGroup>
 </Project>
