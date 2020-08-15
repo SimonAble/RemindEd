@@ -1,16 +1,19 @@
 ﻿<Properties StartupConfiguration="{1CA15D32-B270-4F3C-A636-E3EEDE0DE4CA}|Default">
   <MonoDevelop.Ide.ItemProperties.RemindEd.API PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Helpers/Extensions.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DTO/UserDetailsDTO.cs">
     <Files>
       <File FileName="Startup.cs" Line="44" Column="69" />
-      <File FileName="Controllers/UsersController.cs" Line="31" Column="59" />
-      <File FileName="Helpers/AutoMapperProfiles.cs" Line="16" Column="83" />
+      <File FileName="Controllers/UsersController.cs" Line="41" Column="48" />
+      <File FileName="Helpers/AutoMapperProfiles.cs" Line="32" Column="46" />
       <File FileName="Models/Photo.cs" Line="7" Column="1" />
-      <File FileName="Data/UserRepository.cs" Line="40" Column="56" />
+      <File FileName="Data/UserRepository.cs" Line="42" Column="116" />
       <File FileName="DTO/PhotosForUserDTO.cs" Line="10" Column="54" />
-      <File FileName="DTO/UserDetailsDTO.cs" Line="16" Column="38" />
-      <File FileName="DTO/UserForListDTO.cs" Line="16" Column="38" />
-      <File FileName="Helpers/Extensions.cs" Line="15" Column="28" />
+      <File FileName="Controllers/AuthController.cs" Line="80" Column="59" />
+      <File FileName="Data/IAuthRepository.cs" Line="9" Column="26" />
+      <File FileName="Data/AuthRepository.cs" Line="16" Column="33" />
+      <File FileName="DTO/UserContextDTO.cs" Line="10" Column="49" />
+      <File FileName="Data/IUserRepository.cs" Line="14" Column="20" />
+      <File FileName="DTO/UserDetailsDTO.cs" Line="8" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,10 +22,10 @@
             <Node name="RemindEd.API" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
-              <Node name="DTO" expanded="True" />
-              <Node name="Helpers" expanded="True">
-                <Node name="Extensions.cs" selected="True" />
+              <Node name="DTO" expanded="True">
+                <Node name="UserDetailsDTO.cs" selected="True" />
               </Node>
+              <Node name="Helpers" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Properties" expanded="True" />
             </Node>

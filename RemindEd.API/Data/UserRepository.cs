@@ -37,6 +37,18 @@ namespace RemindEd.API.Data
             return user;
         }
 
+        public async Task<User> GetUserContext(string username)
+        {
+            var user = await context.Users.Include(p => p.Photos).FirstOrDefaultAsync(u => u.Username == username);
+
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            return user;
+        }
+
         public async Task<IEnumerable<User>> GetUsers()
         {
             var users = await context.Users.Include(p => p.Photos).ToListAsync();

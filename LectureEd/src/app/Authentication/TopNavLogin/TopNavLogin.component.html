@@ -6,9 +6,14 @@
       <mat-icon class="accountIcon">account_circle</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item disabled>
+      <button mat-menu-item disabled *ngIf="this.authenticationService.activeUser.fullName">
         <mat-icon>insert_emoticon</mat-icon>
-        <span>{{this.authenticationService.userName}}</span>
+        <span>{{this.authenticationService.activeUser.fullName}}</span>
+      </button>
+
+      <button mat-menu-item disabled *ngIf="this.authenticationService.activeUser.fullName === null">
+        <mat-icon>insert_emoticon</mat-icon>
+        <span>{{this.authenticationService.activeUser.username}}</span>
       </button>
 
       <mat-divider></mat-divider>

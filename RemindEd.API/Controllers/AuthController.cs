@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -19,11 +20,13 @@ namespace RemindEd.API.Controllers
     {
         private readonly IAuthRepository authRepository;
         private readonly IConfiguration config;
+        private readonly IMapper mapper;
 
-        public AuthController(IAuthRepository authRepository, IConfiguration config)
+        public AuthController(IAuthRepository authRepository, IConfiguration config, IMapper mapper)
         {
             this.authRepository = authRepository;
             this.config = config;
+            this.mapper = mapper;
         }
 
         [AllowAnonymous]
@@ -53,11 +56,11 @@ namespace RemindEd.API.Controllers
                 return Unauthorized();
             }
 
+            var userContext = this.mapper.Map<UserContextDTO>(createdUser);
+            userContext.Token = GenerateAuthToken(createdUser);
+
             //Write token into response sent to client
-            return Ok(new
-            {
-                token = GenerateAuthToken(createdUser)
-            });
+            return Ok(userContext);
         }
 
         [AllowAnonymous]
@@ -67,16 +70,17 @@ namespace RemindEd.API.Controllers
             //Pull user from db
             var dbUser = await this.authRepository.Login(userToLogin.Username.ToLower(), userToLogin.Password);
 
+            Console.WriteLine();
             //Check if user exists
             if (dbUser == null)
             {
                 return Unauthorized();
             }
+            var userContext = this.mapper.Map<UserContextDTO>(dbUser);
+            userContext.Token = GenerateAuthToken(dbUser);
 
             //Write token into response sent to client
-            return Ok(new {
-                token = GenerateAuthToken(dbUser)
-            });
+            return Ok(userContext);
         }
 
         public string GenerateAuthToken(User dbUser)

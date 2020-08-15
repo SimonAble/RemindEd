@@ -4,16 +4,18 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { RegistrationModel } from './Registration.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { UserContext } from '../CoreModels/UserContext.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  private baseUrl = "http://localhost:5000/api/auth/";
+  private baseUrl = environment.apiUrl + 'auth/';
   public decodedToken: any;
   public helper = new JwtHelperService();
-  public userName: string;
+  public activeUser: UserContext = new UserContext();
 
   constructor(private http: HttpClient) {
   }
@@ -24,10 +26,11 @@ export class AuthenticationService {
         .pipe(
           map((res: any) => {
             const user = res;
+
             if(user) {
               localStorage.setItem('token', user.token);
-              this.decodedToken = this.helper.decodeToken(user.token);
-              this.userName = this.decodedToken['unique_name'];
+              this.activeUser = user;
+              console.log("Active User: " + JSON.stringify(this.activeUser));
             }
           })
         )
@@ -41,8 +44,8 @@ export class AuthenticationService {
             const user = res;
             if(user) {
               localStorage.setItem('token', user.token);
-              this.decodedToken = this.helper.decodeToken(user.token);
-              this.userName = this.decodedToken['unique_name'];
+              this.activeUser = user;
+              console.log("Active User: " + JSON.stringify(this.activeUser));
             }
           })
         )

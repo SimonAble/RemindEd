@@ -27,6 +27,9 @@ namespace RemindEd.API.Helpers
                 .ForMember(dest => dest.ProfilePhotoUrl,
                     opt => opt.MapFrom(src =>
                     src.Photos.FirstOrDefault(p => p.IsProfilePicture).Url));
+            CreateMap<User, UserContextDTO>()
+                .ForMember(dest => dest.FullName,
+                    opt => opt.MapFrom(src => (src.FirstName != null && src.LastName != null) ? src.FirstName + " " + src.LastName : null));
             CreateMap<Photo, PhotosForUserDTO>();
         }
         

@@ -33,12 +33,22 @@ namespace RemindEd.API.Controllers
             return Ok(usersInfo);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetUserById/{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
             var user = await userRepository.GetUser(id);
 
             var userInfo = mapper.Map<UserDetailsDTO>(user);
+
+            return Ok(userInfo);
+        }
+
+        [HttpGet("GetUserContext/{username}")]
+        public async Task<IActionResult> GetUserContext(string username)
+        {
+            var user = await userRepository.GetUserContext(username);
+
+            var userInfo = mapper.Map<UserContextDTO>(user);
 
             return Ok(userInfo);
         }
