@@ -47,10 +47,11 @@ export class TopNavLoginComponent implements OnInit {
     this.authenticationService.login(this.loginModel)
       .subscribe(
         next => {
+        this.router.navigate(['dashboard']);
         this.materialService.openSnackBar("Login Succesful!")
       }, error => {
         console.log("Error: ", error);
-        this.materialService.openSnackBar(error, SnackBarStateClass.Error)
+        this.materialService.openSnackBar("Hm, the information you entered doesn't match our records.", SnackBarStateClass.Error)
       })
   }
 
@@ -62,10 +63,11 @@ export class TopNavLoginComponent implements OnInit {
     this.authenticationService.register(this.registrationModel)
       .subscribe(
         next => {
+        this.router.navigate(['dashboard']);
         this.materialService.openSnackBar("Registration Succesful!")
       }, error => {
         console.log("Error: ", error)
-        this.materialService.openSnackBar(error, SnackBarStateClass.Error)
+        this.materialService.openSnackBar("There was an error processing you registration...", SnackBarStateClass.Error)
       })
   }
 
@@ -106,7 +108,7 @@ export class TopNavLoginComponent implements OnInit {
     localStorage.removeItem('token');
     this.loginToggled = false;
     console.log("User Logged Out");
-
+    this.router.navigate(['home']);
     this.materialService.openSnackBar("Logout Succesful!")
   }
 
@@ -115,26 +117,30 @@ export class TopNavLoginComponent implements OnInit {
   }
 
   public navigateToProfile() {
-
+    this.router.navigate(['profile']);
   }
 
   public navigateToCreateArticle() {
-
+    this.router.navigate(['create/article']);
   }
 
   public navigateToCreateCourse() {
-
+    this.router.navigate(['create/course']);
   }
 
-  public navigateToMyCoursesAndArticles() {
+  public navigateToMyLearning() {
+    this.router.navigate(['dashboard/mylearning']);
+  }
 
+  public navigateToMyTeaching() {
+    this.router.navigate(['dashboard/myteaching']);
   }
 
   public navigateToFollowing() {
-
+    this.router.navigate(['dashboard/following']);
   }
 
   public navigateToSavedResources() {
-
+    this.router.navigate(['dashboard/myresources']);
   }
 }

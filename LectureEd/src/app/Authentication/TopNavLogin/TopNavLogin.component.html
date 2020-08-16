@@ -18,36 +18,40 @@
 
       <mat-divider></mat-divider>
 
-      <button mat-menu-item>
+      <button mat-menu-item (click)="navigateToDashboard()">
         <mat-icon>dashboard</mat-icon>
         <span>Dashboard</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="navigateToProfile()">
         <mat-icon>account_box</mat-icon>
         <span>Profile</span>
       </button>
 
       <mat-divider></mat-divider>
 
-      <button mat-menu-item>
+      <button mat-menu-item (click)="navigateToCreateArticle()">
         <mat-icon>post_add</mat-icon>
         <span>New Article</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="navigateToCreateCourse()">
         <mat-icon>post_add</mat-icon>
         <span>New Course</span>
       </button>
 
       <mat-divider></mat-divider>
 
-      <button mat-menu-item>
-        <mat-icon>edit</mat-icon>
-        <span>My Courses and Articles</span>
+      <button mat-menu-item (click)="navigateToMyLearning()">
+        <mat-icon>menu_book</mat-icon>
+        <span>My Learning</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="navigateToMyTeaching()">
+        <mat-icon>edit</mat-icon>
+        <span>My Teaching</span>
+      </button>
+      <!-- <button mat-menu-item (click)="navigateToFollowing()">
         <mat-icon>visibility</mat-icon>
         <span>Following</span>
-      </button>
+      </button> -->
       <button mat-menu-item (click)="navigateToSavedResources()">
         <mat-icon>collections_bookmark</mat-icon>
         <span>Saved Resources</span>

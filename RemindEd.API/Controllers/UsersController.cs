@@ -53,5 +53,9 @@ namespace RemindEd.API.Controllers
             return Ok(userInfo);
         }
 
+        // [HttpPost("SaveUser")]
+        // public async Task<IActionResult> SaveUser(UserDetailsDTO user) {
+        //     var savedUser = await userRepository.SaveUser(user);
+        // }
     }
 }

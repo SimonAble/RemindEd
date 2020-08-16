@@ -1,3 +1,157 @@
-<p>
-  ProfileManagement works!
-</p>
+<div class="ProfileContainer w-75 mx-auto mt-5">
+
+  <ng-container *ngIf="user.profilePhotoUrl">
+    <div id="frame" class="mx-auto" style="background-image: url(../../../../assets/backgroundSample.jpg);">
+      <div class="profileImageContainer">
+        <img id="myImg" src="{{user.profilePhotoUrl}}">
+        <mat-icon class="editPictureButton">edit</mat-icon>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!user.profilePhotoUrl">
+    <div id="frame" class="mx-auto" style="background-image: url(../../../../assets/backgroundSample.jpg);">
+      <div class="profileImageContainer">
+        <img id="myImg" src="../../../../assets/defaultAvatar.jpg">
+        <mat-icon class="editPictureButton">edit</mat-icon>
+      </div>
+    </div>
+  </ng-container>
+
+
+ <div class="formContain pb-3">
+  <form #heroForm="ngForm" class="profileInput mx-auto">
+    <p class="text-center mt-3">Your Information:</p>
+    <div class="form-group">
+      <input type="text"  class="form-control" id="firstname" placeholder="First Name"
+             [(ngModel)]="user.firstName" name="firstname"
+             matTooltip="First Name"
+             matTooltipClass="custom-tooltip-blue"
+             matTooltipPosition="left"
+             [matTooltipShowDelay]="showDelay">
+    </div>
+    <div class="form-group">
+      <input type="text"  class="form-control" id="lastname" placeholder="Last Name"
+             [(ngModel)]="user.lastName" name="lastname"
+             matTooltip="Last Name"
+             matTooltipClass="custom-tooltip-blue"
+             matTooltipPosition="left"
+             [matTooltipShowDelay]="showDelay">
+    </div>
+    <!-- <div class="form-group">
+      <input type="text"  class="form-control" id="age" placeholder="Age"
+             [(ngModel)]="user.age" name="age">
+    </div> -->
+    <div class="form-group">
+      <input type="text"  class="form-control" id="professionalTitle" placeholder="Professional Title, or if you are a student, enter 'Student'"
+             [(ngModel)]="user.professionalTitle" name="professionalTitle"
+             matTooltip="Title"
+             matTooltipClass="custom-tooltip-blue"
+             matTooltipPosition="left"
+             [matTooltipShowDelay]="showDelay">
+    </div>
+    <div class="form-group">
+      <input type="text"  class="form-control" id="professionalDescription" placeholder="About You" [(ngModel)]="user.professionalDescription" name="professionalDescription"
+      matTooltip="About You"
+      matTooltipClass="custom-tooltip-blue"
+      matTooltipPosition="left"
+      [matTooltipShowDelay]="showDelay"
+      >
+    </div>
+    <div class="form-group mb-4">
+      <input type="text"  class="form-control" id="language" placeholder="Language"
+      [(ngModel)]="user.language" name="language"
+      matTooltip="Language"
+      matTooltipClass="custom-tooltip-blue"
+      matTooltipPosition="left"
+      [matTooltipShowDelay]="showDelay">
+    </div>
+
+    <mat-divider class="pb-2"></mat-divider>
+
+    <p class="text-center mt-3">Your Links:</p>
+
+    <div class="form-group">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">Custom Link (http://...)</span>
+        </div>
+        <input type="text"  class="form-control" id="courseraLink" placeholder="Website Link" [(ngModel)]="user.courseraLink" name="courseraLink">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">http://www.facebook.com/</span>
+        </div>
+        <input type="text"  class="form-control" id="facebookLink" placeholder="Facebook Profile"
+               [(ngModel)]="user.facebookLink" name="facebookLink" aria-describedby="basic-addon3">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">http://www.youtube.com/</span>
+        </div>
+        <input type="text"  class="form-control" id="youtubeLink" placeholder="YouTube Profile"
+        [(ngModel)]="user.youtubeLink" name="youtubeLink">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">http://twitter.com/</span>
+        </div>
+        <input type="text"  class="form-control" id="twitterLink" placeholder="Twitter Profile"
+        [(ngModel)]="user.twitterLink" name="twitterLink">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">http://www.linkedin.com/</span>
+        </div>
+        <input type="text"  class="form-control" id="linkedinLink" placeholder="linkedinLink"
+        [(ngModel)]="user.linkedinLink" name="linkedinLink">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">http://www.udemy.com/</span>
+        </div>
+        <input type="text"  class="form-control" id="udemyLink" placeholder="udemyLink"
+        [(ngModel)]="user.udemyLink" name="udemyLink">
+      </div>
+    </div>
+
+  </form>
+ </div>
+
+ <div class="footer">
+  <button mat-mini-fab color="primary" (click)="navigateToSettings()"
+      matTooltip="User Settings"
+      matTooltipClass="custom-tooltip-blue"
+      matTooltipPosition="above">
+    <mat-icon>settings</mat-icon>
+    <!-- <span>Dashboard</span> -->
+  </button>
+  <button mat-mini-fab class="mr-3" color="primary" (click)="saveProfile()"
+    matTooltip="Save Profile"
+    matTooltipClass="custom-tooltip-blue"
+    matTooltipPosition="above">
+    <mat-icon>save</mat-icon>
+  </button>
+  <!-- <button mat-mini-fab class="mr-3" color="primary" (click)="navigateToSettings()"
+    matTooltip="Save Profile"
+    matTooltipClass="custom-tooltip-blue"
+    matTooltipPosition="above">
+    <mat-icon>save</mat-icon>
+  </button> -->
+ </div>
+</div>

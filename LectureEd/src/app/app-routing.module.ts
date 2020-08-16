@@ -8,8 +8,11 @@ import { CreateArticleLayoutComponent } from './InternalViews/CreateView/CreateA
 import { DashboardComponent } from './InternalViews/Dashboard/Dashboard/Dashboard.component';
 import { UserSettingsComponent } from './InternalViews/Dashboard/UserSettings/UserSettings.component';
 import { ProfileManagementComponent } from './InternalViews/Dashboard/ProfileManagement/ProfileManagement.component';
-import { MyCoursesAndArticlesComponent } from './InternalViews/Dashboard/MyCoursesAndArticles/MyCoursesAndArticles.component';
 import { AuthGuardService } from './Authentication/AuthGuard.service';
+import { MyLearningComponent } from './InternalViews/Dashboard/MyLearning/MyLearning.component';
+import { MyTeachingComponent } from './InternalViews/Dashboard/MyTeaching/MyTeaching.component';
+import { MyResourcesComponent } from './InternalViews/Dashboard/MyResources/MyResources.component';
+import { FollowingComponent } from './InternalViews/Dashboard/Following/Following.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,8 +23,10 @@ const routes: Routes = [
   { path: 'create/course', component: CreateLectureLayoutComponent},
   { path: 'create/article', component: CreateArticleLayoutComponent},
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService] },
-  { path: 'dashboard/myresources', component: MyCoursesAndArticlesComponent, canActivate: [AuthGuardService] },
-  { path: 'dashboard/following', component: DashboardComponent, canActivate: [AuthGuardService] },
+  { path: 'dashboard/mylearning', component: MyLearningComponent, canActivate: [AuthGuardService] },
+  { path: 'dashboard/myteaching', component: MyTeachingComponent, canActivate: [AuthGuardService] },
+  { path: 'dashboard/following', component: FollowingComponent, canActivate: [AuthGuardService] },
+  { path: 'dashboard/myresources', component: MyResourcesComponent, canActivate: [AuthGuardService] },
   { path: 'profile', component: ProfileManagementComponent, canActivate: [AuthGuardService] },
   { path: 'profile/settings', component: UserSettingsComponent, canActivate: [AuthGuardService] },
 ];

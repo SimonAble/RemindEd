@@ -23,14 +23,20 @@ export class UserService {
   constructor(private http: HttpClient, private authService: AuthenticationService) { }
 
   public getUserContext(username:string):Observable<UserContext> {
-    return this.http.get<UserContext>(this.baseUrl + 'GetUserContext/' + username, httpOptions);
+    return this.http.get<UserContext>(this.baseUrl + 'GetUserContext/' + username);
   }
 
   public getUserById(userId:number):Observable<User>{
-    return this.http.get<User>(this.baseUrl + 'GetUserById/' + userId, httpOptions);
+    console.log("Getting user for id: " + userId);
+    console.log(this.baseUrl + 'GetUserById/' + userId);
+    return this.http.get<User>(this.baseUrl + 'GetUserById/' + userId);
   }
 
   public getUsers():Observable<UserContext[]> {
-    return this.http.get<UserContext[]>(this.baseUrl, httpOptions);
+    return this.http.get<UserContext[]>(this.baseUrl);
+  }
+
+  public saveUser(user:User):Observable<User> {
+    return this.http.post<User>(this.baseUrl + 'SaveUser/', user);
   }
 }

@@ -3,6 +3,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { JwtModule } from '@auth0/angular-jwt';
 
 //Material Imports
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,6 +23,8 @@ import { TopNavLoginComponent } from './Authentication/TopNavLogin/TopNavLogin.c
 //Authentication
 import { LoginModalComponent } from './Authentication/LoginModal/LoginModal.component';
 import { RegistrationModalComponent } from './Authentication/RegistrationModal/RegistrationModal.component';
+import { AuthGuardService } from './Authentication/AuthGuard.service';
+import { ErrorInterceptorProvider } from './CoreServices/Error.Interceptor';
 
 //External Views
 import { ExternalHomeComponent } from './GlobalViews/ExternalHome/ExternalHome.component';
@@ -43,13 +46,19 @@ import { CoLabEditorComponent } from './CoreComponents/CoLabEditor/CoLabEditor.c
 import { CoLabViewerComponent } from './CoreComponents/CoLabViewer/CoLabViewer.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CreateArticleLayoutComponent } from './InternalViews/CreateView/CreateArticleLayout/CreateArticleLayout.component';
+
+//User Management
 import { DashboardComponent } from './InternalViews/Dashboard/Dashboard/Dashboard.component';
-import { MyCoursesAndArticlesComponent } from './InternalViews/Dashboard/MyCoursesAndArticles/MyCoursesAndArticles.component';
 import { FollowingComponent } from './InternalViews/Dashboard/Following/Following.component';
 import { ProfileManagementComponent } from './InternalViews/Dashboard/ProfileManagement/ProfileManagement.component';
 import { UserSettingsComponent } from './InternalViews/Dashboard/UserSettings/UserSettings.component';
-import { AuthGuardService } from './Authentication/AuthGuard.service';
-import { ErrorInterceptorProvider } from './CoreServices/Error.Interceptor';
+import { MyTeachingComponent } from './InternalViews/Dashboard/MyTeaching/MyTeaching.component';
+import { MyLearningComponent } from './InternalViews/Dashboard/MyLearning/MyLearning.component';
+import { MyResourcesComponent } from './InternalViews/Dashboard/MyResources/MyResources.component';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -71,10 +80,12 @@ import { ErrorInterceptorProvider } from './CoreServices/Error.Interceptor';
     CreateCourseComponent,
     CreateArticleLayoutComponent,
     DashboardComponent,
-    MyCoursesAndArticlesComponent,
+    MyLearningComponent,
+    MyTeachingComponent,
     FollowingComponent,
     ProfileManagementComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    MyResourcesComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +104,14 @@ import { ErrorInterceptorProvider } from './CoreServices/Error.Interceptor';
     MatDividerModule,
     CKEditorModule,
     MatSnackBarModule,
-    MatMenuModule
+    MatMenuModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:5000'],
+        disallowedRoutes: ['localhost:5000/api/auth']
+      }
+    })
   ],
   entryComponents: [
     LoginModalComponent,

@@ -65,6 +65,7 @@
   --shadow: 5px 5px 10px rgb(182, 182, 182);
   --float-shadow: 0px 0px 4px -1px var(--gray);
   --hover-shadow: 0px 0px 12px -1px var(--gray);
+  --dark-shadow: 0px 0px 4px -1px var(--dark-grey);
 
   --leftnav-collapsed-width: 6%;
   --leftnav-expanded-width: ;
@@ -183,11 +184,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: #ffffff;
   font-size: 1.1em;
   margin-right: none;
+  box-shadow: var(--dark-shadow);
 }
 
 .snackbarSuccess {
   background-color: var(--lab-accent);
-  width:800px;
+  width:1000px;
   height:70px;
 }
 
@@ -197,7 +199,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .snackbarError {
   background-color: var(--error-background);
-  width:800px;
+  width:1000px;
   height:70px;
   font-size: 30px;
 }
@@ -211,3 +213,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   font-size: 18px;
 }
 
+.mat-mini-fab.mat-primary {
+  background-color: var(--medium-blue);
+}

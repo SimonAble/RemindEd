@@ -30,6 +30,9 @@ export class AppComponent implements OnInit {
     if(token) {
       this.authenticationService.decodedToken = this.helper.decodeToken(token);
       const username = this.authenticationService.decodedToken['unique_name'];
+      const userId = this.authenticationService.decodedToken['nameid'];
+      this.authenticationService.activeUser.id = userId;
+
       this.getUserContext(username);
     }
   }
@@ -43,6 +46,7 @@ export class AppComponent implements OnInit {
       .subscribe(
         (userContext: UserContext) => {
           this.authenticationService.activeUser = userContext;
+          console.log(JSON.stringify(this.authenticationService.activeUser));
          },
         error => {
           console.log("Error: ", error);
