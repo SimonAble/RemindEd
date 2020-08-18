@@ -1,11 +1,11 @@
 <nav id="sidebar">
-  <form #createLeftMenuForm="ngForm" (ngSubmit)="saveLeftMenu()">
+  <form #createLeftMenuForm="ngForm">
     <!--Left Menu Header Expanded-->
     <div *ngIf="!leftMenuToggled" class="sidebar-header mb-1">
 
-      <h3 *ngIf="course.courseTitle && !editMenuTitle" class="pl-4 displayHeader"><button (click)="toggleEditCourseTitle()" class="btn hoverBtn p-0 mr-3"><i class="fa fa-edit"></i></button>{{course.courseTitle}}</h3>
+      <h3 *ngIf="courseService.courseModel.courseTitle && !editMenuTitle" class="pl-4 displayHeader"><button (click)="toggleEditCourseTitle()" class="btn hoverBtn p-0 mr-3"><i class="fa fa-edit"></i></button>{{courseService.courseModel.courseTitle}}</h3>
 
-      <div *ngIf="!course.courseTitle || editMenuTitle" class="input-group titleInput editHeader">
+      <div *ngIf="!courseService.courseModel.courseTitle || editMenuTitle" class="input-group titleInput editHeader">
         <input type="text" class="form-control" placeholder="Enter a Course Title" aria-label="Enter Course Title" name="leftMenuTitle" [(ngModel)] = "leftMenuTitle">
         <div class="input-group-append">
           <button (click)="addCourseTitle()" class="btn btn-outline-secondary px-2" type="button"><i class="fa fa-plus"></i></button>
@@ -19,7 +19,7 @@
     <!--Left Menu Header Collapsed-->
     <div *ngIf="leftMenuToggled" class="sidebar-header-collapsed mb-1">
       <h3 class="text-center"
-      matTooltip="{{course.courseTitle}}"
+      matTooltip="{{courseService.courseModel.courseTitle}}"
       matTooltipClass="custom-tooltip-blue"
       matTooltipPosition="right"><i class="fa fa-compass"></i></h3>
     </div>
@@ -27,7 +27,7 @@
     <!--Left Menu Expanded-->
     <div *ngIf="!leftMenuToggled" class="list-container">
       <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of course.lectures; let i = index" cdkDrag cdkDragLockAxis="y" [cdkDragDisabled]="editLectureIndex === i" (click)="viewLecture(lecture, i)">
+        <div class="example-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of courseService.courseModel.lectures; let i = index" cdkDrag cdkDragLockAxis="y" [cdkDragDisabled]="editLectureIndex === i" (click)="viewLecture(lecture, i)">
             <div *ngIf="!editLectureToggled || editLectureIndex !== i">
               <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
               <a>
@@ -72,7 +72,7 @@
     <!--Left Menu Collapsed-->
     <div *ngIf="leftMenuToggled" class="list-container">
       <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of course.lectures; let i = index" cdkDrag cdkDragLockAxis="y" (click)="viewLecture(lecture, i)">
+        <div class="example-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of courseService.courseModel.lectures; let i = index" cdkDrag cdkDragLockAxis="y" (click)="viewLecture(lecture, i)">
           <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
             <a matTooltip="{{lecture.lectureName}}"
             matTooltipPosition="after"

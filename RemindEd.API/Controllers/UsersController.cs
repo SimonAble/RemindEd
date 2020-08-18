@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using RemindEd.API.Data;
 using RemindEd.API.DTO;
+using RemindEd.API.Models;
 
 namespace RemindEd.API.Controllers
 {
@@ -53,9 +56,21 @@ namespace RemindEd.API.Controllers
             return Ok(userInfo);
         }
 
-        // [HttpPost("SaveUser")]
-        // public async Task<IActionResult> SaveUser(UserDetailsDTO user) {
-        //     var savedUser = await userRepository.SaveUser(user);
-        // }
+        [HttpPut("SaveUser/{id}")]
+        public async Task<IActionResult> SaveUser(int id, UserDetailsDTO user) {
+
+            if(id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value)) {
+                return Unauthorized();
+            }
+
+            var userFromRepo = await userRepository.GetUser(id);
+
+            mapper.Map(user, userFromRepo);
+
+            if(await userRepository.SaveAll())
+                return NoContent();
+
+            throw new Exception($"Updating user with id: {id} failed...");
+        }
     }
 }

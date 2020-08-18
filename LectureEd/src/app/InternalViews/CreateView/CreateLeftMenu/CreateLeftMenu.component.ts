@@ -4,6 +4,7 @@ import { CreateLeftMenuService } from './CreateLeftMenu.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { LectureNavigationModel } from '../CreateLectureContent/CreateLectureContent.model';
 import { CourseModel } from '../CreateLectureLayout/Course.model';
+import { CreateCourseService } from '../CreateLectureLayout/CreateCourse.service';
 
 @Component({
   selector: 'app-CreateLeftMenu',
@@ -16,7 +17,6 @@ export class CreateLeftMenuComponent implements OnInit {
   @Output() emitChangeActiveLecture = new EventEmitter<number>();
   @Output() emitCreateLectureContent = new EventEmitter<number>();
   @Output() emitDeleteLectureContent = new EventEmitter<number>();
-  @Input() course: CourseModel;
 
   public leftMenuToggled: boolean = false;
   public editMenuTitle: boolean = false;
@@ -29,10 +29,10 @@ export class CreateLeftMenuComponent implements OnInit {
   public addNewLectureToggled: boolean = false;
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.course.lectures, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.courseService.courseModel.lectures, event.previousIndex, event.currentIndex);
   }
 
-  constructor(private leftMenuService: CreateLeftMenuService) { }
+  constructor(public courseService: CreateCourseService) { }
 
   ngOnInit() {
     // this.getLeftMenu();
@@ -46,9 +46,8 @@ export class CreateLeftMenuComponent implements OnInit {
   }
 
   addCourseTitle() {
-    this.course.courseTitle = this.leftMenuTitle;
+    this.courseService.courseModel.courseTitle = this.leftMenuTitle;
     this.editMenuTitle = false;
-    console.log(this.course.courseTitle);
   }
 
   toggleEditCourseTitle() {
@@ -64,12 +63,11 @@ export class CreateLeftMenuComponent implements OnInit {
   addNewLectureItem() {
     if(this.lectureItem !== "") {
       console.log("Adding new Lecture item");
-      this.course.lectures.push(new Lecture(this.lectureItem, false, new LectureNavigationModel()));
+      this.courseService.courseModel.lectures.push(new Lecture(this.lectureItem, false));
       this.lectureItem = "";
       this.addNewLectureToggled = false;
 
-      let newLecturePosition = this.course.lectures.length - 1;
-      console.log("New lecture position: ", newLecturePosition);
+      let newLecturePosition = this.courseService.courseModel.lectures.length - 1;
       this.emitCreateLectureContent.emit(newLecturePosition);
     }
   }

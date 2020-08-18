@@ -1,38 +1,39 @@
 export class LectureNavigationModel {
   lectureId: string;
-  lectureTopics: Topic[];
+  topics: Topic[];
 
-  constructor(lectureTopics: Topic[] = []) {
-    this.lectureTopics = lectureTopics;
+  constructor(topics: Topic[] = []) {
+    this.topics = topics;
   }
 }
 
 export class Topic {
   topicId: string;
-  topicName: string;
+  topicTabName: string;
   topicActive: boolean;
   topicTypeCode: TopicTypes;
-  title: string;
-  contents: string;
+  topicTitle: string;
+  topicContents: string;
 
-  constructor(topicName: string, topicActive: boolean = false, title: string = "", contents: string = "") {
-    this.topicName = topicName;
+  constructor(topicTabName: string, topicActive: boolean = false, topicTitle: string = "", topicContents: string = "", topicTypeCode?:TopicTypes) {
+    this.topicTabName = topicTabName;
     this.topicActive = topicActive;
-    this.title = title;
-    this.contents = contents;
+    this.topicTitle = topicTitle;
+    this.topicContents = topicContents;
+    this.topicTypeCode = topicTypeCode;
   }
 }
 
 export enum TopicTypes {
-  Custom = "custom",
-  Article = "article",
-  Resources = "resources",
-  Questions = "questions",
-  Concept = "concept",
-  Video = "video",
-  Discussion = "discussion",
-  Application = "application",
-  Movie = "movie",
+  Custom = 0,
+  Article = 1,
+  Resources = 2,
+  Questions = 3,
+  Concept = 4,
+  Video = 5,
+  Discussion = 6,
+  Application = 7,
+  Movie = 8,
   //Used to route user to suggestions page
-  Suggestion = "suggestion"
+  Suggestion = 9
 }

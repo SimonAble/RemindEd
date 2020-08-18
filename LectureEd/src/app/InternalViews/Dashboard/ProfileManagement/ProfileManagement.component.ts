@@ -42,7 +42,15 @@ export class ProfileManagementComponent implements OnInit {
   }
 
   public saveProfile() {
-    this.userService.saveUser(this.user);
+    this.userService.saveUser(this.user)
+      .subscribe(
+        next => {
+          this.materialService.openSnackBar("Profile Information Saved")
+        },
+        error => {
+          console.log("Error: ", error)
+          this.materialService.openSnackBar("We couldn't save your information. " + error, SnackBarStateClass.Error)
+        })
   }
 
 }

@@ -22,8 +22,8 @@ export class CreateArticleLayoutComponent implements OnInit {
 
   public setActiveTopicContents(topicContents: Topic) {
 
-    this.article.title = topicContents.title;
-    this.article.contents = topicContents.contents;
+    this.article.topicTitle = topicContents.topicTitle;
+    this.article.topicContents = topicContents.topicContents;
 
     this.materialService.openSnackBar("Article Saved Successfully!");
   }

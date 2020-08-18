@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'learn', component: LearnLayoutComponent},
   { path: 'create', component: CreateCourseComponent},
   { path: 'create/course', component: CreateLectureLayoutComponent},
+  { path: 'create/course/:id', component: CreateLectureLayoutComponent},
   { path: 'create/article', component: CreateArticleLayoutComponent},
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService] },
   { path: 'dashboard/mylearning', component: MyLearningComponent, canActivate: [AuthGuardService] },

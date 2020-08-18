@@ -32,37 +32,39 @@ namespace RemindEd.API.Controllers
 
             Console.WriteLine("Saving Course");
 
-            //Topic topic = new Topic();
-            //Lecture lecture = new Lecture();
-            //Course testCourse = new Course();
+            // var courseFromRepo = this.courseRepository.GetCourseByCourseId(course.CourseID);
+            var savedCourse = this.courseRepository.SaveCourse(course);
+            if(await savedCourse != null)
+                return Created("Course Created", course);
 
+            throw new Exception($"Updating course with id: {course.CourseID} failed...");
+        }
 
-            //topic.TopicContents = "Test Contents";
-            //topic.TopicTabName = "Test Tab Name";
-            //topic.TopicTitle = "Test topic title";
-            //topic.TopicTypeCode = TopicTypeCode.Application;
+        [HttpPut("UpdateCourse")]
+        public async Task<IActionResult> UpdateCourse(Course course)
+        {
 
-            //lecture.LectureName = "Test Lecture";
-            //lecture.Topics = new Collection<Topic>();
-            //lecture.Topics.Add(topic);
-            //lecture.CreatedByID = 2;
-            //lecture.CreatedDate = DateTime.Now;
-            //lecture.LastUpdatedByID = 2;
-            //lecture.LastUpdatedDate = DateTime.Now;
+            Console.WriteLine("Saving Course");
 
-            //testCourse.CourseTitle = "Title";
-            //testCourse.Lectures = new Collection<Lecture>();
-            //testCourse.Lectures.Add(lecture);
-            //testCourse.CreatedByID = 2;
-            //testCourse.CreatedDate = DateTime.Now;
-            //testCourse.LastUpdatedByID = 2;
-            //testCourse.LastUpdatedDate = DateTime.Now;
+            var courseFromRepo = this.courseRepository.GetCourseByCourseId(course.CourseID);
+            
+            if(await courseRepository.SaveAll())
+                return NoContent();
 
-            //Console.Write(testCourse.CourseTitle);
+            throw new Exception($"Updating course with id: {course.CourseID} failed...");
+        }
 
-            var savedCourse = await courseRepository.SaveCourse(course);
+        [HttpGet("GetCourse/{id}")]
+        public async Task<IActionResult> UpdateCourse(int id)
+        {
+            Console.WriteLine("Saving Course");
 
-            return Ok(savedCourse);
+            var courseFromRepo = await this.courseRepository.GetCourseByCourseId(id);
+            
+            if(courseFromRepo != null)
+                return Ok(courseFromRepo);
+
+            throw new Exception($"Could not retrieve course with id: {id}...");
         }
 
 

@@ -13,7 +13,7 @@
     #contentEditor
     [editor]="ContentEditor"
     [config]= ckConfig
-    data = {{this.activeTopic.topicContents.contents}}
+    data = {{activeTopic.topicContents}}
     class="ckContent">
   </ckeditor>
   </div>
@@ -25,14 +25,14 @@
     #titleEditor
     [editor]="TitleEditor"
     [config]="{ placeholder:'Title'}"
-    data = "{{this.activeTopic.title}}"
+    data = "{{activeTopic.topicTitle}}"
     class="ckTitle">
   </ckeditor>
   <ckeditor
     #contentEditor
     [editor]="ContentEditor"
     [config]="{ placeholder:'You can talk about the subject more here...'}"
-    data = {{this.activeTopic.contents}}
+    data = "{{activeTopic.topicContents}}"
     class="ckContent">
   </ckeditor>
 </div>

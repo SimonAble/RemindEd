@@ -1,8 +1,12 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {Location} from '@angular/common';
 import { CourseModel } from './Course.model';
 import { CreateCourseService } from './CreateCourse.service';
 import { LectureNavigationModel, Topic } from '../CreateLectureContent/CreateLectureContent.model';
 import { MaterialService } from 'src/app/CoreServices/Material.service';
+import { AuthenticationService } from 'src/app/Authentication/Authentication.service';
+import { Lecture } from '../CreateLeftMenu/CreateLeftMenu.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-CreateLectureLayout',
@@ -12,24 +16,35 @@ import { MaterialService } from 'src/app/CoreServices/Material.service';
 export class CreateLectureLayoutComponent implements OnInit {
 
   public leftMenuCollapsed: boolean = false;
-  public courseModel: CourseModel;
-  public activeLecture: LectureNavigationModel;
+  public activeLecture: Lecture;
+  public courseId;
 
   constructor(
-    private courseService: CreateCourseService,
-    private materialService: MaterialService) { }
+    public courseService: CreateCourseService,
+    private authService: AuthenticationService,
+    private materialService: MaterialService,
+    private location: Location,
+    private route: ActivatedRoute) {
+      this.route.params.subscribe( params =>
+        this.courseId = params['id']
+      );
+    }
 
   ngOnInit() {
     this.getCourse();
   }
 
   public getCourse() {
-    this.courseModel = this.courseService.getCourse();
-    console.log("Getting course model: ", JSON.stringify(this.courseModel));
-    let lectures = this.courseModel.lectures;
-    if(lectures.length > 0) {
-      this.activeLecture = this.courseModel.lectures[0].lectureContent;
-    }
+    this.courseService.getCourse(this.courseId)
+      .subscribe( (res: CourseModel) => {
+        this.courseService.courseModel = res;
+        console.log("Getting course model: ", JSON.stringify(this.courseService.courseModel));
+        let lectures = this.courseService.courseModel.lectures;
+        if(lectures.length > 0) {
+          this.activeLecture = this.courseService.courseModel.lectures[0];
+          this.activeLecture.lectureActive = true;
+        }
+      });
   }
 
   public toggleLeftMenu(event) {
@@ -39,45 +54,53 @@ export class CreateLectureLayoutComponent implements OnInit {
 
   public changeActiveLecture(event) {
     console.log("Event emitted from left menu: ", event);
-    this.activeLecture = this.courseModel.lectures[event].lectureContent;
+    this.activeLecture = this.courseService.courseModel.lectures[event];
     this.switchActiveLecture(event);
   }
 
   public createNewLectureContent(event) {
     console.log("Creating new lecture content: ", event);
-    this.courseModel.lectures[event].lectureContent = new LectureNavigationModel();
-    this.activeLecture = this.courseModel.lectures[event].lectureContent;
+    this.activeLecture = this.courseService.courseModel.lectures[event];
 
     this.switchActiveLecture(event);
   }
 
   public deleteLectureContent(event) {
     console.log("Deleting lecture content: ", event);
-    this.courseModel.lectures.splice(event, 1);
-    if(this.courseModel.lectures.length > 0) {
-      this.activeLecture = this.courseModel.lectures[0].lectureContent;
+    this.courseService.courseModel.lectures.splice(event, 1);
+    if(this.courseService.courseModel.lectures.length > 0) {
+      this.activeLecture = this.courseService.courseModel.lectures[0];
     }
-    if(this.courseModel.lectures.length === 0) {
+    if(this.courseService.courseModel.lectures.length === 0) {
       this.activeLecture = null;
     }
   }
 
   public switchActiveLecture(index) {
     console.log("Switching active lecture: ", event);
-    for(let i = 0; i < this.courseModel.lectures.length; i++) {
+    for(let i = 0; i < this.courseService.courseModel.lectures.length; i++) {
       if (i === index) {
-        this.courseModel.lectures[i].lectureActive = true;
+        this.courseService.courseModel.lectures[i].lectureActive = true;
       }
       else {
-        this.courseModel.lectures[i].lectureActive = false;
+        this.courseService.courseModel.lectures[i].lectureActive = false;
       }
     }
   }
 
   public saveCourse(lecture) {
     console.log("Saving course");
-    console.log(this.courseModel);
+    this.courseService.courseModel.userId = this.authService.activeUser.id;
+    console.log(JSON.stringify(this.courseService.courseModel));
 
-    this.materialService.openSnackBar("Course Saved Successfully!");
+    this.courseService.saveCourse(this.courseService.courseModel)
+      .subscribe(
+        (res) => {
+          this.location.replaceState('/create/course/' + res['courseID']);
+          this.materialService.openSnackBar("Course Saved Successfully!");
+        },
+        error => {
+          this.materialService.openSnackBar('Error saving course: ' + error);
+        });
   }
 }

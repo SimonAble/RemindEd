@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
     const token = localStorage.getItem('token');
-    if(token) {
+    if(this.authenticationService.isAuthenticated()) {
       this.authenticationService.decodedToken = this.helper.decodeToken(token);
       const username = this.authenticationService.decodedToken['unique_name'];
       const userId = this.authenticationService.decodedToken['nameid'];

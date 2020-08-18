@@ -45,10 +45,10 @@ export class CoLabEditorComponent implements OnInit {
   public setEditorData() {
     console.log("Setting data");
     if (this.titleEditor && this.titleEditor.editorInstance) {
-      this.titleEditor.editorInstance.setData(this.activeTopic.title);
+      this.titleEditor.editorInstance.setData(this.activeTopic.topicTitle);
     }
     if (this.contentEditor && this.contentEditor.editorInstance) {
-      this.contentEditor.editorInstance.setData(this.activeTopic.contents);
+      this.contentEditor.editorInstance.setData(this.activeTopic.topicContents);
     }
   }
 
@@ -56,13 +56,11 @@ export class CoLabEditorComponent implements OnInit {
     if(this.authenticationService.isAuthenticated()) {
       if (this.titleEditor && this.titleEditor.editorInstance) {
         let title = this.titleEditor.editorInstance.getData();
-        console.log(title);
-        this.activeTopic.title = title;
+        this.activeTopic.topicTitle = title;
       }
       if (this.contentEditor && this.contentEditor.editorInstance) {
         let contents = this.contentEditor.editorInstance.getData();
-        console.log(contents);
-        this.activeTopic.contents = contents;
+        this.activeTopic.topicContents = contents;
       }
 
       this.emitSaveCourseContents.emit(this.activeTopic);

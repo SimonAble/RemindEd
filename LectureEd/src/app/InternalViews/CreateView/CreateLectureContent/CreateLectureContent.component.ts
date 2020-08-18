@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material';
 import { Title } from '@angular/platform-browser';
 import { CoLabEditorComponent } from 'src/app/CoreComponents/CoLabEditor/CoLabEditor.component';
 import { MaterialService } from 'src/app/CoreServices/Material.service';
-import { CourseModel } from '../CreateLectureLayout/Course.model';
+import { Lecture } from '../CreateLeftMenu/CreateLeftMenu.model';
 
 @Component({
   selector: 'app-CreateLectureContent',
@@ -18,7 +18,7 @@ export class CreateLectureContentComponent implements OnInit {
 
   @ViewChild('editor') editorComponent: CoLabEditorComponent;
 
-  @Input() activeLecture: LectureNavigationModel;
+  @Input() activeLecture: Lecture;
   @Output() emitSaveCourse = new EventEmitter<LectureNavigationModel>();
 
   public showDelay = new FormControl(500);
@@ -43,11 +43,7 @@ export class CreateLectureContentComponent implements OnInit {
   }
 
   ngOnChanges() {
-    console.log("OnChanges Event Triggered in Lecture Content");
-    if(this.activeLecture && this.activeLecture.lectureTopics.length > 0) {
-      console.log(JSON.stringify(this.activeLecture));
-      this.activeTopic = this.activeLecture.lectureTopics[0];
-    }
+    this.switchActiveTopic(0);
   }
 
   // public getLectureNavigationTopics() {
@@ -56,7 +52,7 @@ export class CreateLectureContentComponent implements OnInit {
   // }
 
   public drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.activeLecture.lectureTopics, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.activeLecture.topics, event.previousIndex, event.currentIndex);
   }
 
   public dropMovie(event: CdkDragDrop<string[]>) {
@@ -72,17 +68,17 @@ export class CreateLectureContentComponent implements OnInit {
       if(this.navTopicItem !== "") {
 
         const dialogRef = this.dialog.open(LearningModuleModalComponent, {
-          data: { topicName: this.navTopicItem }
+          data: { topicTabName: this.navTopicItem }
         });
 
         dialogRef.afterClosed().subscribe(result => {
           let topicType = result.topicType;
 
           if(topicType) {
-            this.activeLecture.lectureTopics.push(new Topic(this.navTopicItem));
+            this.activeLecture.topics.push(new Topic(this.navTopicItem));
 
-            let newTopicIndex = this.activeLecture.lectureTopics.length - 1;
-            this.activeTopic = this.activeLecture.lectureTopics[newTopicIndex];
+            let newTopicIndex = this.activeLecture.topics.length - 1;
+            this.activeTopic = this.activeLecture.topics[newTopicIndex];
             // this.activeTopic.topicContents = new TopicContentModel();
             this.activeTopic.topicTypeCode = topicType;
             this.switchActiveTopic(newTopicIndex);
@@ -96,21 +92,21 @@ export class CreateLectureContentComponent implements OnInit {
 
   public switchActiveTopic(activeIndex:number) {
 
-    this.activeTopic = this.activeLecture.lectureTopics[activeIndex];
+    this.activeTopic = this.activeLecture.topics[activeIndex];
     this.activeTopic.topicActive = true;
     this.activeTopicIndex = activeIndex;
 
-    for(let i = 0; i < this.activeLecture.lectureTopics.length; i++) {
+    for(let i = 0; i < this.activeLecture.topics.length; i++) {
       if(i != activeIndex) {
-        this.activeLecture.lectureTopics[i].topicActive = false;
+        this.activeLecture.topics[i].topicActive = false;
       }
     }
   }
 
   public saveCourseContents(topicContents: Topic) {
 
-    this.activeLecture.lectureTopics[this.activeTopicIndex].title = topicContents.title;
-    this.activeLecture.lectureTopics[this.activeTopicIndex].contents = topicContents.contents;
+    this.activeLecture.topics[this.activeTopicIndex].topicTitle = topicContents.topicTitle;
+    this.activeLecture.topics[this.activeTopicIndex].topicContents = topicContents.topicContents;
 
     this.emitSaveCourse.emit(this.activeLecture);
   }
@@ -120,7 +116,7 @@ export class CreateLectureContentComponent implements OnInit {
     this.editTopicIndex = index;
   }
 
-  public addTopicName() {
+  public addTopicTabName() {
     this.editTopicToggled = false;
     this.editTopicIndex = null;
   }
@@ -128,12 +124,12 @@ export class CreateLectureContentComponent implements OnInit {
   public deleteTopic(topic, index) {
     console.log(JSON.stringify(topic));
     console.log(index);
-    this.activeLecture.lectureTopics.splice(index, 1);
+    this.activeLecture.topics.splice(index, 1);
 
-    if(this.activeLecture.lectureTopics.length > 0) {
-      this.activeTopic = this.activeLecture.lectureTopics[0];
+    if(this.activeLecture.topics.length > 0) {
+      this.activeTopic = this.activeLecture.topics[0];
     }
-    if(this.activeLecture.lectureTopics.length === 0) {
+    if(this.activeLecture.topics.length === 0) {
       this.activeTopic = null;
     }
   }

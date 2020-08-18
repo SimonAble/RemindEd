@@ -5,7 +5,7 @@ p {
 .ProfileContainer {
   border-radius: 4px;
   background-color:white;
-  max-height: 76vh;
+  max-height: 84vh;
   overflow: hidden;
   overflow: scroll;
   box-shadow: var(--float-shadow);

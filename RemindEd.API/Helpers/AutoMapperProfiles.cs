@@ -34,6 +34,7 @@ namespace RemindEd.API.Helpers
                 .ForMember(dest => dest.FullName,
                     opt => opt.MapFrom(src => (src.FirstName != null && src.LastName != null) ? src.FirstName + " " + src.LastName : null));
             CreateMap<Photo, PhotosForUserDTO>();
+            CreateMap<UserDetailsDTO, User>();
         }
         
     }

@@ -3,9 +3,9 @@ import { LectureNavigationModel } from '../CreateLectureContent/CreateLectureCon
 
 export class CourseModel {
   // leftMenu: CreateLeftMenuModel;
-
-  lectureId: string;
+  courseId: number;
   courseTitle: string;
+  userId: number;
   lectures: Lecture[];
 
   constructor() {

@@ -1,11 +1,11 @@
 import { Topic } from '../CreateLectureContent/CreateLectureContent.model';
 
 export class Article {
-  title: string;
-  contents: string;
+  topicTitle: string;
+  topicContents: string;
 
-  constructor(title: string = "", contents: string = "") {
-    this.title = title;
-    this.contents = contents;
+  constructor(topicTitle: string = "", topicContents: string = "") {
+    this.topicTitle = topicTitle;
+    this.topicContents = topicContents;
   }
 }

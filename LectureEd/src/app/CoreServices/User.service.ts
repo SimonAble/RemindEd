@@ -7,12 +7,6 @@ import { Observable } from 'rxjs';
 import { UserContext } from '../CoreModels/UserContext.model';
 import { User } from '../CoreModels/User.model';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Authorization': 'Bearer ' + localStorage.getItem('token')
-  })
-};
-
 @Injectable({
   providedIn: 'root'
 })
@@ -37,6 +31,7 @@ export class UserService {
   }
 
   public saveUser(user:User):Observable<User> {
-    return this.http.post<User>(this.baseUrl + 'SaveUser/', user);
+    const userId = this.authService.activeUser.id;
+    return this.http.put<User>(this.baseUrl + 'SaveUser/' + userId, user);
   }
 }

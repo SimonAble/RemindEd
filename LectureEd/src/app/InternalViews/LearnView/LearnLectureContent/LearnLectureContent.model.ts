@@ -1,17 +1,17 @@
 export class LectureNavigationModel {
   lectureId: string;
-  lectureTopics: LectureTopic[];
+  topics: LectureTopic[];
 
-  constructor(lectureTopics: LectureTopic[]) {
-    this.lectureTopics = lectureTopics;
+  constructor(topics: LectureTopic[]) {
+    this.topics = topics;
   }
 }
 
 export class LectureTopic {
   topicId: string;
-  topicName: string;
+  topicTabName: string;
 
-  constructor(topicName: string) {
-    this.topicName = topicName;
+  constructor(topicTabName: string) {
+    this.topicTabName = topicTabName;
   }
 }

@@ -14,16 +14,16 @@
           </div>
         </div>
       </div>
-      <div class="example-box" [class.active]="topic.topicActive" *ngFor="let topic of activeLecture.lectureTopics; let i = index" cdkDrag cdkDragLockAxis="x" (click)="switchActiveTopic(i)">
+      <div class="example-box" [class.active]="topic.topicActive" *ngFor="let topic of activeLecture.topics; let i = index" cdkDrag cdkDragLockAxis="x" (click)="switchActiveTopic(i)">
         <ng-container *ngIf="!editTopicToggled || i !== editTopicIndex">
-          <p class="m-0">{{topic.topicName}} <i (click)="toggleEditTopic(topic, i)" class="fa fa-edit hoverIcon ml-2"></i></p>
+          <p class="m-0">{{topic.topicTabName}} <i (click)="toggleEditTopic(topic, i)" class="fa fa-edit hoverIcon ml-2"></i></p>
           <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
           <div class="example-handle" cdkDragHandle><i class="fa fa-arrows-alt"></i></div>
         </ng-container>
         <div *ngIf="editTopicToggled && editTopicIndex === i" class="input-group editTopicInput">
-          <input type="text" class="form-control" placeholder="{{topic.topicName}}" aria-label="Enter Course Title" name="leftMenuTitle" [(ngModel)] = "topic.topicName">
+          <input type="text" class="form-control" placeholder="{{topic.topicTabName}}" aria-label="Enter Course Title" name="leftMenuTitle" [(ngModel)] = "topic.topicTabName">
           <div class="input-group-append">
-            <button (click)="addTopicName()" class="btn btn-outline-secondary px-2" type="button"><i class="fa fa-plus"></i></button>
+            <button (click)="addTopicTabName()" class="btn btn-outline-secondary px-2" type="button"><i class="fa fa-plus"></i></button>
           </div>
           <div class="input-group-append">
             <button (click)="deleteTopic()" class="btn btn-outline-secondary delete px-2" type="button"><i class="fa fa-trash"></i></button>
@@ -59,7 +59,7 @@
             <p class="explanationText">Welcome to the course creation editor. To get started add a new Lecture on the lefthand menu. </p>
           </div>
         </div>
-        <div *ngIf="activeLecture && activeLecture.lectureTopics.length === 0" class="newContentPlaceholder">
+        <div *ngIf="activeLecture && activeLecture.topics.length === 0" class="newContentPlaceholder">
           <mat-icon aria-hidden="false" aria-label="Example home icon" class="newContentArrow mr-3">arrow_upward</mat-icon>Add a new topic and pick a learning module
           <div class="contentExplanation">
             <div class="explanationIconContainer">
@@ -82,8 +82,9 @@
             <p class="explanationText">Now you can add some topics to your lecture. You can choose from premade templates, such as (concept, history, resources, quiz), or you can create you own custom topic.</p>
           </div>
         </div>
-        <div *ngIf="activeTopic && activeLecture.lectureTopics.length > 0" class="p-2">
+        <div *ngIf="activeTopic && activeLecture.topics.length > 0" class="p-2">
           <app-CoLabEditor
+          *ngIf="activeTopic && activeLecture.topics.length > 0"
           #editor
           [activeTopic]="activeTopic"
           (emitSaveCourseContents)="saveCourseContents($event)">

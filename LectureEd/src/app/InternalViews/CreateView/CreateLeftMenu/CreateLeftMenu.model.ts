@@ -1,4 +1,4 @@
-import { LectureNavigationModel } from '../CreateLectureContent/CreateLectureContent.model';
+import { Topic } from '../CreateLectureContent/CreateLectureContent.model';
 
 export class CreateLeftMenuModel {
   lectureId: string;
@@ -17,12 +17,12 @@ export class Lecture {
   lectureCompleted: boolean;
   lectureLocked: boolean;
   lectureActive: boolean;
-  lectureContent: LectureNavigationModel;
+  topics: Topic[];
 
   //Todo: remove this once db tables are completed
-  constructor(lectureName: string, lectureActive: boolean, lectureContent: LectureNavigationModel) {
+  constructor(lectureName: string, lectureActive: boolean, topics: Topic[] = []) {
     this.lectureName = lectureName;
     this.lectureActive = lectureActive;
-    this.lectureContent = lectureContent;
+    this.topics = topics;
   }
 }

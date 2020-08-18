@@ -214,5 +214,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .mat-mini-fab.mat-primary {
+  background-color: var(--light-blue);
+  transition: 0.3s;
+}
+
+.mat-mini-fab.mat-primary:hover {
   background-color: var(--medium-blue);
+  transition-timing-function: ease;
 }
