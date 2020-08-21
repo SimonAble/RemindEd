@@ -7,6 +7,7 @@ import { MaterialService } from 'src/app/CoreServices/Material.service';
 import { AuthenticationService } from 'src/app/Authentication/Authentication.service';
 import { Lecture } from '../CreateLeftMenu/CreateLeftMenu.model';
 import { ActivatedRoute } from '@angular/router';
+import { SnackBarStateClass } from 'src/app/CoreModels/enum';
 
 @Component({
   selector: 'app-CreateLectureLayout',
@@ -35,7 +36,8 @@ export class CreateLectureLayoutComponent implements OnInit {
   }
 
   public getCourse() {
-    this.courseService.getCourse(this.courseId)
+    if(this.courseId) {
+      this.courseService.getCourse(this.courseId)
       .subscribe( (res: CourseModel) => {
         this.courseService.courseModel = res;
         console.log("Getting course model: ", JSON.stringify(this.courseService.courseModel));
@@ -45,6 +47,7 @@ export class CreateLectureLayoutComponent implements OnInit {
           this.activeLecture.lectureActive = true;
         }
       });
+    }
   }
 
   public toggleLeftMenu(event) {
@@ -90,17 +93,31 @@ export class CreateLectureLayoutComponent implements OnInit {
 
   public saveCourse(lecture) {
     console.log("Saving course");
-    this.courseService.courseModel.userId = this.authService.activeUser.id;
     console.log(JSON.stringify(this.courseService.courseModel));
 
-    this.courseService.saveCourse(this.courseService.courseModel)
+    this.courseService.courseModel.userId = this.authService.activeUser.id;
+
+    if(this.courseId) {
+      this.courseService.saveCourse(this.courseService.courseModel)
+      .subscribe(
+        (res) => {
+          // this.location.replaceState('/create/course/' + res['courseID']);
+          this.materialService.openSnackBar("Course Saved Successfully!");
+        },
+        error => {
+          this.materialService.openSnackBar('Error saving course: ' + error, SnackBarStateClass.Error);
+        });
+    }
+    else {
+      this.courseService.createCourse(this.courseService.courseModel)
       .subscribe(
         (res) => {
           this.location.replaceState('/create/course/' + res['courseID']);
           this.materialService.openSnackBar("Course Saved Successfully!");
         },
         error => {
-          this.materialService.openSnackBar('Error saving course: ' + error);
+          this.materialService.openSnackBar('Error saving course: ' + error, SnackBarStateClass.Error);
         });
+    }
   }
 }

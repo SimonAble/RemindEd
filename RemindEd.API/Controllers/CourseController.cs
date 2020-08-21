@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using RemindEd.API.Data;
 using RemindEd.API.DTO;
 using RemindEd.API.Models;
@@ -26,31 +27,29 @@ namespace RemindEd.API.Controllers
         }
 
         //[AllowAnonymous]
-        [HttpPost("SaveCourse")]
-        public async Task<IActionResult> SaveCourse(Course course)
+        [HttpPost("CreateCourse")]
+        public async Task<IActionResult> CreateCourse(Course course)
         {
 
-            Console.WriteLine("Saving Course");
+            Console.WriteLine("Course Id is null: Creating new course");
 
-            // var courseFromRepo = this.courseRepository.GetCourseByCourseId(course.CourseID);
             var savedCourse = this.courseRepository.SaveCourse(course);
             if(await savedCourse != null)
                 return Created("Course Created", course);
 
-            throw new Exception($"Updating course with id: {course.CourseID} failed...");
+            throw new Exception($"Creating new course failed...");
+
         }
 
         [HttpPut("UpdateCourse")]
         public async Task<IActionResult> UpdateCourse(Course course)
         {
 
-            Console.WriteLine("Saving Course");
 
-            var courseFromRepo = this.courseRepository.GetCourseByCourseId(course.CourseID);
-            
-            if(await courseRepository.SaveAll())
-                return NoContent();
-
+            var savedCourse = this.courseRepository.UpdateCourse(course);
+            Console.WriteLine($"Updating Course with Id {course.CourseID}");
+            if(await savedCourse != null) 
+                return Ok(course);
             throw new Exception($"Updating course with id: {course.CourseID} failed...");
         }
 

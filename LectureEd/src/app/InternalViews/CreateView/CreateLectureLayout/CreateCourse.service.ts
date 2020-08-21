@@ -18,9 +18,14 @@ export class CreateCourseService {
   constructor(private http: HttpClient) {
   }
 
-  public saveCourse(course: CourseModel) {
+  public createCourse(course: CourseModel) {
     console.log("Saving Course");
-    return this.http.post(this.baseUrl + 'SaveCourse', course);
+    return this.http.post(this.baseUrl + 'CreateCourse', course);
+  }
+
+  public saveCourse(course: CourseModel) {
+    console.log("Updating Course");
+    return this.http.put(this.baseUrl + 'UpdateCourse', course);
   }
 
   public getCourse(courseId:number) {

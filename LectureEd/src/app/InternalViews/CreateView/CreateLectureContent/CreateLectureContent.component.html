@@ -14,11 +14,14 @@
           </div>
         </div>
       </div>
-      <div class="example-box" [class.active]="topic.topicActive" *ngFor="let topic of activeLecture.topics; let i = index" cdkDrag cdkDragLockAxis="x" (click)="switchActiveTopic(i)">
+      <div class="example-box" [class.active]="topic.topicActive" *ngFor="let topic of activeLecture.topics; let i = index" cdkDrag cdkDragLockAxis="x" (click)="switchActiveTopic(i)" [cdkDragDisabled]="editTopicToggled">
         <ng-container *ngIf="!editTopicToggled || i !== editTopicIndex">
-          <p class="m-0">{{topic.topicTabName}} <i (click)="toggleEditTopic(topic, i)" class="fa fa-edit hoverIcon ml-2"></i></p>
+          <p class="m-0 mr-2">{{topic.topicTabName}}</p>
           <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-          <div class="example-handle" cdkDragHandle><i class="fa fa-arrows-alt"></i></div>
+          <div class="example-handle" cdkDragHandle>
+            <i class="fa fa-arrows-alt"></i>
+            <i (click)="toggleEditTopic(topic, i)" class="fa fa-edit hoverIcon mx-2"></i>
+          </div>
         </ng-container>
         <div *ngIf="editTopicToggled && editTopicIndex === i" class="input-group editTopicInput">
           <input type="text" class="form-control" placeholder="{{topic.topicTabName}}" aria-label="Enter Course Title" name="leftMenuTitle" [(ngModel)] = "topic.topicTabName">
@@ -26,16 +29,21 @@
             <button (click)="addTopicTabName()" class="btn btn-outline-secondary px-2" type="button"><i class="fa fa-plus"></i></button>
           </div>
           <div class="input-group-append">
-            <button (click)="deleteTopic()" class="btn btn-outline-secondary delete px-2" type="button"><i class="fa fa-trash"></i></button>
+            <button (click)="deleteTopic(i)" class="btn btn-outline-secondary delete px-2" type="button"><i class="fa fa-trash"></i></button>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class="col-md-12 content-container p-0 m-0">
-
     <div class="mx-auto pt-4">
       <div class="container editTopicContent p-0">
+        <div class="save">
+          <button (click)="saveCourseContents(activeTopic)" class="btn px-3 saveButton" type="button"><mat-icon aria-hidden="false" aria-label="Example home icon" class="add-new-topic-icon saveIcon inline-icon--round"
+          matTooltip="Save"
+          matTooltipClass="custom-tooltip-blue"
+          matTooltipPosition="left">save</mat-icon></button>
+        </div>
         <div *ngIf="!activeLecture && !activeTopic" class="newContentPlaceholder">
           <mat-icon aria-hidden="false" aria-label="Example home icon" class="newContentArrow mr-3">keyboard_backspace</mat-icon>Add a new lecture to start creating content
           <div class="contentExplanation">
@@ -84,7 +92,6 @@
         </div>
         <div *ngIf="activeTopic && activeLecture.topics.length > 0" class="p-2">
           <app-CoLabEditor
-          *ngIf="activeTopic && activeLecture.topics.length > 0"
           #editor
           [activeTopic]="activeTopic"
           (emitSaveCourseContents)="saveCourseContents($event)">

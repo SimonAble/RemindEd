@@ -82,8 +82,7 @@ export class CreateLeftMenuComponent implements OnInit {
     this.editLectureIndex = null;
   }
 
-  deleteLecture(lecture, index) {
-    console.log(JSON.stringify(lecture));
+  deleteLecture(index) {
     console.log(index);
     this.emitDeleteLectureContent.emit(index);
   }

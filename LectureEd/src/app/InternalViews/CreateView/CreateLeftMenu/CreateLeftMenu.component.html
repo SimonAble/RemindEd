@@ -27,7 +27,7 @@
     <!--Left Menu Expanded-->
     <div *ngIf="!leftMenuToggled" class="list-container">
       <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of courseService.courseModel.lectures; let i = index" cdkDrag cdkDragLockAxis="y" [cdkDragDisabled]="editLectureIndex === i" (click)="viewLecture(lecture, i)">
+        <div class="example-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of courseService.courseModel.lectures; let i = index" cdkDrag cdkDragLockAxis="y" [cdkDragDisabled]="editLectureToggled && editLectureIndex === i" (click)="viewLecture(lecture, i)">
             <div *ngIf="!editLectureToggled || editLectureIndex !== i">
               <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
               <a>
@@ -35,9 +35,9 @@
                   {{lecture.lectureName}}
                 </span>
               </a>
-              <button (click)="editLecture(lecture, i)" class="btn hoverBtn p-0 ml-2"><i class="fa fa-edit"></i></button>
               <div class="example-handle" cdkDragHandle>
                 <i class="fa fa-arrows-alt"></i>
+                <button (click)="editLecture(lecture, i)" class="btn hoverBtn p-0 mx-2"><i class="fa fa-edit"></i></button>
               </div>
             </div>
 
@@ -47,7 +47,7 @@
                 <button (click)="addLectureName()" class="btn btn-outline-secondary px-2" type="button"><i class="fa fa-plus"></i></button>
               </div>
               <div class="input-group-append">
-                <button (click)="deleteLecture()" class="btn btn-outline-secondary delete px-2" type="button"><i class="fa fa-trash"></i></button>
+                <button (click)="deleteLecture(i)" class="btn btn-outline-secondary delete px-2" type="button"><i class="fa fa-trash"></i></button>
               </div>
             </div>
         </div>

@@ -1,9 +1,3 @@
-<div class="save">
-  <button (click)="saveContents()" class="btn px-2 saveButton" type="button"><mat-icon aria-hidden="false"    aria-label="Example home icon" class="add-new-topic-icon saveIcon inline-icon--round"
-  matTooltip="Save"
-  matTooltipClass="custom-tooltip-blue"
-  matTooltipPosition="left">save</mat-icon></button>
-</div>
 
 <!-- Concept -->
 <div class="editorContainer" *ngIf="activeTopic.topicTypeCode === topicType.Concept">
@@ -14,7 +8,8 @@
     [editor]="ContentEditor"
     [config]= ckConfig
     data = {{activeTopic.topicContents}}
-    class="ckContent">
+    class="ckContent"
+    (change)="syncTopicContent()">
   </ckeditor>
   </div>
 </div>
@@ -26,14 +21,16 @@
     [editor]="TitleEditor"
     [config]="{ placeholder:'Title'}"
     data = "{{activeTopic.topicTitle}}"
-    class="ckTitle">
+    class="ckTitle"
+    (change)="syncTopicContent()">
   </ckeditor>
   <ckeditor
     #contentEditor
     [editor]="ContentEditor"
     [config]="{ placeholder:'You can talk about the subject more here...'}"
     data = "{{activeTopic.topicContents}}"
-    class="ckContent">
+    class="ckContent"
+    (change)="syncTopicContent()">
   </ckeditor>
 </div>
 

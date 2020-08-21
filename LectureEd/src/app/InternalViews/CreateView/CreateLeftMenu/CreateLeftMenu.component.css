@@ -326,9 +326,12 @@ a, a:hover, a:focus {
   top: 16px;
   right: 10px;
   color: var(--medium-blue);
-  cursor: move;
-  width: 24px;
-  height: 24px;
+  cursor: pointer;
+  width: 60px;
+  height: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+  transition: 0.3s;
 }
 
 .icon {

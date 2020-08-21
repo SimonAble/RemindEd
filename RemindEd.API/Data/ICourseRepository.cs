@@ -11,6 +11,7 @@ namespace RemindEd.API.Data
         void Delete<T>(T entity) where T : class;
         Task<bool> SaveAll();
         Task<Course> SaveCourse(Course course);
+        Task<Course> UpdateCourse(Course course);
         Task<IEnumerable<Course>> GetCourses();
         Task<Course> GetCourseByCourseId(int id);
         // Task<IEnumerable<Course>> GetCoursesByUserId(int id);

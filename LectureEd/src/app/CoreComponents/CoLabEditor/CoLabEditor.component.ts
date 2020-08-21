@@ -39,34 +39,41 @@ export class CoLabEditorComponent implements OnInit {
 
   ngOnChanges() {
     console.log("OnChanges Event Triggered in Editor");
+    console.log(JSON.stringify(this.activeTopic));
     this.setEditorData();
   }
 
   public setEditorData() {
     console.log("Setting data");
     if (this.titleEditor && this.titleEditor.editorInstance) {
-      this.titleEditor.editorInstance.setData(this.activeTopic.topicTitle);
+      if(this.activeTopic.topicTitle) {
+        this.titleEditor.editorInstance.setData(this.activeTopic.topicTitle);
+      }
+      else {
+        this.titleEditor.editorInstance.setData("");
+      }
     }
     if (this.contentEditor && this.contentEditor.editorInstance) {
-      this.contentEditor.editorInstance.setData(this.activeTopic.topicContents);
+
+      if(this.activeTopic.topicTitle) {
+        this.contentEditor.editorInstance.setData(this.activeTopic.topicContents);
+      }
+      else {
+        this.contentEditor.editorInstance.setData("");
+      }
     }
   }
 
-  public saveContents() {
-    if(this.authenticationService.isAuthenticated()) {
-      if (this.titleEditor && this.titleEditor.editorInstance) {
-        let title = this.titleEditor.editorInstance.getData();
-        this.activeTopic.topicTitle = title;
-      }
-      if (this.contentEditor && this.contentEditor.editorInstance) {
-        let contents = this.contentEditor.editorInstance.getData();
-        this.activeTopic.topicContents = contents;
-      }
+  public syncTopicContent() {
+    console.log("Change detected, syncing topic contents.");
 
-      this.emitSaveCourseContents.emit(this.activeTopic);
+    if (this.titleEditor && this.titleEditor.editorInstance) {
+      let title = this.titleEditor.editorInstance.getData();
+      this.activeTopic.topicTitle = title;
     }
-    else {
-      this.materialService.openSnackBar("You must be signed in to save your progress.", SnackBarStateClass.Error)
+    if (this.contentEditor && this.contentEditor.editorInstance) {
+      let contents = this.contentEditor.editorInstance.getData();
+      this.activeTopic.topicContents = contents;
     }
   }
 }

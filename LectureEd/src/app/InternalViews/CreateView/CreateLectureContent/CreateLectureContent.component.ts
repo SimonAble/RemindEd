@@ -43,7 +43,12 @@ export class CreateLectureContentComponent implements OnInit {
   }
 
   ngOnChanges() {
-    this.switchActiveTopic(0);
+    if(this.activeLecture && this.activeLecture.topics.length > 0) {
+      this.switchActiveTopic(0);
+    }
+    else {
+      this.activeTopic = null;
+    }
   }
 
   // public getLectureNavigationTopics() {
@@ -79,8 +84,9 @@ export class CreateLectureContentComponent implements OnInit {
 
             let newTopicIndex = this.activeLecture.topics.length - 1;
             this.activeTopic = this.activeLecture.topics[newTopicIndex];
-            // this.activeTopic.topicContents = new TopicContentModel();
             this.activeTopic.topicTypeCode = topicType;
+
+            console.log("Logging active topic: ", JSON.stringify(this.activeTopic));
             this.switchActiveTopic(newTopicIndex);
 
             this.navTopicItem = "";
@@ -101,12 +107,17 @@ export class CreateLectureContentComponent implements OnInit {
         this.activeLecture.topics[i].topicActive = false;
       }
     }
+
+    console.log("Logging active topic: ", JSON.stringify(this.activeTopic));
   }
 
-  public saveCourseContents(topicContents: Topic) {
+  public saveCourseContents(topicContents?: Topic) {
 
-    this.activeLecture.topics[this.activeTopicIndex].topicTitle = topicContents.topicTitle;
-    this.activeLecture.topics[this.activeTopicIndex].topicContents = topicContents.topicContents;
+    console.log("Topic Contents: ", topicContents);
+    if(topicContents) {
+      this.activeLecture.topics[this.activeTopicIndex].topicTitle = topicContents.topicTitle;
+      this.activeLecture.topics[this.activeTopicIndex].topicContents = topicContents.topicContents;
+    }
 
     this.emitSaveCourse.emit(this.activeLecture);
   }
@@ -121,8 +132,7 @@ export class CreateLectureContentComponent implements OnInit {
     this.editTopicIndex = null;
   }
 
-  public deleteTopic(topic, index) {
-    console.log(JSON.stringify(topic));
+  public deleteTopic(index) {
     console.log(index);
     this.activeLecture.topics.splice(index, 1);
 
