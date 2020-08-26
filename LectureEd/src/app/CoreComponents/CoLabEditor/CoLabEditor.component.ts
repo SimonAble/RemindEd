@@ -76,4 +76,11 @@ export class CoLabEditorComponent implements OnInit {
       this.activeTopic.topicContents = contents;
     }
   }
+
+  public syncConceptContent() {
+    if (this.contentEditor && this.contentEditor.editorInstance) {
+      let contents = this.contentEditor.editorInstance.getData();
+      this.activeTopic.topicContents = contents;
+    }
+  }
 }

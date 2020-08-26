@@ -64,6 +64,7 @@
   /* Shadow */
   --shadow: 5px 5px 10px rgb(182, 182, 182);
   --float-shadow: 0px 0px 4px -1px var(--gray);
+  --medium-shadow: 0px 0px 6px -1px var(--gray);
   --hover-shadow: 0px 0px 12px -1px var(--gray);
   --dark-shadow: 0px 0px 4px -1px var(--dark-grey);
 
@@ -221,4 +222,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-mini-fab.mat-primary:hover {
   background-color: var(--medium-blue);
   transition-timing-function: ease;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: var(--lab-accent);
 }

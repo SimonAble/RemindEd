@@ -8,6 +8,7 @@ import { Title } from '@angular/platform-browser';
 import { CoLabEditorComponent } from 'src/app/CoreComponents/CoLabEditor/CoLabEditor.component';
 import { MaterialService } from 'src/app/CoreServices/Material.service';
 import { Lecture } from '../CreateLeftMenu/CreateLeftMenu.model';
+import { CreateCourseService } from 'src/app/CoreServices/CreateCourse.service';
 
 @Component({
   selector: 'app-CreateLectureContent',
@@ -33,9 +34,12 @@ export class CreateLectureContentComponent implements OnInit {
   public editTopicToggled: boolean;
   public editTopicIndex: number;
 
+  public autosaveInProgress: boolean = true;
+
   constructor(private titleService: Title,
     private materialService: MaterialService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    public courseService: CreateCourseService) { }
 
   ngOnInit() {
     //this.getLectureNavigationTopics();
@@ -113,6 +117,7 @@ export class CreateLectureContentComponent implements OnInit {
 
   public saveCourseContents(topicContents?: Topic) {
 
+    this.courseService.saving = true;
     console.log("Topic Contents: ", topicContents);
     if(topicContents) {
       this.activeLecture.topics[this.activeTopicIndex].topicTitle = topicContents.topicTitle;

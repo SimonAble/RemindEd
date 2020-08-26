@@ -1,10 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { CreateLeftMenuModel, Lecture } from './CreateLeftMenu.model';
-import { CreateLeftMenuService } from './CreateLeftMenu.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { LectureNavigationModel } from '../CreateLectureContent/CreateLectureContent.model';
-import { CourseModel } from '../CreateLectureLayout/Course.model';
-import { CreateCourseService } from '../CreateLectureLayout/CreateCourse.service';
+import { CreateCourseService } from '../../../CoreServices/CreateCourse.service';
 
 @Component({
   selector: 'app-CreateLeftMenu',

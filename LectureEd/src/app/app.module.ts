@@ -4,10 +4,11 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
+import { SafePipe } from './safe.pipe';
 
 //Material Imports
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTooltipModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule, MatSnackBarModule } from '@angular/material/';
+import { MatTooltipModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule } from '@angular/material/';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -85,7 +86,8 @@ export function tokenGetter() {
     FollowingComponent,
     ProfileManagementComponent,
     UserSettingsComponent,
-    MyResourcesComponent
+    MyResourcesComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
@@ -105,6 +107,7 @@ export function tokenGetter() {
     CKEditorModule,
     MatSnackBarModule,
     MatMenuModule,
+    MatProgressSpinnerModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

@@ -2,14 +2,14 @@
 <!-- Concept -->
 <div class="editorContainer" *ngIf="activeTopic.topicTypeCode === topicType.Concept">
   <div class="blackboard">
-    <input type="text" id="conceptInput" placeholder="Concept Title">
+    <input type="text" id="conceptInput" placeholder="Concept Title" [(ngModel)]="activeTopic.topicTitle">
     <ckeditor
     #contentEditor
     [editor]="ContentEditor"
     [config]= ckConfig
     data = {{activeTopic.topicContents}}
     class="ckContent"
-    (change)="syncTopicContent()">
+    (change)="syncConceptContent()">
   </ckeditor>
   </div>
 </div>
@@ -40,8 +40,11 @@
 </div>
 
 <!-- Video -->
-<div class="editorContainer" *ngIf="activeTopic.topicTypeCode === topicType.Video">
-  Video Editor Will appear here
+<div class="videoContainer" *ngIf="activeTopic.topicTypeCode === topicType.Video">
+  <input type="text" id="videoInput" placeholder="Enter a Video Url" [(ngModel)]="activeTopic.topicTitle">
+  <div class="embed-responsive embed-responsive-16by9">
+    <iframe *ngIf="activeTopic.topicTitle" class="embed-responsive-item" [src]="activeTopic.topicTitle | safe: 'resourceUrl'" allowfullscreen></iframe>
+  </div>
 </div>
 
 <!-- Resources -->

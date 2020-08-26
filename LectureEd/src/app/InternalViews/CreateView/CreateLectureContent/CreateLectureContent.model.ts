@@ -30,10 +30,9 @@ export enum TopicTypes {
   Resources = 2,
   Questions = 3,
   Concept = 4,
-  Video = 5,
+  Video = 8,
   Discussion = 6,
   Application = 7,
-  Movie = 8,
   //Used to route user to suggestions page
   Suggestion = 9
 }

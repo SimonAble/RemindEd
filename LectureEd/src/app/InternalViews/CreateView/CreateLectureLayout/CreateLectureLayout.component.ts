@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {Location} from '@angular/common';
 import { CourseModel } from './Course.model';
-import { CreateCourseService } from './CreateCourse.service';
+import { CreateCourseService } from '../../../CoreServices/CreateCourse.service';
 import { LectureNavigationModel, Topic } from '../CreateLectureContent/CreateLectureContent.model';
 import { MaterialService } from 'src/app/CoreServices/Material.service';
 import { AuthenticationService } from 'src/app/Authentication/Authentication.service';
@@ -101,8 +101,10 @@ export class CreateLectureLayoutComponent implements OnInit {
       this.courseService.saveCourse(this.courseService.courseModel)
       .subscribe(
         (res) => {
-          // this.location.replaceState('/create/course/' + res['courseID']);
-          this.materialService.openSnackBar("Course Saved Successfully!");
+          setTimeout(() => {
+            this.materialService.openSnackBar("Course Saved Successfully!");
+            this.courseService.saving = false;
+          }, 600);
         },
         error => {
           this.materialService.openSnackBar('Error saving course: ' + error, SnackBarStateClass.Error);
@@ -113,11 +115,20 @@ export class CreateLectureLayoutComponent implements OnInit {
       .subscribe(
         (res) => {
           this.location.replaceState('/create/course/' + res['courseID']);
-          this.materialService.openSnackBar("Course Saved Successfully!");
+
+          setTimeout(() => {
+            this.materialService.openSnackBar("Course Saved Successfully!");
+            this.courseService.saving = false;
+          }, 600);
         },
         error => {
           this.materialService.openSnackBar('Error saving course: ' + error, SnackBarStateClass.Error);
         });
     }
+  }
+
+  public autoSaveCourse() {
+    //todo
+    throw new Error("Method not implemented.");
   }
 }
