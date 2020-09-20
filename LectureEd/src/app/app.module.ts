@@ -8,10 +8,11 @@ import { SafePipe } from './safe.pipe';
 
 //Material Imports
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTooltipModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule } from '@angular/material/';
+import { MatTooltipModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatProgressBarModule, MatSelectModule, MatRadioModule, MatCheckboxModule } from '@angular/material/';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 //App Imports
 import { AppRoutingModule } from './app-routing.module';
@@ -47,6 +48,10 @@ import { CoLabEditorComponent } from './CoreComponents/CoLabEditor/CoLabEditor.c
 import { CoLabViewerComponent } from './CoreComponents/CoLabViewer/CoLabViewer.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CreateArticleLayoutComponent } from './InternalViews/CreateView/CreateArticleLayout/CreateArticleLayout.component';
+import { QuizEditorComponent } from './CoreComponents/QuizEditor/QuizEditor.component';
+import { MultipleChoiceComponent } from './CoreComponents/QuizEditor/QuizEditorComponents/MultipleChoice/MultipleChoice.component';
+import { CheckAllAnswersComponent } from './CoreComponents/QuizEditor/QuizEditorComponents/CheckAllAnswers/CheckAllAnswers.component';
+import { EssayComponent } from './CoreComponents/QuizEditor/QuizEditorComponents/Essay/Essay.component';
 
 //User Management
 import { DashboardComponent } from './InternalViews/Dashboard/Dashboard/Dashboard.component';
@@ -87,7 +92,11 @@ export function tokenGetter() {
     ProfileManagementComponent,
     UserSettingsComponent,
     MyResourcesComponent,
-    SafePipe
+    SafePipe,
+    QuizEditorComponent,
+    MultipleChoiceComponent,
+    CheckAllAnswersComponent,
+    EssayComponent
   ],
   imports: [
     BrowserModule,
@@ -108,6 +117,11 @@ export function tokenGetter() {
     MatSnackBarModule,
     MatMenuModule,
     MatProgressSpinnerModule,
+    MatProgressBarModule,
+    MatExpansionModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCheckboxModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

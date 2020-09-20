@@ -45,6 +45,8 @@
   <div class="embed-responsive embed-responsive-16by9">
     <iframe *ngIf="activeTopic.topicTitle" class="embed-responsive-item" [src]="activeTopic.topicTitle | safe: 'resourceUrl'" allowfullscreen></iframe>
   </div>
+  <div class="embed-responsive embed-responsive-16by9 videoPlaceholder" *ngIf="!activeTopic.topicTitle">
+  </div>
 </div>
 
 <!-- Resources -->
@@ -54,7 +56,7 @@
 
 <!-- Quiz -->
 <div class="editorContainer" *ngIf="activeTopic.topicTypeCode === topicType.Questions">
-  Quiz Editor Will appear here
+  <app-QuizEditor></app-QuizEditor>
 </div>
 
 <!-- Discussion -->

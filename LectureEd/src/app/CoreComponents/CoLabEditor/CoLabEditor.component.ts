@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, EventEmitter, Input, Output } from '@angular/core';
 import * as BalloonBlockEditor from '@ckeditor/ckeditor5-build-balloon-block';
+// import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { TopicTypes, Topic } from 'src/app/InternalViews/CreateView/CreateLectureContent/CreateLectureContent.model';
 import { AuthenticationService } from 'src/app/Authentication/Authentication.service';
 import { MaterialService } from 'src/app/CoreServices/Material.service';

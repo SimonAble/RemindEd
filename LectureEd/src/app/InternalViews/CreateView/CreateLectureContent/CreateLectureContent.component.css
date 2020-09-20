@@ -26,14 +26,14 @@
 }
 
 .editTopicContent {
-  width:94%;
+  width:100%;
   background-color: white;
   border-radius: 6px;
-  height: 76vh;
+  height: 80vh;
   overflow: hidden;
   overflow: scroll;
   /* border: 3px solid var(--light-grey); */
-  box-shadow: var(--medium-shadow);
+  /* box-shadow: var(--medium-shadow); */
 }
 
 

@@ -1,7 +1,6 @@
 .editorContainer {
   width: 80%;
   margin: 0 auto;
-  padding-top: 60px;
 }
 
 .embed-responsive {
@@ -111,4 +110,8 @@ p {
   border-bottom-left-radius: 0px;
   border: 2px dashed var(--light-grey);
   color: var(--dark-gray);
+}
+
+.videoPlaceholder {
+  
 }

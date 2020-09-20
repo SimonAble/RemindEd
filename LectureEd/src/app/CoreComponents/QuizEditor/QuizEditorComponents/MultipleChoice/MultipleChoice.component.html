@@ -1,0 +1,13 @@
+<mat-form-field appearance="fill" class="full-width w-100">
+  <mat-label>Enter your question here...</mat-label>
+  <textarea matInput placeholder="Ex. Quantum Quadratics" [(ngModel)]="questionTitle" #title="ngModel" name="title"></textarea>
+</mat-form-field>
+<label id="radio-group-label">Add options to select from here: <span class="text-muted">(Select the option you would like to be the correct answer)</span></label>
+<mat-radio-group
+  aria-labelledby="radio-group-label"
+  class="radio-group my-1 w-100">
+  <mat-radio-button class="radio-button w-100" *ngFor="let question of questions; let optionIndex = index" color="primary" [value]="optionIndex">
+    <input matInput placeholder="Ex. Quantum Quadratics" [(ngModel)]="question" #optionText="ngModel" name="optionText" class="w-100">
+  </mat-radio-button>
+</mat-radio-group>
+

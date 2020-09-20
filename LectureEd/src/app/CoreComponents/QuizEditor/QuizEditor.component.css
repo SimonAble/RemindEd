@@ -1,0 +1,128 @@
+.addQuestionButton {
+  width: 100%;
+  box-shadow: var(--float-shadow);
+  transition: .2s;
+  height: 50px;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  position: sticky;
+  top: 0px;
+  background-color: white;
+  z-index: 100;
+}
+
+.addQuestionButton:hover {
+  background-color: var(--hover-white);
+}
+
+.addQuestionButton:hover .addNewQuestionIcon {
+  color: var(--lighter-blue);
+  /* transition-timing-function: ease-in-out; */
+}
+
+.addNewQuestionIcon {
+  color: var(--light-blue);
+  height: 40px;
+  width: 40px;
+  font-size: 40px;
+  padding-top: 4px;
+  transition:0.3s;
+}
+
+.placeholderBox {
+  padding: 10px 10px;
+  border-bottom: dashed 2px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  background: var(--lightest-grey);
+  font-size: 14px;
+  height:60px;
+  line-height: 40px;
+  vertical-align: middle;
+  width:100%;
+}
+
+.placeholderBox p {
+  font-family: 'Roboto';
+  text-align: center;
+  color:var(--medium-grey);
+}
+
+.question-list {
+  width: 100%;
+  max-width: 100%;
+  min-height: 60px;
+  display: block;
+  background: white;
+  overflow: hidden;
+  margin-bottom: 300px;
+}
+
+.question-box {
+  padding: 10px 10px;
+  border-bottom: dashed 2px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: var(--lightest-grey);
+  font-size: 14px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.question-box:last-child {
+  border: none;
+}
+
+.question-list.cdk-drop-list-dragging .question-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.question-custom-placeholder {
+  background: #ccc;
+  border: dotted 3px #999;
+  min-height: 60px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-form {
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.questionTitle {
+  font-size: 18px;
+}
+
+.questionTypeContainer {
+  cursor: default;
+}
+
+#radio-group-label {
+  font-size: 16px;
+  color: var(--text-grey);
+}
+
+#questionTitle {
+  color:var(--medium-blue);
+  font-size: 18px;
+  font-weight: 400;
+}
