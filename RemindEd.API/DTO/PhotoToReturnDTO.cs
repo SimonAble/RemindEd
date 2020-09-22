@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 
-namespace RemindEd.API.Models
+namespace RemindEd.API.DTO
 {
-    public class Photo
+    public class PhotoToReturnDTO
     {
         public int ID { get; set; }
         public string Url { get; set; }
@@ -11,7 +11,5 @@ namespace RemindEd.API.Models
         public bool IsProfileBackground { get; set; }
         public DateTime DateAdded { get; set; }
         public string PublicId { get; set; }
-        public User User { get; set; }
-        public int UserId { get; set; }
     }
 }

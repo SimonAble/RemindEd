@@ -13,5 +13,6 @@ namespace RemindEd.API.Data
         Task<IEnumerable<User>> GetUsers();
         Task<User> GetUser(int id);
         Task<User> GetUserContext(string username);
+        Task<Photo> GetPhoto(int id);
     }
 }

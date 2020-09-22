@@ -41,6 +41,7 @@ namespace RemindEd.API
                 opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             }); 
             services.AddCors();
+            services.Configure<CloudinaryConfig>(Configuration.GetSection("CloudinaryConfig"));
             services.AddAutoMapper(typeof(UserRepository).Assembly);
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<ICourseRepository, CourseRepository>();
