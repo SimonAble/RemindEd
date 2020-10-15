@@ -1,0 +1,72 @@
+.learningModuleHeader {
+  color: var(--lab-accent);
+  font-size: 32px;
+  font-weight: 300;
+}
+
+.learningModuleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.learningModuleActions {
+  display:block;
+}
+
+.cardIcon {
+  height: 150px;
+  width: 188px;
+  font-size: 110px;
+  border-radius: 6px;
+  background-color: var(--background-grey);
+  margin: auto;
+  padding-top: 20px;
+  transition: 0.3s;
+}
+
+.moduleContainer {
+  width:90%;
+}
+
+.moduleCard {
+  height: 330px;
+  width: 255px;
+  text-align: center;
+  padding-top: 35px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 4px -1px var(--gray);
+  color: var(--lighter-blue);
+  transition: 0.3s;
+}
+
+.moduleCard:hover {
+  height: 330px;
+  width: 255px;
+  text-align: center;
+  padding-top: 35px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 12px -1px var(--gray);
+  color: var(--lighter-blue);
+}
+
+.cardText {
+  color: var(--gray);
+  transition: 0.3s;
+}
+
+.cardDetailText {
+  color: var(--medium-grey);
+  font-size: 14px;
+  width: 80%;
+}
+
+.moduleCard:hover .cardText {
+  color: var(--lighter-blue);
+}
+
+.moduleCard:hover .cardIcon {
+  background-color: var(--lab-accent);
+  color: var(--lighter-grey);
+}

@@ -1,0 +1,45 @@
+﻿<Properties StartupConfiguration="{1CA15D32-B270-4F3C-A636-E3EEDE0DE4CA}|Default">
+  <MonoDevelop.Ide.ItemProperties.RemindEd.API PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Helpers/AutoMapperProfiles.cs">
+    <Files>
+      <File FileName="Startup.cs" Line="44" Column="69" />
+      <File FileName="Controllers/UsersController.cs" Line="80" Column="1" />
+      <File FileName="Helpers/AutoMapperProfiles.cs" Line="42" Column="1" />
+      <File FileName="Models/Photo.cs" Line="7" Column="1" />
+      <File FileName="Data/UserRepository.cs" Line="70" Column="1" />
+      <File FileName="DTO/PhotosForUserDTO.cs" Line="10" Column="54" />
+      <File FileName="Controllers/AuthController.cs" Line="80" Column="59" />
+      <File FileName="Data/IAuthRepository.cs" Line="9" Column="26" />
+      <File FileName="Data/AuthRepository.cs" Line="16" Column="33" />
+      <File FileName="DTO/UserContextDTO.cs" Line="10" Column="49" />
+      <File FileName="Data/IUserRepository.cs" Line="18" Column="1" />
+      <File FileName="DTO/UserDetailsDTO.cs" Line="16" Column="52" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="RemindEd.API" expanded="True">
+            <Node name="RemindEd.API" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="DTO" expanded="True" />
+              <Node name="Helpers" expanded="True">
+                <Node name="AutoMapperProfiles.cs" selected="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/SimonBull/Projects/RemindEd/RemindEd.API/Controllers/CourseController.cs" relfile="Controllers/CourseController.cs" line="68" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

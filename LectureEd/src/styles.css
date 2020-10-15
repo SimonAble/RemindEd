@@ -1,0 +1,240 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '../node_modules/font-awesome/css/font-awesome.min.css';
+
+:root {
+  /* Blue */
+  --black-blue: rgb(1, 24, 38);
+  --darker-blue: rgb(2, 35, 65);
+  --dark-blue: rgb(3, 48, 87);
+  --medium-blue: rgb(13, 76, 115);
+  --light-blue: rgb(41, 118, 166);
+  --lighter-blue: rgb(61, 137, 184);
+  --lightest-blue:rgb(235, 243, 252);
+  --hover-blue:rgb(241, 244, 247);
+  /* Grey */
+  --black-grey: rgb(28, 29, 31);
+  --dark-grey: rgb(42, 43, 46);
+  --medium-grey: rgb(132, 146, 165);
+  --lighter-grey: rgb(231, 233, 235);
+  --light-grey: rgb(191, 191, 206);
+  --lightest-grey: rgb(240, 241, 243);
+
+  --background-grey:rgb(220, 220, 231);
+  --highlight-grey: rgb(236, 236, 240);
+  --text-grey: rgb(67, 69, 75);
+
+  /* white */
+  --star-white: rgb(255, 255, 246);
+  --main-background: white;
+  --hover-white: rgb(248, 248, 248);
+
+  /* Green */
+  --active-green: #5BA28B;
+  --lab-accent: rgb(17, 182, 146);
+  --background-green: #97cfba;
+
+  /* Yellow */
+  --background-yellow: rgb(255, 255, 210);
+
+  /* Purple */
+  --light-purple: rgb(188, 178, 238);
+  --medium-purple: rgb(117, 92, 172);
+  --purple-background: rgb(44, 31, 75);
+  --purple-hovered: rgb(79, 60, 124);
+
+  /* Red */
+  --error-background: rgb(199, 36, 36);
+
+  /* Warning Background */
+  --orange-warning-bg: rgb(248, 194, 95);
+
+  /* Component Types */
+  --nav-bar: var(--dark-blue);
+  --menu-break: var(--light-blue);
+  --nav-bar-highlight: linear-gradient(to right, red , yellow);
+
+  /* Text Colors */
+  --red: rgb(209, 46, 46);
+  --orange: rgb(233, 125, 24);
+  --yellow: rgb(245, 229, 82);
+  --green: rgb(56, 155, 56);
+  --blue: rgb(19, 38, 145);
+  --purple: rgb(83, 41, 95);
+  --grey: rgb(81, 81, 87);
+
+  /* Shadow */
+  --shadow: 5px 5px 10px rgb(182, 182, 182);
+  --float-shadow: 0px 0px 4px -1px var(--gray);
+  --medium-shadow: 0px 0px 6px -1px var(--gray);
+  --hover-shadow: 0px 0px 12px -1px var(--gray);
+  --dark-shadow: 0px 0px 4px -1px var(--dark-grey);
+  --bottom-shadow: 0px 2px 4px 0px var(--light-grey);
+
+  --leftnav-collapsed-width: 6%;
+  --leftnav-expanded-width: ;
+
+  --editorFont:'Georgia', serif;
+}
+
+/* Base Browser Reset */
+html,body {
+  height:100%;
+  margin:0;
+  padding:0;
+}
+
+/* Default Text Styling */
+
+p {
+  font-size: 20px;
+  color: var(--grey);
+  font-family: var(--editorFont) ;
+  margin-bottom: .2rem;
+}
+
+h1 {
+  color: var(--medium-blue) ;
+  font-size: 50px;
+  font-weight: 400;
+  padding-top: 8px;
+  font-family: var(--editorFont) ;
+}
+h2 {
+  color: var(--light-blue) ;
+  font-size: 34px;
+  font-weight: 400;
+  font-family: var(--editorFont) ;
+}
+h3 {
+  color: var(--medium-purple) ;
+  font-size: 28px;
+  font-weight: 400;
+  font-family: var(--editorFont) ;
+}
+h4 {
+  color: var(--dark-blue) ;
+  font-size: 24px;
+  font-weight: 400;
+  font-family: var(--editorFont) ;
+}
+h5 {
+  color: var(--light-blue) ;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: var(--editorFont) ;
+}
+h6 {
+  color: var(--light-blue) ;
+  font-size: 32px;
+  font-weight: 400;
+  font-family: var(--editorFont) ;
+}
+
+/* Text Color Classes */
+.red {
+  color: var(--red);
+}
+
+.orange {
+  color: var(--orange);
+}
+
+.yellow {
+  color: var(--yellow);
+}
+
+.green {
+  color: var(--green);
+}
+
+.blue {
+  color: var(--blue);
+}
+
+.purple {
+  color: var(--purple);
+}
+
+.focusText {
+  color: var(--lab-accent);
+}
+
+/* Bootstrap Modal Patch */
+.modal {
+  width:800px;
+}
+
+html, body { height: 100%; width:100% }
+body { margin: 0; background-color: var(--lightest-blue); }
+
+.col-md-0-5 { width: 5%; }
+.col-md-1-5 { width: 12.5%; }
+.col-md-2-5 { width: 20.83333%; }
+.col-md-3-5 { width: 29.16667%; }
+.col-md-4-5 { width: 37.5%; }
+.col-md-5-5 { width: 45.83333%; }
+.col-md-6-5 { width: 54.16667%; }
+.col-md-7-5 { width: 62.5%; }
+.col-md-8-5 { width: 70.83333%; }
+.col-md-9-5 { width: 79.16667%; }
+.col-md-10-5 { width: 87.5%; }
+.col-md-11-5 { width: 95.8333%; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.custom-tooltip-blue {
+  background-color: #0C6A9E;
+  color: #ffffff;
+  font-size: 1.1em;
+  margin-right: none;
+  box-shadow: var(--dark-shadow);
+}
+
+.snackbarSuccess {
+  background-color: var(--lab-accent);
+  width:1000px;
+  height:70px;
+}
+
+.snackbarSuccess .mat-simple-snackbar .mat-simple-snackbar-action .mat-button .mat-button-wrapper {
+  color: var(--star-white);
+}
+
+.snackbarError {
+  background-color: var(--error-background);
+  width:1000px;
+  height:70px;
+  font-size: 30px;
+}
+
+.snackbarError .mat-simple-snackbar .mat-simple-snackbar-action .mat-button .mat-button-wrapper {
+  color: var(--star-white);
+  font-size: 18px;
+}
+
+.mat-simple-snackbar span {
+  font-size: 18px;
+}
+
+.mat-mini-fab.mat-primary {
+  background-color: var(--light-blue);
+  transition: 0.3s;
+}
+
+.mat-mini-fab.mat-primary:hover {
+  background-color: var(--medium-blue);
+  transition-timing-function: ease;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: var(--lab-accent);
+}
+.mat-accordion .mat-expansion-panel {
+  box-shadow: none !important;
+}
+
+.mat-accordion .mat-expansion-panel:hover {
+  background-color: white;
+}

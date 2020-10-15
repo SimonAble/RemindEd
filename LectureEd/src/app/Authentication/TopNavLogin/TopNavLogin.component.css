@@ -1,0 +1,41 @@
+
+.loginInput {
+  background-color: var(--medium-blue);
+}
+
+.loginInput::placeholder {
+  color:white;
+}
+
+.loginInput {
+  color: white;;
+}
+
+.invalidInput {
+  border: 1px solid rgb(204, 39, 39);
+}
+
+.login-btn {
+  color:white;
+  border:1px solid white;
+  width: 90px;
+}
+
+.login-btn:hover{
+  background-color: var(--lab-accent);
+}
+
+.profile-menu:hover .icon{
+  color: var(--lab-accent);
+}
+
+.accountIcon {
+  color:white;
+  font-size: 30px;
+  height:30px;
+  width:30px;
+}
+
+.mat-icon-button .mat-icon, .mat-icon-button i {
+  line-height: 30px;
+}

@@ -1,0 +1,20 @@
+<div class="wrapper h-100">
+  <div class="row p-0 m-0 h-100">
+    <!-- <div class="col-md-0-5 p-0 m-0"> -->
+    <div class="p-0 m-0" [class]="leftMenuCollapsed ? 'col-md-0-5' : 'col-md-2-5' ">
+      <app-CreateLeftMenu
+      (emitToggleLeftMenu)="toggleLeftMenu($event)"
+      (emitChangeActiveLecture)="changeActiveLecture($event)"
+      (emitCreateLectureContent)="createNewLectureContent($event)"
+      (emitDeleteLectureContent)="deleteLectureContent($event)">
+      </app-CreateLeftMenu>
+    </div>
+    <div id="content" class="content col p-0 m-0">
+      <app-CreateLectureContent
+      [activeLecture]="activeLecture"
+      (emitSaveCourse)="saveCourse($event)"
+      ></app-CreateLectureContent>
+    </div>
+  </div>
+
+</div>

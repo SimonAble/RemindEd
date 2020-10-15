@@ -1,0 +1,70 @@
+
+<!-- Concept -->
+<div class="editorContainer" *ngIf="activeTopic.topicTypeCode === topicType.Concept">
+  <div class="blackboard">
+    <input type="text" id="conceptInput" placeholder="Concept Title" [(ngModel)]="activeTopic.topicTitle">
+    <ckeditor
+    #contentEditor
+    [editor]="ContentEditor"
+    [config]= ckConfig
+    data = {{activeTopic.topicContents}}
+    class="ckContent"
+    (change)="syncConceptContent()">
+  </ckeditor>
+  </div>
+</div>
+
+<!-- Article -->
+<div class="editorContainer" *ngIf="activeTopic.topicTypeCode === topicType.Article">
+  <ckeditor
+    #titleEditor
+    [editor]="TitleEditor"
+    [config]="{ placeholder:'Title'}"
+    data = "{{activeTopic.topicTitle}}"
+    class="ckTitle"
+    (change)="syncTopicContent()">
+  </ckeditor>
+  <ckeditor
+    #contentEditor
+    [editor]="ContentEditor"
+    [config]="{ placeholder:'You can talk about the subject more here...'}"
+    data = "{{activeTopic.topicContents}}"
+    class="ckContent"
+    (change)="syncTopicContent()">
+  </ckeditor>
+</div>
+
+<!-- Applications -->
+<div class="editorContainer" *ngIf="activeTopic.topicTypeCode === topicType.Application">
+  Applications Editor Will appear here
+</div>
+
+<!-- Video -->
+<div class="videoContainer" *ngIf="activeTopic.topicTypeCode === topicType.Video">
+  <input type="text" id="videoInput" placeholder="Enter a Video Url" [(ngModel)]="activeTopic.topicTitle">
+  <div class="embed-responsive embed-responsive-16by9">
+    <iframe *ngIf="activeTopic.topicTitle" class="embed-responsive-item" [src]="activeTopic.topicTitle | safe: 'resourceUrl'" allowfullscreen></iframe>
+  </div>
+  <div class="embed-responsive embed-responsive-16by9 videoPlaceholder" *ngIf="!activeTopic.topicTitle">
+  </div>
+</div>
+
+<!-- Resources -->
+<div class="editorContainer" *ngIf="activeTopic.topicTypeCode === topicType.Resources">
+  Resources Editor Will appear here
+</div>
+
+<!-- Quiz -->
+<div class="editorContainer" *ngIf="activeTopic.topicTypeCode === topicType.Questions">
+  <app-QuizEditor></app-QuizEditor>
+</div>
+
+<!-- Discussion -->
+<div class="editorContainer" *ngIf="activeTopic.topicTypeCode === topicType.Discussion">
+  Discussion Editor Will appear here
+</div>
+
+<!-- Suggestion -->
+<div class="editorContainer" *ngIf="activeTopic.topicTypeCode === topicType.Suggestion">
+  Suggestion Editor Will appear here
+</div>

@@ -1,0 +1,42 @@
+.homeLargeText {
+  font-family: 'Antic Slab', serif;
+  position: relative;
+  top: -440px;
+  text-align: center;
+  width: 60%;
+}
+
+.cloudImg {
+  width: 100%; /* width of container */
+  height: 80vh; /* height of container */
+  object-fit: cover;
+}
+
+.getStarted{
+  position: relative;
+  top: -380px;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.btn-outline-info {
+  color: var(--medium-blue);
+  font-size: 20px;
+  width:400px;
+  line-height: 40px;
+  text-align: center;
+  background-color: var(--star-white);
+  border: 2px solid var(--star-white);
+}
+
+.btn-outline-info:hover {
+  border-color: var(  --light-blue);
+  color: var(  --light-blue);
+  background-color: var(--star-white);
+  filter: brightness(99%);
+}

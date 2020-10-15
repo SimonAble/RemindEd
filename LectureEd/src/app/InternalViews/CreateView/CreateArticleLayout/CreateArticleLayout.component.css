@@ -1,0 +1,15 @@
+.content-container {
+  background-color: white;
+  min-height: 100vh;
+  min-width: 100%;
+}
+
+.editTopicContent {
+  width:100%;
+  background-color: white;
+  border-radius: 6px;
+  height: 86vh;
+  overflow: hidden;
+  overflow: scroll;
+  padding-bottom: 40px;
+}

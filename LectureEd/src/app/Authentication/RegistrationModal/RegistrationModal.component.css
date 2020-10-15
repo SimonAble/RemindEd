@@ -1,0 +1,16 @@
+.loginHeader {
+  color: var(--lab-accent);
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loginActions {
+  display:block;
+}

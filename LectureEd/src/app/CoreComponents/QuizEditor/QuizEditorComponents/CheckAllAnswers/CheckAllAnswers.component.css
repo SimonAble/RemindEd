@@ -1,0 +1,20 @@
+.multipleChoiceContainer {
+  cursor: default;
+}
+.checkmarkGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox-margin{
+  margin: 0 10px;
+}
+
+#radio-group-label {
+  font-size: 16px;
+  color: var(--text-grey);
+}
+
+.margin {
+  margin: 0 5px;
+}

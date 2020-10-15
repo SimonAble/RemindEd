@@ -1,0 +1,10 @@
+
+<div class="content-container">
+  <div class="editTopicContent mx-auto px-2">
+    <app-CoLabEditor
+    #editor
+    [activeTopic]="article"
+    (emitSetTopicContents)="setActiveTopicContents($event)">
+  </app-CoLabEditor>
+  </div>
+</div>
