@@ -13,6 +13,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 //App Imports
 import { AppRoutingModule } from './app-routing.module';
@@ -61,6 +62,11 @@ import { UserSettingsComponent } from './InternalViews/Dashboard/UserSettings/Us
 import { MyTeachingComponent } from './InternalViews/Dashboard/MyTeaching/MyTeaching.component';
 import { MyLearningComponent } from './InternalViews/Dashboard/MyLearning/MyLearning.component';
 import { MyResourcesComponent } from './InternalViews/Dashboard/MyResources/MyResources.component';
+import { PhotoEditorComponent } from './CoreComponents/PhotoEditor/PhotoEditor.component';
+
+//External Imports
+import { FileUploadModule } from 'ng2-file-upload';
+import { LeftMenuComponent } from './CoreComponents/LeftMenu/LeftMenu.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -96,7 +102,9 @@ export function tokenGetter() {
     QuizEditorComponent,
     MultipleChoiceComponent,
     CheckAllAnswersComponent,
-    EssayComponent
+    EssayComponent,
+    PhotoEditorComponent,
+    LeftMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -122,6 +130,8 @@ export function tokenGetter() {
     MatSelectModule,
     MatRadioModule,
     MatCheckboxModule,
+    FileUploadModule,
+    MatSidenavModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

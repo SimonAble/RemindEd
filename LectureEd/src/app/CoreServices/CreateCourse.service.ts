@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Observable, timer } from 'rxjs';
+import { AuthenticationService } from '../Authentication/Authentication.service';
+import { UserContext } from '../CoreModels/UserContext.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +21,7 @@ export class CreateCourseService {
 
   autoSaveTimer: Observable<number> = timer(0, 30000);
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   public createCourse(course: CourseModel) {
     console.log("Saving Course");

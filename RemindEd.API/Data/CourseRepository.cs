@@ -55,6 +55,17 @@ namespace RemindEd.API.Data
             return course;
         }
 
+        public async Task<IEnumerable<Course>> GetCoursesByUserId(int userId)
+        {
+            var courses = await context.Courses.Where(c => c.CreatedByID == userId).ToListAsync();
+
+            if(courses == null) {
+                throw new Exception("Courses not found");
+            }
+
+            return courses;
+        }
+
         // public async Task<IEnumerable<Course>> GetCoursesByUserId(int id)
         // {
         //     var course = await context.Courses.ToListAsync().Where(char => );

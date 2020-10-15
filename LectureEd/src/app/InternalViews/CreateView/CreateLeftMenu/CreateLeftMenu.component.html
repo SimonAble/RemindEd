@@ -26,16 +26,16 @@
 
     <!--Left Menu Expanded-->
     <div *ngIf="!leftMenuToggled" class="list-container">
-      <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of courseService.courseModel.lectures; let i = index" cdkDrag cdkDragLockAxis="y" [cdkDragDisabled]="editLectureToggled && editLectureIndex === i" (click)="viewLecture(lecture, i)">
+      <div cdkDropList class="creation-list" (cdkDropListDropped)="drop($event)">
+        <div class="creation-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of courseService.courseModel.lectures; let i = index" cdkDrag cdkDragLockAxis="y" [cdkDragDisabled]="editLectureToggled && editLectureIndex === i" (click)="viewLecture(lecture, i)">
             <div *ngIf="!editLectureToggled || editLectureIndex !== i">
-              <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+              <div class="creation-custom-placeholder" *cdkDragPlaceholder></div>
               <a>
                 <span class="d-inline-block text-truncate lectureText">
                   {{lecture.lectureName}}
                 </span>
               </a>
-              <div class="example-handle" cdkDragHandle>
+              <div class="creation-handle" cdkDragHandle>
                 <i class="fa fa-arrows-alt"></i>
                 <button (click)="editLecture(lecture, i)" class="btn hoverBtn p-0 mx-2"><i class="fa fa-edit"></i></button>
               </div>
@@ -51,10 +51,10 @@
               </div>
             </div>
         </div>
-        <div *ngIf="!addNewLectureToggled" class="example-box addCourse-box pl-4 py-3" (click)="toggleLectureItemInput()">
-          <mat-icon aria-hidden="false" aria-label="Example home icon" class="add-new-topic-icon mr-3">add_box</mat-icon>Add Lecture
+        <div *ngIf="!addNewLectureToggled" class="creation-box addCourse-box pl-4 py-3" (click)="toggleLectureItemInput()">
+          <mat-icon aria-hidden="false" aria-label="creation home icon" class="add-new-topic-icon mr-3">add_box</mat-icon>Add Lecture
         </div>
-        <div *ngIf="addNewLectureToggled" class="example-box course-input-box py-3 px-0">
+        <div *ngIf="addNewLectureToggled" class="creation-box course-input-box py-3 px-0">
           <div class="input-group lectureInput pl-4">
             <input type="text" class="form-control" placeholder="Enter lecture title" aria-label="Enter Lecture Title" name="lectureInput" [(ngModel)]="lectureItem">
             <div class="input-group-append">
@@ -71,15 +71,15 @@
 
     <!--Left Menu Collapsed-->
     <div *ngIf="leftMenuToggled" class="list-container">
-      <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of courseService.courseModel.lectures; let i = index" cdkDrag cdkDragLockAxis="y" (click)="viewLecture(lecture, i)">
-          <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+      <div cdkDropList class="creation-list" (cdkDropListDropped)="drop($event)">
+        <div class="creation-box pl-4 py-3" [class.active]="lecture.lectureActive" *ngFor="let lecture of courseService.courseModel.lectures; let i = index" cdkDrag cdkDragLockAxis="y" (click)="viewLecture(lecture, i)">
+          <div class="creation-custom-placeholder" *cdkDragPlaceholder></div>
             <a matTooltip="{{lecture.lectureName}}"
             matTooltipPosition="after"
             matTooltipClass="custom-tooltip-blue"
             matTooltipPosition="right"><i class="fa fa-book sidebarIcon mr-3" cdkDragHandle></i></a>
         </div>
-        <div *ngIf="!addNewLectureToggled" class="example-box addCourse-box pl-4 py-3" (click)="toggleLectureItemInput()"
+        <div *ngIf="!addNewLectureToggled" class="creation-box addCourse-box pl-4 py-3" (click)="toggleLectureItemInput()"
         matTooltip="Add Lecture"
         matTooltipPosition="after"
         matTooltipClass="custom-tooltip-blue"

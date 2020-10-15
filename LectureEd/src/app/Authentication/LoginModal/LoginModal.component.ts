@@ -17,7 +17,7 @@ export class LoginModalComponent {
     public dialogRef: MatDialogRef<LoginModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-  onNoClick(): void {
+  login(): void {
     this.dialogRef.close({
       email: this.email.value,
       password: this.password.value

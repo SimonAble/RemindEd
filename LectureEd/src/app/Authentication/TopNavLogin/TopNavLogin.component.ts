@@ -22,7 +22,7 @@ export class TopNavLoginComponent implements OnInit {
   public userIsLoggedIn: boolean = false;
 
   constructor(
-    private authenticationService: AuthenticationService,
+    protected authenticationService: AuthenticationService,
     private materialService: MaterialService,
     public dialog: MatDialog,
     private router: Router) { }

@@ -3,7 +3,7 @@ import { LectureNavigationModel } from '../CreateLectureContent/CreateLectureCon
 
 export class CourseModel {
   // leftMenu: CreateLeftMenuModel;
-  courseId: number;
+  courseID: number;
   courseTitle: string;
   userId: number;
   lectures: Lecture[];

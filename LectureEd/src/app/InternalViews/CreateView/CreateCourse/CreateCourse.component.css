@@ -6,8 +6,8 @@
 }
 
 .cardContainer {
-  height: 340px;
-  width: 300px;
+  height: 380px;
+  width: 320px;
   margin: 4em;
   border-radius:6px;
   transition: .4s;
@@ -50,6 +50,9 @@
 .cardText {
   text-align: center;
   color: var(--lab-accent);
+  font-family: 'roboto';
+  font-weight: 300;
+  font-size: 30px;
 }
 
 .articleText {
@@ -59,9 +62,10 @@
 }
 
 .subtext {
-  font-size: 14px;
+  font-size: 16px;
   width: 80%;
   margin:0px auto;
   text-align: center;
+  padding-top: 6px;
 }
 

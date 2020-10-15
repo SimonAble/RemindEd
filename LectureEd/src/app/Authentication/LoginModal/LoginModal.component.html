@@ -11,7 +11,7 @@
 
     <mat-form-field class="mb-3 w-75">
       <mat-label>Enter your password</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+      <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required (keyup.enter)="login()">
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
@@ -20,5 +20,5 @@
 </div>
 
 <div mat-dialog-actions class="text-center loginActions mb-1">
-    <button mat-stroked-button color="primary" class="w-75" (click)="onNoClick()">Login</button>
+    <button mat-stroked-button color="primary" class="w-75" (click)="login()">Login</button>
 </div>

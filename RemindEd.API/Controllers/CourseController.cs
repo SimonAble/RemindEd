@@ -44,8 +44,6 @@ namespace RemindEd.API.Controllers
         [HttpPut("UpdateCourse")]
         public async Task<IActionResult> UpdateCourse(Course course)
         {
-
-
             var savedCourse = this.courseRepository.UpdateCourse(course);
             Console.WriteLine($"Updating Course with Id {course.CourseID}");
             if(await savedCourse != null) 
@@ -66,6 +64,14 @@ namespace RemindEd.API.Controllers
             throw new Exception($"Could not retrieve course with id: {id}...");
         }
 
+        [HttpGet("GetCourses/{userId}")]
+        public async Task<IActionResult> GetCoursesForUser(int userId) {
+            var coursesFromRepo = await this.courseRepository.GetCoursesByUserId(userId);
 
+            if(coursesFromRepo != null) 
+                return Ok(coursesFromRepo);
+
+            throw new Exception($"Could not retrieve courses with id: {userId}...");
+        }
     }
 }

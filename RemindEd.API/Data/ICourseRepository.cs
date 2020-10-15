@@ -14,6 +14,7 @@ namespace RemindEd.API.Data
         Task<Course> UpdateCourse(Course course);
         Task<IEnumerable<Course>> GetCourses();
         Task<Course> GetCourseByCourseId(int id);
+        Task<IEnumerable<Course>> GetCoursesByUserId(int userId);
         // Task<IEnumerable<Course>> GetCoursesByUserId(int id);
 
     }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/Authentication/Authentication.service';
 
 @Component({
   selector: 'app-TopNavigation',
@@ -9,7 +10,7 @@ export class TopNavigationComponent implements OnInit {
 
   public loginToggled: boolean = true;
 
-  constructor() { }
+  constructor(public authenticationService: AuthenticationService) { }
 
   ngOnInit() {
   }

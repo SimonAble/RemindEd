@@ -244,7 +244,7 @@ a, a:hover, a:focus {
 
 /*  Drop list */
 
-.example-list {
+.creation-list {
   width: 500px;
   max-width: 100%;
   border-bottom: solid 1px var(--medium-blue);
@@ -255,7 +255,7 @@ a, a:hover, a:focus {
   overflow: hidden;
 }
 
-.example-box {
+.creation-box {
   padding: 20px 10px;
   border-bottom: solid 1px var(--medium-blue);
   border-right: 4px solid var(--dark-blue);
@@ -272,22 +272,22 @@ a, a:hover, a:focus {
   transition: .2s;
 }
 
-.example-box:active {
+.creation-box:active {
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
               0 8px 10px 1px rgba(0, 0, 0, 0.14),
               0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
-.example-box:hover .hoverBtn {
+.creation-box:hover .hoverBtn {
   visibility: visible;
   display: inline;
 }
 
-.example-box i {
+.creation-box i {
   font-size: 1.2em;
 }
 
-.example-box a {
+.creation-box a {
   cursor: pointer;
 }
 
@@ -303,27 +303,27 @@ a, a:hover, a:focus {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.example-box:last-child {
+.creation-box:last-child {
   border: none;
 }
 
-.example-box:hover {
+.creation-box:hover {
   background:var(--lighter-blue);
   border-right: 4px solid var(--lighter-blue);
 }
 
-.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+.creation-list.cdk-drop-list-dragging .creation-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.example-custom-placeholder {
+.creation-custom-placeholder {
   background: var(--medium-blue);
   border: dotted 3px var(--lighter-blue);
   min-height: 60px;
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.example-handle {
+.creation-handle {
   position: absolute;
   top: 16px;
   right: 10px;
@@ -390,7 +390,7 @@ a, a:hover, a:focus {
   border-bottom: 1px solid #ced4da;
 }
 
-.example-box:hover .editLectureInput input {
+.creation-box:hover .editLectureInput input {
   background-color: var(--medium-blue);
 }
 
