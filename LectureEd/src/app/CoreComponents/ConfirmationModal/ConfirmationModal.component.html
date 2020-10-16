@@ -1,0 +1,14 @@
+<h1 mat-dialog-title class="text-center loginHeader mb-3" *ngIf="overlayModel">{{overlayModel.overlayTitle}}</h1>
+<h1 mat-dialog-title class="text-center loginHeader mb-3" *ngIf="!overlayModel">{{defaultOverlayTitle}}</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content class="mt-2" *ngIf="overlayModel">
+  {{overlayModel.overlayMessage}}
+</div>
+<div mat-dialog-content class="mt-2" *ngIf="!overlayModel">
+  {{defaultOverlayMessage}}
+</div>
+
+<div mat-dialog-actions class="text-center mb-1 mt-4 dialogActions">
+  <button mat-stroked-button color="primary" class="mx-3" (click)="cancel()">Cancel</button>
+  <button mat-stroked-button color="primary" class="mx-3" (click)="confirm()">Confirm</button>
+</div>

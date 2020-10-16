@@ -10,7 +10,7 @@
           matTooltipClass="custom-tooltip-blue"
           matTooltipPosition="right"
           matTooltipDisabled="{{item.itemEnabled}}">
-            <a><span class="d-inline-block text-truncate lectureText" [class.textDisabled]="!item.itemEnabled"><mat-icon class="mr-3">{{item.itemIcon}}</mat-icon> {{item.itemName}} </span></a>
+            <span class="d-inline-block text-truncate itemText" [class.textDisabled]="!item.itemEnabled"><mat-icon class="mr-3">{{item.itemIcon}}</mat-icon> {{item.itemName}} </span>
           </div>
         </div>
       </div>
@@ -19,31 +19,28 @@
   <!--Left Menu Toggler Expanded-->
   <div *ngIf="!leftMenuToggled" class="dashboard-box pl-4 py-3 cdk-drag active leftMenuToggle" (click)="toggleLeftMenu()">
     <div class="itemContainer">
-      <a><span class="d-inline-block text-truncate lectureText" ><mat-icon class="mr-3">arrow_back</mat-icon>Collapse Menu</span></a>
+      <a><span class="d-inline-block text-truncate itemText" ><mat-icon class="mr-3">arrow_back</mat-icon>Collapse Menu</span></a>
     </div>
   </div>
 
   <div id="sidebar" *ngIf="leftMenuToggled">
     <div class="sidebar-header mb-1">
-      <h3 class="pl-4 displayHeader"><mat-icon>explore</mat-icon></h3>
+      <h3 class="pl-3 displayHeader"><mat-icon>explore</mat-icon></h3>
     </div>
     <div class="list-container">
       <div class="dashboard-list cdk-drop-list">
-        <div class="dashboard-box pl-4 py-3 cdk-drag active" [class.itemDisabled]="!item.itemEnabled" [class.active]="item.itemActive" *ngFor="let item of leftMenu.menuItems; let i = index">
+        <div class="dashboard-box-collapsed py-3 cdk-drag active" [class.itemDisabled]="!item.itemEnabled" [class.active]="item.itemActive" *ngFor="let item of leftMenu.menuItems; let i = index">
           <div class="itemContainer"
           matTooltip="{{item.itemTooltip}}"
           matTooltipClass="custom-tooltip-blue"
-          matTooltipPosition="right"
-          matTooltipDisabled="{{item.itemEnabled}}">
-            <a><span class="d-inline-block text-truncate lectureText" [class.textDisabled]="!item.itemEnabled"><mat-icon class="mr-3">{{item.itemIcon}}</mat-icon></span></a>
+          matTooltipPosition="right">
+            <span class="d-inline-block text-truncate itemTextCollapsed text-center w-100" [class.textDisabled]="!item.itemEnabled"><mat-icon>{{item.itemIcon}}</mat-icon></span>
           </div>
         </div>
       </div>
     </div>
   </div>
   <!--Left Menu Toggler Collapsed-->
-  <div *ngIf="leftMenuToggled" class="dashboard-box pl-4 py-3 cdk-drag active leftMenuToggle" (click)="toggleLeftMenu()">
-    <div class="itemContainer">
-      <a><span class="d-inline-block text-truncate lectureText" ><mat-icon class="mr-3">arrow_forward</mat-icon></span></a>
-    </div>
+  <div *ngIf="leftMenuToggled" class="dashboard-box-collapsed py-3 cdk-drag leftMenuToggle" (click)="toggleLeftMenu()">
+    <span class="d-inline-block text-truncate itemTextCollapsed text-center w-100" ><mat-icon>arrow_forward</mat-icon></span>
   </div>

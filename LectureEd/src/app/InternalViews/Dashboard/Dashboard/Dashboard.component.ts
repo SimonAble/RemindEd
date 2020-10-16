@@ -3,6 +3,8 @@ import { CourseModel } from '../../CreateView/CreateLectureLayout/Course.model';
 import { CourseService } from 'src/app/CoreServices/Course.service';
 import { Router } from '@angular/router';
 import { LeftMenuModel, MenuItem } from 'src/app/CoreComponents/LeftMenu/LeftMenuModel';
+import { MatDialog } from '@angular/material';
+import { ConfirmationModalComponent } from 'src/app/CoreComponents/ConfirmationModal/ConfirmationModal.component';
 
 @Component({
   selector: 'app-Dashboard',
@@ -22,11 +24,30 @@ export class DashboardComponent implements OnInit {
   public courses: any = [];
   public leftMenuItems: LeftMenuModel = new LeftMenuModel();
 
-  constructor(private courseService: CourseService, private router:Router) { }
+  constructor(private courseService: CourseService, private router:Router, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getCoursesForUser();
     this.setLeftMenu();
+  }
+
+  deleteCourse(courseId: number, index: number): void {
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      width: '400px',
+      data: {title: "Confirm Course Deletion", confirmationText: "Are you sure you would like to delete this course?"}
+    });
+
+    dialogRef.afterClosed().subscribe(hasConfirmed => {
+      console.log('The dialog was closed');
+      if(hasConfirmed) {
+        console.log("Deleting Course");
+        this.courseService.deleteCourseById(courseId);
+        this.courses.splice(index, 1);
+      }
+      else {
+        console.log("Canceled Course Deletion");
+      }
+    });
   }
 
   getCoursesForUser() {

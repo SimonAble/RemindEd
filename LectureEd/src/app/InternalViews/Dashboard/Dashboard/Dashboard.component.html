@@ -7,34 +7,36 @@
   <!-- Main Content -->
   <mat-sidenav-content>
     <div class="activity_container mx-auto mt-4 row">
-      <h2 class="activity_header">{{leftMenuCollapsed}}</h2>
+      <h2 class="activity_header">Activity</h2>
     </div>
 
-    <div class="media_container row p-0 mx-auto mt-3">
+    <div class="media_container row p-0 mx-auto mt-2">
       <p class="m-2 container_heading">My Courses</p>
-      <div class="course_container m-0 w-100 row">
-        <div class="course p-2 col-md-4" *ngFor="let course of courses; let i = index">
-          <div class="course_content h-100">
-            <img class="course_img" src="https://picsum.photos/1920/1080?random={{i}}" alt="">
+      <div class="container p-0">
+        <div class="course_container m-0 row justify-content-start">
+          <div class="course p-2 col-3" *ngFor="let course of courses; let i = index">
+            <div class="course_content h-100">
+              <img class="course_img" src="https://picsum.photos/1920/1080?random={{i}}" alt="">
 
-            <!-- Menu -->
-            <!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-              <mat-icon class="course_settings">more_vert</mat-icon>
-            </button> -->
-            <mat-icon mat-button [matMenuTriggerFor]="menu" class="course_settings" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" aria-hidden="false" aria-label="Course Settings" >more_vert</mat-icon>
-            <!-- #enddocregion mat-menu-trigger-for -->
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item><mat-icon class="menu_icon">preview</mat-icon>View Course</button>
-              <button mat-menu-item><mat-icon class="menu_icon">edit</mat-icon>Edit Course</button>
-              <button mat-menu-item><mat-icon class="menu_icon">delete_outline</mat-icon>Delete Course</button>
-            </mat-menu>
-            <div (click)="navigateToCourse(course.courseID)">
-              <p *ngIf="!course.courseTitle" class="course_title pt-2">No Title</p>
-              <p *ngIf="course.courseTitle" class="course_title pt-2">{{course.courseTitle}}</p>
-              <p class="course_creator">Course Creator: {{course.courseID}}</p>
-              <div class="mt-3 course_progress">
-                <mat-progress-bar mode="determinate" value="20"></mat-progress-bar>
-                <p class="percent_complete pt-2">20% Completed</p>
+              <!-- Menu -->
+              <!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon class="course_settings">more_vert</mat-icon>
+              </button> -->
+              <mat-icon mat-button [matMenuTriggerFor]="menu" class="course_settings" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" aria-hidden="false" aria-label="Course Settings" >more_vert</mat-icon>
+              <!-- #enddocregion mat-menu-trigger-for -->
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item><mat-icon class="menu_icon">preview</mat-icon>View Course</button>
+                <button mat-menu-item><mat-icon class="menu_icon">edit</mat-icon>Edit Course</button>
+                <button mat-menu-item (click)="deleteCourse(course.courseID, i)"><mat-icon class="menu_icon">delete_outline</mat-icon>Delete Course</button>
+              </mat-menu>
+              <div (click)="navigateToCourse(course.courseID)">
+                <p *ngIf="!course.courseTitle" class="course_title pt-2">No Title</p>
+                <p *ngIf="course.courseTitle" class="course_title pt-2">{{course.courseTitle}}</p>
+                <p class="course_creator">Course Creator: {{course.courseID}}</p>
+                <div class="mt-3 course_progress">
+                  <mat-progress-bar mode="determinate" value="20"></mat-progress-bar>
+                  <p class="percent_complete pt-2">20% Completed</p>
+                </div>
               </div>
             </div>
           </div>

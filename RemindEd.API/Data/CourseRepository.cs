@@ -28,6 +28,17 @@ namespace RemindEd.API.Data
             context.Remove(entity);
         }
 
+        public void DeleteCourseById(int courseId)
+        {
+            var courseEntityToDelete = context.Courses.FirstOrDefault(c => c.CourseID == courseId);
+
+            if(courseEntityToDelete == null) {
+                throw new Exception($"Course with id {courseId} could not be found...");
+            }
+            context.Remove(courseEntityToDelete);
+            context.SaveChanges();
+        }
+
         public async Task<Course> GetCourseByCourseId(int id)
         {
             var course = await context.Courses
