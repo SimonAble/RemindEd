@@ -82,17 +82,6 @@ p {
   height:72vh;
 }
 
-#sidebar ul li a {
-  padding: 10px;
-  font-size: .9em;
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: var(--dark-blue);
-  cursor: pointer;
-}
-
 
 .sidebarIcon {
   color: var(--dark-blue);
@@ -146,22 +135,34 @@ p {
   transition: .2s;
 }
 
+.dashboard-box-collapsed {
+  padding: 20px 0px;
+  border-bottom: solid 1px var(--light-grey);
+  border-right: 4px solid var(--star-white);
+  color: rgba(0, 0, 0, 0.87);
+  /* display: flex; */
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background: var(--star-white);
+  font-size: 1em;
+  color: var(--dark-blue);
+  position: relative;
+  transition: .2s;
+}
+
 .dashboard-box:active {
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
               0 8px 10px 1px rgba(0, 0, 0, 0.14),
               0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
-.dashboard-box:hover .hoverBtn {
-  visibility: visible;
-  display: inline;
-}
-
 .dashboard-box i {
   font-size: 1.2em;
 }
 
-.dashboard-box a {
+.dashboard-box {
   cursor: pointer;
 }
 
@@ -174,6 +175,11 @@ p {
 }
 
 .dashboard-box:hover {
+  background:var(--hover-white);
+  border-right: 4px solid var(--lighter-blue);
+}
+
+.dashboard-box-collapsed:hover {
   background:var(--hover-white);
   border-right: 4px solid var(--lighter-blue);
 }
@@ -203,8 +209,12 @@ p {
   border-right: 4px solid var(--lab-accent);
 }
 
-.lectureText {
+.itemText {
   max-width: 90%;
+  vertical-align: middle;
+}
+
+.itemTextCollapsed {
   vertical-align: middle;
 }
 

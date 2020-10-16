@@ -18,7 +18,7 @@
 
 .activity_container {
   width:96%;
-  height: 180px;
+  height: 110px;
   background-color: var(--dark-blue);
   border-radius: 4px;
   box-shadow: var(--float-shadow);
@@ -36,7 +36,7 @@
 
 .course_container {
   /* background-color: var(--star-white); */
-  height: 340px;
+  height: 430px;
   border-radius: 4px;
   transition: 0.4s;
   overflow: scroll;
@@ -68,7 +68,6 @@
 .course {
   width:100%;
   min-height:220px;
-  margin: 0 auto;
   padding: 10px;
   height:100px;
   padding:6px;

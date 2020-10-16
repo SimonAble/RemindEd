@@ -67,6 +67,7 @@ import { PhotoEditorComponent } from './CoreComponents/PhotoEditor/PhotoEditor.c
 //External Imports
 import { FileUploadModule } from 'ng2-file-upload';
 import { LeftMenuComponent } from './CoreComponents/LeftMenu/LeftMenu.component';
+import { ConfirmationModalComponent } from './CoreComponents/ConfirmationModal/ConfirmationModal.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -104,7 +105,8 @@ export function tokenGetter() {
     CheckAllAnswersComponent,
     EssayComponent,
     PhotoEditorComponent,
-    LeftMenuComponent
+    LeftMenuComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     BrowserModule,
@@ -143,7 +145,8 @@ export function tokenGetter() {
   entryComponents: [
     LoginModalComponent,
     RegistrationModalComponent,
-    LearningModuleModalComponent
+    LearningModuleModalComponent,
+    ConfirmationModalComponent
   ],
   providers: [
     Title,

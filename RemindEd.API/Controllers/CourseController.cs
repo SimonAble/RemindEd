@@ -73,5 +73,13 @@ namespace RemindEd.API.Controllers
 
             throw new Exception($"Could not retrieve courses with id: {userId}...");
         }
+
+        [HttpDelete("DeleteCourse/{courseId}")]
+        public IActionResult DeleteCourseById(int courseId) {
+            
+            this.courseRepository.DeleteCourseById(courseId);
+
+            return Ok();
+        }
     }
 }
