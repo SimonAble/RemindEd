@@ -9,7 +9,8 @@
     [config]= ckConfig
     data = {{activeTopic.topicContents}}
     class="ckContent"
-    (change)="syncConceptContent()">
+    (change)="syncConceptContent()"
+    [disabled]="isReadOnly">
   </ckeditor>
   </div>
 </div>
@@ -22,7 +23,8 @@
     [config]="{ placeholder:'Title'}"
     data = "{{activeTopic.topicTitle}}"
     class="ckTitle"
-    (change)="syncTopicContent()">
+    (change)="syncTopicContent()"
+    [disabled]="isReadOnly">
   </ckeditor>
   <ckeditor
     #contentEditor
@@ -30,23 +32,14 @@
     [config]="{ placeholder:'You can talk about the subject more here...'}"
     data = "{{activeTopic.topicContents}}"
     class="ckContent"
-    (change)="syncTopicContent()">
+    (change)="syncTopicContent()"
+    [disabled]="isReadOnly">
   </ckeditor>
 </div>
 
 <!-- Applications -->
 <div class="editorContainer" *ngIf="activeTopic.topicTypeCode === topicType.Application">
   Applications Editor Will appear here
-</div>
-
-<!-- Video -->
-<div class="videoContainer" *ngIf="activeTopic.topicTypeCode === topicType.Video">
-  <input type="text" id="videoInput" placeholder="Enter a Video Url" [(ngModel)]="activeTopic.topicTitle">
-  <div class="embed-responsive embed-responsive-16by9">
-    <iframe *ngIf="activeTopic.topicTitle" class="embed-responsive-item" [src]="activeTopic.topicTitle | safe: 'resourceUrl'" allowfullscreen></iframe>
-  </div>
-  <div class="embed-responsive embed-responsive-16by9 videoPlaceholder" *ngIf="!activeTopic.topicTitle">
-  </div>
 </div>
 
 <!-- Resources -->

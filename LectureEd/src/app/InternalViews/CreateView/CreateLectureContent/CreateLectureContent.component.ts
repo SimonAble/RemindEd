@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
-import { LectureNavigationModel, Topic } from './CreateLectureContent.model';
+import { LectureNavigationModel, Topic, TopicTypes } from './CreateLectureContent.model';
 import { FormControl } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { LearningModuleModalComponent } from '../LearningModules/LearningModuleModal/LearningModuleModal.component';
@@ -35,6 +35,8 @@ export class CreateLectureContentComponent implements OnInit {
   public editTopicIndex: number;
 
   public autosaveInProgress: boolean = true;
+
+  public topicType = TopicTypes;
 
   constructor(private titleService: Title,
     private materialService: MaterialService,

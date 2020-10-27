@@ -1,0 +1,25 @@
+.videoContainer {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 4px;
+}
+
+#videoInput {
+  width: 100%;
+  margin: 0 auto;
+  height: 60px;
+  text-align: center;
+  font-size: 22px;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border: 2px dashed var(--light-grey);
+  color: var(--dark-gray);
+}
+
+.viewMode {
+  width:90% !important;
+}

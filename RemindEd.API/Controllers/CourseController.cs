@@ -74,6 +74,16 @@ namespace RemindEd.API.Controllers
             throw new Exception($"Could not retrieve courses with id: {userId}...");
         }
 
+        [HttpGet("GetCoursesForGlobalExplore")]
+        public async Task<IActionResult> GetCourses() {
+            var coursesFromRepo = await this.courseRepository.GetCourses();
+
+            if(coursesFromRepo != null) 
+                return Ok(coursesFromRepo);
+
+            throw new Exception($"Could not retrieve courses...");
+        }
+
         [HttpDelete("DeleteCourse/{courseId}")]
         public IActionResult DeleteCourseById(int courseId) {
             

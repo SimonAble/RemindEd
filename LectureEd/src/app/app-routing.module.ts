@@ -13,12 +13,15 @@ import { MyLearningComponent } from './InternalViews/Dashboard/MyLearning/MyLear
 import { MyTeachingComponent } from './InternalViews/Dashboard/MyTeaching/MyTeaching.component';
 import { MyResourcesComponent } from './InternalViews/Dashboard/MyResources/MyResources.component';
 import { FollowingComponent } from './InternalViews/Dashboard/Following/Following.component';
+import { ExploreGlobalComponent } from './GlobalViews/ExploreGlobal/ExploreGlobal.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '*', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: ExternalHomeComponent },
   { path: 'learn', component: LearnLayoutComponent},
+  { path: 'learn/course', component: LearnLayoutComponent},
+  { path: 'learn/course/:id', component: LearnLayoutComponent},
   { path: 'create', component: CreateCourseComponent},
   { path: 'create/course', component: CreateLectureLayoutComponent},
   { path: 'create/course/:id', component: CreateLectureLayoutComponent},
@@ -30,6 +33,7 @@ const routes: Routes = [
   { path: 'dashboard/myresources', component: MyResourcesComponent, canActivate: [AuthGuardService] },
   { path: 'profile', component: ProfileManagementComponent, canActivate: [AuthGuardService] },
   { path: 'profile/settings', component: UserSettingsComponent, canActivate: [AuthGuardService] },
+  { path: 'explore', component: ExploreGlobalComponent},
 ];
 
 @NgModule({

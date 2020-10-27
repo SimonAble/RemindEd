@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LeftMenuModel, MenuItem } from 'src/app/CoreComponents/LeftMenu/LeftMenuModel';
 import { MatDialog } from '@angular/material';
 import { ConfirmationModalComponent } from 'src/app/CoreComponents/ConfirmationModal/ConfirmationModal.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-Dashboard',
@@ -21,14 +22,15 @@ export class DashboardComponent implements OnInit {
     "Learners",
     "Following"
   ];
-  public courses: any = [];
+  public courses: CourseModel[] = [];
   public leftMenuItems: LeftMenuModel = new LeftMenuModel();
 
-  constructor(private courseService: CourseService, private router:Router, public dialog: MatDialog) { }
+  constructor(private courseService: CourseService, private router:Router, public dialog: MatDialog, private titleService: Title) { }
 
   ngOnInit() {
     this.getCoursesForUser();
     this.setLeftMenu();
+    this.titleService.setTitle("CoLab | Dashboard");
   }
 
   deleteCourse(courseId: number, index: number): void {
@@ -78,6 +80,10 @@ export class DashboardComponent implements OnInit {
     this.leftMenuItems.menuItems.push(new MenuItem('Followed Courses', false, 'Followed Courses', 'library_books', true));
     this.leftMenuItems.menuItems.push(new MenuItem('Student Portal', false, 'Look forward to this feature in a future update!', 'assignment_ind', false));
     this.leftMenuItems.menuItems.push(new MenuItem('Grading Portal', false, 'Look forward to this feature in a future update!', 'grade', false));
+  }
+
+  viewCourse(courseId:number) {
+    this.router.navigate(['learn/course/' + courseId])
   }
 
 }

@@ -1,7 +1,12 @@
 
 <div *ngIf="authenticationService.isAuthenticated()">
   <div class="dropdown show">
-
+    <button mat-icon-button aria-label="Example icon-button with a menu" class="mr-3">
+      <mat-icon class="accountIcon">notifications</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="Example icon-button with a menu" class="mr-3">
+      <mat-icon class="accountIcon">chat</mat-icon>
+    </button>
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
       <mat-icon class="accountIcon">account_circle</mat-icon>
     </button>

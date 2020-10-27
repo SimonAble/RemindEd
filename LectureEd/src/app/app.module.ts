@@ -8,7 +8,7 @@ import { SafePipe } from './safe.pipe';
 
 //Material Imports
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTooltipModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatProgressBarModule, MatSelectModule, MatRadioModule, MatCheckboxModule } from '@angular/material/';
+import { MatTooltipModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatProgressBarModule, MatSelectModule, MatRadioModule, MatCheckboxModule, MatToolbarModule } from '@angular/material/';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -35,7 +35,7 @@ import { ExternalHomeComponent } from './GlobalViews/ExternalHome/ExternalHome.c
 //Learn Views
 import { LearnLayoutComponent } from './InternalViews/LearnView/LearnLayout/LearnLayout.component';
 import { LearnLeftMenuComponent } from './InternalViews/LearnView/LearnLeftMenu/LearnLeftMenu.component';
-import { LearnLectureContentComponent } from './InternalViews/LearnView/LearnLectureContent/LearnLectureContent.component';
+import { LearnContentComponent } from './InternalViews/LearnView/LearnLectureContent/LearnLectureContent.component';
 
 //Create Views
 import { CreateLectureLayoutComponent } from './InternalViews/CreateView/CreateLectureLayout/CreateLectureLayout.component';
@@ -68,6 +68,8 @@ import { PhotoEditorComponent } from './CoreComponents/PhotoEditor/PhotoEditor.c
 import { FileUploadModule } from 'ng2-file-upload';
 import { LeftMenuComponent } from './CoreComponents/LeftMenu/LeftMenu.component';
 import { ConfirmationModalComponent } from './CoreComponents/ConfirmationModal/ConfirmationModal.component';
+import { VideoEditorComponent } from './CoreComponents/VideoEditor/VideoEditor.component';
+import { ExploreGlobalComponent } from './GlobalViews/ExploreGlobal/ExploreGlobal.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -81,7 +83,7 @@ export function tokenGetter() {
     TopNavLoginComponent,
     LearnLayoutComponent,
     LearnLeftMenuComponent,
-    LearnLectureContentComponent,
+    LearnContentComponent,
     CreateLectureLayoutComponent,
     CreateLeftMenuComponent,
     CreateLectureContentComponent,
@@ -106,7 +108,9 @@ export function tokenGetter() {
     EssayComponent,
     PhotoEditorComponent,
     LeftMenuComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    VideoEditorComponent,
+    ExploreGlobalComponent
   ],
   imports: [
     BrowserModule,
@@ -134,6 +138,7 @@ export function tokenGetter() {
     MatCheckboxModule,
     FileUploadModule,
     MatSidenavModule,
+    MatToolbarModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

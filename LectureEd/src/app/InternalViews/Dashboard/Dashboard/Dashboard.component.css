@@ -36,7 +36,7 @@
 
 .course_container {
   /* background-color: var(--star-white); */
-  height: 430px;
+  max-height: 430px;
   border-radius: 4px;
   transition: 0.4s;
   overflow: scroll;
@@ -131,4 +131,9 @@
 
 .menu_icon {
   vertical-align: middle;
+}
+
+.date_info {
+  color:var(--light-grey);
+  font-size: 12px;
 }

@@ -37,12 +37,95 @@ a, a:hover, a:focus {
   transition: all 0.3s;
 }
 
-#sidebar .sidebar-header {
-  padding: 20px 10px 10px 10px;
-  height:65px;
+#sidebar .sidebar-header .editHeader{
+  padding: 8px 10px 10px 10px;
   background: var(--darker-blue);
   box-shadow: 0 3px 5px -2px rgb(12, 12, 15);
   /* border-bottom: 6px solid var(--black-blue); */
+}
+
+#sidebar .sidebar-header .displayHeader{
+  padding: 18px 10px 10px 10px;
+  height:55px;
+  background: var(--darker-blue);
+  box-shadow: 0 3px 5px -2px rgb(12, 12, 15);
+  margin-bottom: 0;
+  transition: 0.4s;
+  /* border-bottom: 6px solid var(--black-blue); */
+}
+
+.input-group-append {
+  height: 38px;
+}
+
+.displayHeader i {
+  font-size: 1.2em;
+}
+
+.titleInput input{
+  background-color: var(--darker-blue);
+  color:var(--star-white);
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-radius: 0px;
+}
+
+.titleInput .input-group-append .btn-outline-secondary {
+  color:white;
+  border: 1px solid #ced4da;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-radius: 0px;
+}
+
+.titleInput .input-group-append .btn-outline-secondary:hover {
+  background-color: var(--darker-blue);
+}
+
+.lectureInput input{
+  background-color: var(--dark-blue);
+}
+
+.lectureInput input::placeholder{
+  color:rgba(255, 255, 255, 0.603);
+}
+
+.lectureInput input {
+  color:var(--star-white);
+  border:none;
+  border-radius: 0px;
+}
+
+.lectureInput .input-group-append .btn-outline-secondary {
+  color:white;
+  border:none;
+  border-radius: 0px;
+}
+
+.lectureInput .input-group-append .btn-outline-secondary:hover {
+  background-color: var(--darker-blue);
+}
+
+.lectureInput .input-group-append .btn-outline-secondary:hover {
+  background-color: var(--dark-blue);
+}
+
+.lectureInput .btn-outline-secondary:hover i {
+  color: var(--lab-accent);
+}
+
+.lectureInput .delete:hover i {
+  color: var(--red);
+}
+
+.editHeader .btn-outline-secondary:hover i {
+  color: var(--lab-accent);
+}
+
+.editHeader .delete:hover i {
+  color: var(--red);
 }
 
 #sidebar .sidebar-header h3 {
@@ -51,11 +134,12 @@ a, a:hover, a:focus {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition:1s;
 }
 
 #sidebar .sidebar-header-collapsed {
-  padding: 16px 10px 10px 10px;
-  height:65px;
+  padding: 12px 10px 10px 10px;
+  height:55px;
   background: var(--darker-blue);
   box-shadow: 0 3px 5px -2px rgb(12, 12, 15);
   text-align: center;
@@ -68,6 +152,10 @@ a, a:hover, a:focus {
   color: var(--star-white);
 }
 
+#sidebar .sidebar-header-collapsed:hover h3 {
+  color: var(--medium-purple);
+}
+
 .list-container {
   overflow: scroll;
   height:72vh;
@@ -75,16 +163,30 @@ a, a:hover, a:focus {
 
 #sidebar ul li a {
   padding: 10px;
-  font-size: 1.1em;
+  font-size: .9em;
   display: block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color: var(--star-white);
+  cursor: pointer;
+}
+
+#sidebar .sidebar-header-collapsed ul li a{
+  font-size: 1.2em;
+  color: var(--star-white);
+}
+
+#sidebar ul li a .icon{
+  font-size: 1.2em;
+}
+
+.sidebarIcon {
+  font-size: 18px;
 }
 
 #sidebar ul li a:hover {
-  background:var(--lab-accent);
+  background:var(--lighter-blue);
 }
 
 #sidebar ul {
@@ -112,3 +214,188 @@ a, a:hover, a:focus {
     width: 5%;
 }
 
+.hoverBtn {
+  visibility: hidden;
+  display: none;
+  color:white;
+  transition: .4s;
+}
+
+.hoverBtn:hover {
+  color: var(--light-purple);
+}
+
+#sidebar .sidebar-header:hover .hoverBtn {
+  visibility: visible;
+  display: inline;
+}
+
+.addCourse-box {
+  cursor: pointer;
+}
+
+.addCourse-box:hover {
+  border:none !important;
+}
+
+.course-input-box:hover {
+  background-color: var(--dark-blue)!important;
+}
+
+/*  Drop list */
+
+.creation-list {
+  width: 500px;
+  max-width: 100%;
+  border-bottom: solid 1px var(--medium-blue);
+  min-height: 60px;
+  display: block;
+  background: var(--darker-blue);
+  /* border-radius: 4px; */
+  overflow: hidden;
+}
+
+.creation-box {
+  padding: 20px 10px;
+  border-bottom: solid 1px var(--medium-blue);
+  border-right: 4px solid var(--dark-blue);
+  color: rgba(0, 0, 0, 0.87);
+  /* display: flex; */
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background: var(--dark-blue);
+  font-size: 1em;
+  color: var(--star-white);
+  position: relative;
+  transition: .2s;
+  cursor: pointer;
+}
+
+.creation-box:active {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.creation-box:hover .hoverBtn {
+  visibility: visible;
+  display: inline;
+}
+
+.creation-box i {
+  font-size: 1.2em;
+}
+
+.creation-box a {
+  cursor: pointer;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.creation-box:last-child {
+  border: none;
+}
+
+.creation-box:hover {
+  background:var(--lighter-blue);
+  border-right: 4px solid var(--lighter-blue);
+}
+
+.creation-list.cdk-drop-list-dragging .creation-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.creation-custom-placeholder {
+  background: var(--medium-blue);
+  border: dotted 3px var(--lighter-blue);
+  min-height: 60px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.creation-handle {
+  position: absolute;
+  top: 16px;
+  right: 10px;
+  color: var(--medium-blue);
+  cursor: pointer;
+  width: 60px;
+  height: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+  transition: 0.3s;
+}
+
+.icon {
+  line-height: 0;
+}
+
+.active {
+  /*border-top: 4px solid var(--lab-accent);*/
+  padding: 20px 10px;
+  border-bottom: solid 1px var(--medium-blue);
+  border-right: 4px solid var(--lab-accent);
+  color: rgba(0, 0, 0, 0.87);
+  /* display: flex; */
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  font-size: 1em;
+  color: var(--star-white);
+  position: relative;
+  transition: .2s;
+}
+
+.active:hover {
+  border-right: 4px solid var(--lab-accent);
+}
+
+.add-new-topic-icon {
+  vertical-align: sub;
+}
+
+
+.editLectureInput input{
+  background-color: var(--dark-blue);
+  color:var(--star-white);
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-radius: 0;
+}
+
+.editLectureInput .input-group-append .btn-outline-secondary {
+  color:white;
+  border: 1px solid #ced4da;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-radius: 0;
+}
+
+.editLectureInput .input-group-append .btn-outline-secondary:hover {
+  background-color: var(--medium-blue);
+  border:none;
+  border-bottom: 1px solid #ced4da;
+}
+
+.creation-box:hover .editLectureInput input {
+  background-color: var(--medium-blue);
+}
+
+.lectureText {
+  max-width: 65%;
+  vertical-align: bottom;
+}

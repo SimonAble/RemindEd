@@ -1,20 +1,14 @@
-import { Component, OnInit, ViewChild, EventEmitter, Input, Output } from '@angular/core';
-import * as BalloonBlockEditor from '@ckeditor/ckeditor5-build-balloon-block';
-// import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { TopicTypes, Topic } from 'src/app/InternalViews/CreateView/CreateLectureContent/CreateLectureContent.model';
 import { AuthenticationService } from 'src/app/Authentication/Authentication.service';
 import { MaterialService } from 'src/app/CoreServices/Material.service';
-import { SnackBarStateClass } from 'src/app/CoreModels/enum';
-import { CKEditor5 } from '@ckeditor/ckeditor5-angular';
 
 @Component({
-  selector: 'app-CoLabEditor',
-  templateUrl: './CoLabEditor.component.html',
-  styleUrls: ['./CoLabEditor.component.css']
+  selector: 'app-VideoEditor',
+  templateUrl: './VideoEditor.component.html',
+  styleUrls: ['./VideoEditor.component.css']
 })
-export class CoLabEditorComponent implements OnInit {
-  public TitleEditor = BalloonBlockEditor;
-  public ContentEditor = BalloonBlockEditor;
+export class VideoEditorComponent implements OnInit {
 
   public topicType = TopicTypes;
 

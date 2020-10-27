@@ -1,5 +1,5 @@
-import { CreateLeftMenuModel, Lecture } from '../CreateLeftMenu/CreateLeftMenu.model';
-import { LectureNavigationModel } from '../CreateLectureContent/CreateLectureContent.model';
+import { CreateLeftMenuModel, Lecture } from '../LearnLeftMenu/LearnLeftMenu.model';
+import { LectureNavigationModel } from '../LearnLectureContent/LearnLectureContent.model';
 
 export class CourseModel {
   // leftMenu: CreateLeftMenuModel;

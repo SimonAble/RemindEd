@@ -1,5 +1,5 @@
 .content-nav {
-  height: 65px;
+  height: 55px;
   background-color: white;
   box-shadow: 0 4px 5px -2px rgb(161, 161, 161);
   z-index: 1;
@@ -7,5 +7,394 @@
 
 .content-container {
   background-color: white;
-  min-height: 96vh;
+  min-height: 100vh;
+  min-width: 100%;
+}
+
+.saveIcon {
+  font-size: 30px;
+  color: var(--medium-blue);
+}
+
+.saveIcon:hover {
+  color:var(--lab-accent);
+}
+
+.newTopic {
+  background-color: var(--lighter-grey);
+  border-radius: 6px;
+}
+
+.editTopicContent {
+  width:100%;
+  background-color: white;
+  border-radius: 6px;
+  height: 80vh;
+  overflow: hidden;
+  overflow: scroll;
+  /* border: 3px solid var(--light-grey); */
+  /* box-shadow: var(--medium-shadow); */
+}
+
+
+/*Drag and Drop Styling */
+.example-list {
+  display: flex;
+  flex-direction: row;
+  background: white;
+  overflow: hidden;
+}
+
+.lectureInput input {
+  border:none;
+  border-radius: 0px;
+}
+
+.lectureInput .btn {
+  border:none;
+  border-radius: 0px;
+}
+
+.lectureInput:hover .btn {
+  background-color: white;
+}
+
+.lectureInput .delete:hover  {
+  color: var(--red);
+}
+
+.lectureInput .add:hover  {
+  color: var(--lab-accent);
+}
+
+.course-input-box{
+  min-width:220px;
+}
+
+.example-box {
+  padding: 22px 10px;
+  border-right: solid 1px #ccc;
+  height: 55px;
+  color: var( --text-grey);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  background: white;
+  font-size: 16px;
+  font-weight: 500;
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 300px;
+}
+
+.example-box p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 230px;
+  font-size: 16px;
+  font-family: 'Roboto';
+}
+
+/* .cdk-drag-placeholder {
+  opacity: 0;
+} */
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-custom-placeholder {
+  background: var(--lighter-grey);
+  border: dashed 3px #999;
+  min-height: 55px;
+  min-width: 140px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-handle {
+  top: 10px;
+  right: 10px;
+  color: #ccc;
+  cursor: pointer;
+  width: 60px;
+  height: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+  transition: 0.3s;
+}
+
+.addCourse-box {
+  justify-content: start;
+}
+
+.active {
+  /*border-top: 4px solid var(--lab-accent);*/
+  border-bottom: 4px solid var(--lab-accent);
+}
+
+.content-list {
+  width: 100%;
+  max-width: 100%;
+  /* border: solid 1px #ccc; */
+  min-height: 55px;
+  display: block;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.content-box {
+  padding: 20px 10px;
+  border-top: solid 1px #ccc;
+  border-right: solid 1px #ccc;
+  border-left: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  background: white;
+  font-size: 14px;
+  transition: .1s;
+  height: 100px;
+  justify-content: space-between;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.content-box:last-child {
+  border-bottom: solid 1px #ccc;
+}
+
+.content-list.cdk-drop-list-dragging .content-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.content-custom-placeholder {
+  background: var(--lightest-blue);
+  border: dashed 3px var(--light-grey);
+  min-height: 100px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  display: block;
+}
+
+.editor-box {
+  margin-bottom: 10px;
+  border:4px solid var(--light-blue)!important;
+  padding: 20px 10px;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background: white;
+  font-size: 14px;
+  transition: .1s;
+  height:70px;
+}
+
+.add-new-box {
+  margin-bottom: 10px;
+  border-bottom:1px solid var(--light-grey)!important;
+  padding: 6px 10px;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  background: white;
+  font-size: 14px;
+  transition: .1s;
+  height:45px;
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  cursor: pointer;
+}
+
+.icon{
+  font-size:36px;
+  transition: .3s;
+  color: var(--dark-blue);
+  cursor: pointer;
+}
+
+.icon:hover {
+  color:var(--lab-accent);
+}
+
+.hoverBtn {
+  visibility: hidden;
+  display: none;
+  color:white;
+  transition: .5s;
+}
+
+.add-new-icon:hover {
+  color:var(--lab-accent);
+  cursor: pointer;
+}
+
+.add-new-icon {
+  font-size:30px;
+  color:var(--light-grey);
+  transition: .3s;
+}
+
+.content-handle {
+  color: #ccc;
+  cursor: move;
+  width: 24px;
+  height: 24px;
+}
+
+.newContentPlaceholder {
+  font-size: 26px;
+  color: var(--light-grey);
+  text-align: center;
+  margin-top: 100px;
+  height: 100px;
+  border-bottom: 3px dotted var(--light-grey);
+  padding-top: 20px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.add-new-topic-icon {
+  line-height: 0.9;
+  color: var( --text-grey);
+  transition: .3s;
+}
+
+.add-new-topic-icon:hover {
+  color: var(--lab-accent);
+}
+
+.newContentArrow {
+  height:50px;
+  width:60px;
+  font-size: 60px;
+  vertical-align: bottom;
+}
+
+.hoverIcon {
+  visibility: hidden;
+  display: none;
+  transition: .5s;
+}
+
+.example-box:hover .hoverIcon {
+  visibility: visible;
+  display: inline;
+  color: var(--text-grey);
+}
+
+.hoverIcon:hover i{
+  color: var(--light-blue);
+  background-color: var(--lighter-grey);
+}
+
+.editTopicInput input{
+  background-color: white;
+  color:var(--text-grey);
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-radius: 0;
+}
+
+.editTopicContent input::placeholder {
+  color: var(--light-grey);
+}
+
+.editTopicInput .input-group-append .btn-outline-secondary {
+  color: var(--text-grey);
+  border: 1px solid var(--light-grey);
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-radius: 0;
+}
+
+.editTopicInput .input-group-append .btn-outline-secondary:hover {
+  background-color: white;
+  border:none;
+  border-bottom: 1px solid var(--light-grey);
+}
+
+.example-box:hover .editTopicInput input {
+  background-color: var(--highlight-grey);
+}
+
+.contentExplanation {
+  position: relative;
+  top: 80px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.explanationIconContainer {
+  display: flex;
+  justify-content: space-around;
+  width:100%
+}
+
+.explanationIcon {
+  height: 190px;
+  width: 190px;
+  font-size: 110px;
+  background-color: var(--light-grey);
+  color: white;
+  border-radius: 50%;
+  padding-top: 34px;
+  margin-bottom: 40px;
+  transition: .4s;
+  box-shadow: var(--float-shadow);
+}
+
+.explanationIcon:hover {
+  background-color: var(--light-blue);
+  box-shadow: var(--hover-shadow);
+}
+
+.explanationText {
+  width: 70%;
+  margin: 0 auto;
+  color: var(--medium-grey);
+}
+
+.save {
+  width: 100%;
+  text-align: end;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 8px;
+  height:0px;
+}
+
+.saveIcon {
+  font-size: 30px;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  color: var(--medium-blue);
+  box-shadow: 0px 0px 4px -1px var(--gray);
+  transition: .2s;
+  padding-top: 7px;
+  padding-left: 1px;
+}
+
+.saveIcon:hover {
+  box-shadow: 0px 0px 12px -1px var(--gray);
+  color: var(--light-blue);
 }

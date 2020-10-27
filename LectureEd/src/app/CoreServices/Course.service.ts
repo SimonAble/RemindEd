@@ -22,6 +22,10 @@ export class CourseService {
     return this.http.get<CourseModel[]>(this.baseUrl + 'GetCourses/' + this.activeUserId);
   }
 
+  public getCoursesForGlobalExplore() {
+    return this.http.get<CourseModel[]>(this.baseUrl + 'GetCoursesForGlobalExplore');
+  }
+
   public deleteCourseById(courseId: number) {
     console.log("In Course Service Deleting Course with Id: " + courseId);
 

@@ -150,6 +150,7 @@ p {
   color: var(--dark-blue);
   position: relative;
   transition: .2s;
+  cursor: pointer;
 }
 
 .dashboard-box:active {
@@ -189,12 +190,9 @@ p {
 }
 
 .active {
-  /*border-top: 4px solid var(--lab-accent);*/
   padding: 20px 10px;
-  /* border-bottom: solid 1px var(--medium-blue); */
   border-right: 4px solid var(--lab-accent);
   color: rgba(0, 0, 0, 0.87);
-  /* display: flex; */
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -205,9 +203,25 @@ p {
   transition: .2s;
 }
 
-.active:hover {
+.activeCollapsed {
+    padding: 20px 0px;
+    border-right: 4px solid var(--lab-accent);
+    color: rgba(0, 0, 0, 0.87);
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    font-size: 1em;
+    color: var(--dark-blue);
+    position: relative;
+    transition: .2s;
+}
+
+.active:hover, .activeCollapsed:hover {
   border-right: 4px solid var(--lab-accent);
 }
+
+
 
 .itemText {
   max-width: 90%;

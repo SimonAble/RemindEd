@@ -29,7 +29,7 @@
     </div>
     <div class="list-container">
       <div class="dashboard-list cdk-drop-list">
-        <div class="dashboard-box-collapsed py-3 cdk-drag active" [class.itemDisabled]="!item.itemEnabled" [class.active]="item.itemActive" *ngFor="let item of leftMenu.menuItems; let i = index">
+        <div class="dashboard-box-collapsed py-3 cdk-drag" [class.itemDisabled]="!item.itemEnabled" [class.activeCollapsed]="item.itemActive" *ngFor="let item of leftMenu.menuItems; let i = index">
           <div class="itemContainer"
           matTooltip="{{item.itemTooltip}}"
           matTooltipClass="custom-tooltip-blue"
