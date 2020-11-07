@@ -44,6 +44,8 @@ namespace RemindEd.API.Data
             var course = await context.Courses
                 .Include(l => l.Lectures)
                     .ThenInclude(l => l.Topics)
+                    .ThenInclude(q => q.Questions)
+                    .ThenInclude(qo => qo.QuestionOptions)
                 .FirstOrDefaultAsync(u => u.CourseID == id);
 
             if(course == null)
@@ -56,7 +58,9 @@ namespace RemindEd.API.Data
 
         public async Task<IEnumerable<Course>> GetCourses()
         {
-            var course = await context.Courses.ToListAsync();
+            var course = await context.Courses
+            .Include(cf => cf.CourseFollowers)
+            .ToListAsync();
 
             if (course == null)
             {
@@ -108,6 +112,7 @@ namespace RemindEd.API.Data
         }
 
         public async Task<Course> UpdateCourse(Course course) {
+
             var courseEntity = this.context.Courses.FirstOrDefault(c => c.CourseID == course.CourseID);
 
             var lectures = this.context.Lectures.Where(lec => lec.CourseID == course.CourseID).ToList();
@@ -146,6 +151,33 @@ namespace RemindEd.API.Data
                 return course;
             }
             throw new Exception("Courses not found");
+        }
+
+        public void FollowCourse(int userId, int courseId)
+        {
+            var courseFromDB = this.context.Courses.FirstOrDefault(c => c.CourseID == courseId);
+            var userFromDB = this.context.Users.FirstOrDefault(u => u.Id == userId);
+
+            var followedCourse = new CourseFollower 
+            {
+                CourseId = courseId,
+                UserId = userId
+            };
+
+            this.context.Add(followedCourse);
+            
+            this.context.SaveChanges();
+        }
+
+        public void UnfollowCourse(int userId, int courseId)
+        {
+            var courseFromDB = this.context.Courses.FirstOrDefault(c => c.CourseID == courseId);
+            var userFromDB = this.context.Users.FirstOrDefault(u => u.Id == userId);
+
+            var unfollowedCourse = this.context.CourseFollower.FirstOrDefault(cf => cf.CourseId == courseId && cf.UserId == userId);
+
+            this.context.CourseFollower.Remove(unfollowedCourse);
+            this.context.SaveChanges();
         }
     }
 }

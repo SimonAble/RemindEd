@@ -18,6 +18,7 @@ namespace RemindEd.API.Models
         public string Language { get; set; }
 
         public ICollection<Photo> Photos { get; set; }
+        public IList<CourseFollower> CourseFollowers { get; set; }
 
         //Affiliated Links
         public string TwitterLink { get; set; }

@@ -1,3 +1,5 @@
+import { QuestionModel } from 'src/app/CoreComponents/QuizEditor/Quiz.model';
+
 export class LectureNavigationModel {
   lectureId: string;
   topics: Topic[];
@@ -14,13 +16,15 @@ export class Topic {
   topicTypeCode: TopicTypes;
   topicTitle: string;
   topicContents: string;
+  questions: QuestionModel[];
 
-  constructor(topicTabName: string, topicActive: boolean = false, topicTitle: string = "", topicContents: string = "", topicTypeCode?:TopicTypes) {
+  constructor(topicTabName: string, topicActive: boolean = false, topicTitle: string = "", topicContents: string = "", questions: QuestionModel[] = [], topicTypeCode?:TopicTypes) {
     this.topicTabName = topicTabName;
     this.topicActive = topicActive;
     this.topicTitle = topicTitle;
     this.topicContents = topicContents;
     this.topicTypeCode = topicTypeCode;
+    this.questions = questions;
   }
 }
 

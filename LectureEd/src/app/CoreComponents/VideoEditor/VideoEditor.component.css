@@ -1,7 +1,6 @@
 .videoContainer {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
-  padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 4px;
 }
@@ -21,5 +20,5 @@
 }
 
 .viewMode {
-  width:90% !important;
+  width:100%;
 }

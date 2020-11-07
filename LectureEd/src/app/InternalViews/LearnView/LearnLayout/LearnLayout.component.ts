@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {Location} from '@angular/common';
-import { CourseModel } from './Course.model';
+import { CourseModel } from '../../CreateView/CreateLectureLayout/Course.model';
 import { CreateCourseService } from '../../../CoreServices/CreateCourse.service';
 import { LectureNavigationModel, Topic } from '../LearnLectureContent/LearnLectureContent.model';
 import { MaterialService } from 'src/app/CoreServices/Material.service';

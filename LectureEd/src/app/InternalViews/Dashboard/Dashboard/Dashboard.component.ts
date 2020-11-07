@@ -15,22 +15,16 @@ import { Title } from '@angular/platform-browser';
 export class DashboardComponent implements OnInit {
 
   public leftMenuCollapsed: boolean = false;
-  public leftmenuItems = [
-    "My Courses",
-    "Grading",
-    "Discussions",
-    "Learners",
-    "Following"
-  ];
   public courses: CourseModel[] = [];
   public leftMenuItems: LeftMenuModel = new LeftMenuModel();
+  public activeItemIndex: number;
+  public dashboardMenu = DashboardMenu;
 
   constructor(private courseService: CourseService, private router:Router, public dialog: MatDialog, private titleService: Title) { }
 
   ngOnInit() {
     this.getCoursesForUser();
     this.setLeftMenu();
-    this.titleService.setTitle("CoLab | Dashboard");
   }
 
   deleteCourse(courseId: number, index: number): void {
@@ -60,7 +54,7 @@ export class DashboardComponent implements OnInit {
       })
   }
 
-  public toggleLeftMenu(event) {
+  toggleLeftMenu(event) {
     console.log("Toggling left menu: ", event);
     this.leftMenuCollapsed = event;
   }
@@ -76,14 +70,36 @@ export class DashboardComponent implements OnInit {
   setLeftMenu() {
     this.leftMenuItems.leftMenuTitle = "Dashboard";
     this.leftMenuItems.menuItems.push(new MenuItem('Overview', true, 'Overview', 'dashboard', true));
-    this.leftMenuItems.menuItems.push(new MenuItem('Created Courses', false, 'Created Courses','post_add', true));
-    this.leftMenuItems.menuItems.push(new MenuItem('Followed Courses', false, 'Followed Courses', 'library_books', true));
+    this.leftMenuItems.menuItems.push(new MenuItem('My Teaching', false, 'My Teaching','post_add', true));
+    this.leftMenuItems.menuItems.push(new MenuItem('My Learning', false, 'My Learning', 'library_books', true));
     this.leftMenuItems.menuItems.push(new MenuItem('Student Portal', false, 'Look forward to this feature in a future update!', 'assignment_ind', false));
     this.leftMenuItems.menuItems.push(new MenuItem('Grading Portal', false, 'Look forward to this feature in a future update!', 'grade', false));
+    this.activeItemIndex = 0;
+  }
+
+  changeLeftMenuTab(index: number) {
+    console.log("Toggling left menu tab: ", index);
+    for(let i = 0; i < this.leftMenuItems.menuItems.length; i ++) {
+      if(index == i) {
+        this.leftMenuItems.menuItems[i].itemActive = true;
+        this.activeItemIndex = i;
+      }
+      else {
+        this.leftMenuItems.menuItems[i].itemActive = false;
+      }
+    }
   }
 
   viewCourse(courseId:number) {
     this.router.navigate(['learn/course/' + courseId])
   }
 
+}
+
+export enum DashboardMenu {
+  Overview,
+  MyTeaching,
+  MyLearning,
+  StudentPortal,
+  GradingPortal
 }

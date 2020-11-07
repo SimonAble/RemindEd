@@ -1,11 +1,7 @@
-<mat-form-field appearance="fill" class="full-width w-100">
-  <mat-label>Enter your question here...</mat-label>
-  <textarea matInput placeholder="Ex. Quantum Quadratics" [(ngModel)]="questionTitle" #title="ngModel" name="title"></textarea>
-</mat-form-field>
 <label id="radio-group-label">Add options to select from here: <span class="text-muted">(Select the option you would like to be the correct answer)</span></label>
 
 <div class="checkmarkGroup w-100">
-  <mat-checkbox class="checkbox-margin w-100 ml-0" color="primary" *ngFor="let question of questions; let optionIndex = index">
-    <input matInput placeholder="Ex. Quantum Quadratics" [(ngModel)]="question" #optionText="ngModel" name="optionText" class="w-100 margin">
+  <mat-checkbox class="checkbox-margin w-100 ml-0" color="primary" *ngFor="let question of questionOptions; let optionIndex = index" [(ngModel)]="question.isCorrectAnswer">
+    <input matInput placeholder="Ex. Quantum Quadratics" [(ngModel)]="question.optionText" #optionText="ngModel" name="optionText" class="w-100 margin">
   </mat-checkbox>
 </div>

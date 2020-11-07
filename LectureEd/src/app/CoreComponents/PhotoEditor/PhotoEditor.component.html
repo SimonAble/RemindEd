@@ -1,3 +1,11 @@
-<p>
-  PhotoEditor works!
-</p>
+<div class="row">
+  <h2>Photo Editor:</h2>
+  <div class="col-sm-2" *ngFor="let photo of photos">
+    <img src="{{photo.url}}" alt="" class="img-thumbnail p-1">
+    <div class="text-center">
+      <button class="btn btn-sm">Main</button>
+      <button class="btn btn-sm btn-danger"></button>
+    </div>
+
+  </div>
+</div>

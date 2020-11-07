@@ -69,6 +69,17 @@
   transition: 0.4s;
 }
 
-.course_settings:hover {
+.follow_course {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  color: white;
+  background-color: var(--dark-blue);
+  border-radius: 4px;
+  width: 10p;
+  transition: 0.4s;
+}
+
+.course_settings:hover, .follow_course:hover {
   background-color: var(--lab-accent);
 }

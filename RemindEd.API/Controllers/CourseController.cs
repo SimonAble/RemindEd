@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -44,6 +45,10 @@ namespace RemindEd.API.Controllers
         [HttpPut("UpdateCourse")]
         public async Task<IActionResult> UpdateCourse(Course course)
         {
+            Console.WriteLine("\n\n<<--------------------------->>\n\n");
+            string output = JsonConvert.SerializeObject(course);
+            Console.WriteLine(output);
+            Console.WriteLine("\n\n<<--------------------------->>\n\n");
             var savedCourse = this.courseRepository.UpdateCourse(course);
             Console.WriteLine($"Updating Course with Id {course.CourseID}");
             if(await savedCourse != null) 
@@ -52,7 +57,7 @@ namespace RemindEd.API.Controllers
         }
 
         [HttpGet("GetCourse/{id}")]
-        public async Task<IActionResult> UpdateCourse(int id)
+        public async Task<IActionResult> GetCourse(int id)
         {
             Console.WriteLine("Saving Course");
 
@@ -74,6 +79,7 @@ namespace RemindEd.API.Controllers
             throw new Exception($"Could not retrieve courses with id: {userId}...");
         }
 
+        [AllowAnonymous]
         [HttpGet("GetCoursesForGlobalExplore")]
         public async Task<IActionResult> GetCourses() {
             var coursesFromRepo = await this.courseRepository.GetCourses();
@@ -88,6 +94,30 @@ namespace RemindEd.API.Controllers
         public IActionResult DeleteCourseById(int courseId) {
             
             this.courseRepository.DeleteCourseById(courseId);
+
+            return Ok();
+        }
+
+        [HttpPut("FollowCourse/{userId}")]
+        public IActionResult FollowCourse(int userId, [FromBody] int courseId) {
+
+            if(userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value)) {
+                return Unauthorized();
+            }
+
+            this.courseRepository.FollowCourse(userId, courseId);
+
+            return Ok();
+        }
+
+        [HttpPut("UnfollowCourse/{userId}")]
+        public IActionResult UnfollowCourse(int userId, [FromBody] int courseId) {
+
+            if(userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value)) {
+                return Unauthorized();
+            }
+
+            this.courseRepository.UnfollowCourse(userId, courseId);
 
             return Ok();
         }

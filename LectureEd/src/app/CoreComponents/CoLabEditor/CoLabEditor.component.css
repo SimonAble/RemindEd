@@ -1,5 +1,5 @@
 .editorContainer {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -91,7 +91,7 @@ p {
 }
 
 .videoContainer {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -113,5 +113,5 @@ p {
 }
 
 .videoPlaceholder {
-  
+
 }

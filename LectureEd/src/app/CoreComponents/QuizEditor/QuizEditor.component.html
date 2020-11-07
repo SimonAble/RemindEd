@@ -1,111 +1,118 @@
   <!-- <mat-progress-bar mode="determinate" value="80" class="mt-2"></mat-progress-bar> -->
-  <button (click)="addNewQuestion()" class="btn px-3 py-0 addQuestionButton mt-2" type="button">
+  <button (click)="addNewQuestion()" class="btn px-3 py-0 addQuestionButton" type="button">
     <mat-icon aria-hidden="false" aria-label="Example home icon" class="addNewQuestionIcon"
       matTooltip="Add Question"
       matTooltipClass="custom-tooltip-blue"
-      matTooltipPosition="bottom">add_box
+      matTooltipPosition="below">add_box
     </mat-icon>
   </button>
 
   <div class="questionContainer">
     <div cdkDropList class="question-list" (cdkDropListDropped)="drop($event)">
-      <div class="placeholderBox" *ngIf="questions.length === 0">
+      <div class="placeholderBox" *ngIf="!activeTopic.questions && activeTopic.questions.length == 0">
         <p>Start creating your quiz by hitting the plus button</p>
       </div>
-      <div class="question-box" *ngFor="let question of questions; let questionNumber = index " cdkDrag [cdkDragDisabled]="panelOpenState">
-        <div class="question-custom-placeholder" *cdkDragPlaceholder></div>
-        <mat-accordion class="w-100">
-          <!-- #enddocregion basic-panel -->
-            <mat-expansion-panel (opened)="panelOpenState = true"
-                                 (closed)="panelOpenState = false">
-              <mat-expansion-panel-header>
-                <mat-panel-title id="questionTitle">
-                  Question {{questionNumber + 1}}
-                </mat-panel-title>
-                <mat-panel-description>
-                  {{question.title}}
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              <div class="questionDetails">
-                <mat-form-field class="full-width">
-                  <mat-label>Question Title</mat-label>
-                  <input matInput placeholder="Ex. Quantum Quadratics" [(ngModel)]="question.title" #title="ngModel" name="title">
-                </mat-form-field>
-                <mat-form-field class="w-100">
-                  <mat-label>Select a question type</mat-label>
-                  <mat-select [(value)]="question.questionType">
-                    <mat-option>None</mat-option>
-                    <mat-option value="{{questionTypes.MultipleChoice}}">Multiple Choice</mat-option>
-                    <mat-option value="{{questionTypes.MultipleAnswers}}">Check all that apply</mat-option>
-                    <mat-option value="{{questionTypes.TrueFalse}}">True or False</mat-option>
-                    <mat-option value="{{questionTypes.SingleInput}}">Single input answer</mat-option>
-                    <!-- <mat-option value="{{questionTypes.FillInBlanks}}" disabled>Fill in the blanks (Feature currently unavailable)</mat-option> -->
-                    <mat-option value="{{questionTypes.Essay}}">Essay</mat-option>
-                  </mat-select>
-                </mat-form-field>
+      <div *ngIf="activeTopic.questions && activeTopic.questions.length > 0">
+        <div class="question-box" *ngFor="let question of activeTopic.questions; let questionNumber = index " cdkDrag [cdkDragDisabled]="panelOpenState">
+          <div class="question-custom-placeholder" *cdkDragPlaceholder></div>
+          <mat-accordion class="w-100">
+            <!-- #enddocregion basic-panel -->
+              <mat-expansion-panel (opened)="panelOpenState = true"
+                                   (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title id="questionTitle">
+                    Question {{questionNumber + 1}}
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    {{question.title}}
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="questionDetails">
+                  <mat-form-field class="full-width">
+                    <mat-label>Question Title</mat-label>
+                    <input matInput placeholder="Ex. Quantum Quadratics" [(ngModel)]="question.title" #title="ngModel" name="title">
+                  </mat-form-field>
+                  <mat-form-field class="w-100">
+                    <mat-label>Select a question type</mat-label>
+                    <mat-select [(value)]="question.questionType">
+                      <mat-option>None</mat-option>
+                      <mat-option value="{{questionTypes.MultipleChoice}}">Multiple Choice</mat-option>
+                      <mat-option value="{{questionTypes.MultipleAnswers}}">Check all that apply</mat-option>
+                      <mat-option value="{{questionTypes.TrueFalse}}">True or False</mat-option>
+                      <mat-option value="{{questionTypes.SingleInput}}">Single input answer</mat-option>
+                      <!-- <mat-option value="{{questionTypes.FillInBlanks}}" disabled>Fill in the blanks (Feature currently unavailable)</mat-option> -->
+                      <mat-option value="{{questionTypes.Essay}}">Essay</mat-option>
+                    </mat-select>
+                  </mat-form-field>
 
-                <!-- Multiple Choice -->
-                <div *ngIf="question.questionType === questionTypes.MultipleChoice" class="questionTypeContainer">
-                  <app-MultipleChoice [questions]="question.questionOptions" class="w-100"></app-MultipleChoice>
-                  <button mat-stroked-button color="primary" (click)="addNewRadioOption(questionNumber)">Add new option</button>
-                </div>
-
-                <!-- Select Multiple -->
-                <div *ngIf="question.questionType === questionTypes.MultipleAnswers" class="questionTypeContainer">
-                  <app-CheckAllAnswers [questions]="question.questionOptions" class="w-100"></app-CheckAllAnswers>
-                  <button mat-stroked-button color="primary" (click)="addNewRadioOption(questionNumber)">Add new option</button>
-                </div>
-
-                <!-- True or False -->
-                <div *ngIf="question.questionType === questionTypes.TrueFalse" class="questionTypeContainer">
-                  <mat-form-field class="full-width w-100" appearance="fill">
+                  <mat-form-field *ngIf="question.questionType" appearance="fill" class="full-width w-100">
                     <mat-label>Enter your question here...</mat-label>
-                    <textarea matInput placeholder="Ex. Quantum Quadratics" [(ngModel)]="question.question" #questionText="ngModel" name="questionText"></textarea>
+                    <textarea matInput placeholder="Ex. Quantum Quadratics" [(ngModel)]="question.questionText" #title="ngModel" name="title"></textarea>
                   </mat-form-field>
-                  <label id="radio-group-label">Select the correct statement: <span class="text-muted">(Select the option you would like to be the correct answer)</span></label>
-                  <mat-radio-group
-                    aria-labelledby="radio-group-label"
-                    class="radio-group my-1 w-100" [(ngModel)]="question.questionAnswer">
-                    <mat-radio-button class="radio-button w-100" color="primary" [value]="true">
-                      True
-                    </mat-radio-button>
-                    <mat-radio-button class="radio-button w-100" color="primary" [value]="false">
-                      False
-                    </mat-radio-button>
-                  </mat-radio-group>
-                </div>
 
-                <!-- Short Answer Input -->
-                <div *ngIf="question.questionType === questionTypes.SingleInput" class="questionTypeContainer">
-                  <mat-form-field appearance="fill" class="full-width w-100">
-                    <mat-label>Enter your short answer question here...</mat-label>
-                    <textarea matInput placeholder="Ex. Quantum Quadratics" [(ngModel)]="question.question" #title="ngModel" name="title"></textarea>
-                  </mat-form-field>
-                  <mat-form-field class="full-width">
-                    <mat-label>Your student's answer will go here...</mat-label>
-                    <input matInput placeholder="Your student's answer will go here..." disabled>
-                  </mat-form-field>
-                </div>
+                  <!-- Multiple Choice -->
+                  <div *ngIf="question.questionType == questionTypes.MultipleChoice" class="questionTypeContainer">
+                    <app-MultipleChoice [questionOptions]="question.questionOptions" class="w-100"></app-MultipleChoice>
+                    <button mat-stroked-button color="primary" (click)="addNewRadioOption(questionNumber)">Add new option</button>
+                  </div>
 
-                <!-- Fill in the blanks -->
-                <div *ngIf="question.questionType === questionTypes.FillInBlanks" class="questionTypeContainer">
-                  <p>Fill in the blanks</p>
-                </div>
+                  <!-- Select Multiple -->
+                  <div *ngIf="question.questionType == questionTypes.MultipleAnswers" class="questionTypeContainer">
+                    <app-CheckAllAnswers [questionOptions]="question.questionOptions" class="w-100"></app-CheckAllAnswers>
+                    <button mat-stroked-button color="primary" (click)="addNewRadioOption(questionNumber)">Add new option</button>
+                  </div>
 
-                <!-- Essay -->
-                <div *ngIf="question.questionType === questionTypes.Essay" class="questionTypeContainer">
-                  <mat-form-field appearance="fill" class="full-width w-100">
-                    <mat-label>Enter your essay question here...</mat-label>
-                    <textarea matInput placeholder="Ex. Quantum Quadratics" [(ngModel)]="question.question" #title="ngModel" name="title"></textarea>
-                  </mat-form-field>
-                  <mat-form-field class="full-width">
-                    <mat-label>Your student will write their essay here...</mat-label>
-                    <input matInput placeholder="Your student's answer will go here..." disabled>
-                  </mat-form-field>
+                  <!-- True or False -->
+                  <div *ngIf="question.questionType == questionTypes.TrueFalse" class="questionTypeContainer">
+                    <mat-form-field class="full-width w-100" appearance="fill">
+                      <mat-label>Enter your question here...</mat-label>
+                      <textarea matInput placeholder="Ex. Quantum Quadratics" [(ngModel)]="question.questionText" #questionText="ngModel" name="questionText"></textarea>
+                    </mat-form-field>
+                    <label id="radio-group-label">Select the correct statement: <span class="text-muted">(Select the option you would like to be the correct answer)</span></label>
+                    <mat-radio-group
+                      aria-labelledby="radio-group-label"
+                      class="radio-group my-1 w-100" [(ngModel)]="question.questionAnswer">
+                      <mat-radio-button class="radio-button w-100" color="primary" [value]="true">
+                        True
+                      </mat-radio-button>
+                      <mat-radio-button class="radio-button w-100" color="primary" [value]="false">
+                        False
+                      </mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+
+                  <!-- Short Answer Input -->
+                  <div *ngIf="question.questionType == questionTypes.SingleInput" class="questionTypeContainer">
+                    <mat-form-field appearance="fill" class="full-width w-100">
+                      <mat-label>Enter your short answer question here...</mat-label>
+                      <textarea matInput placeholder="Ex. Quantum Quadratics" [(ngModel)]="question.questionText" #title="ngModel" name="title"></textarea>
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                      <mat-label>Your student's answer will go here...</mat-label>
+                      <input matInput placeholder="Your student's answer will go here..." disabled>
+                    </mat-form-field>
+                  </div>
+
+                  <!-- Fill in the blanks -->
+                  <div *ngIf="question.questionType == questionTypes.FillInBlanks" class="questionTypeContainer">
+                    <p>Fill in the blanks</p>
+                  </div>
+
+                  <!-- Essay -->
+                  <div *ngIf="question.questionType == questionTypes.Essay" class="questionTypeContainer">
+                    <mat-form-field appearance="fill" class="full-width w-100">
+                      <mat-label>Enter your essay question here...</mat-label>
+                      <textarea matInput placeholder="Ex. Quantum Quadratics" [(ngModel)]="question.questionText" #title="ngModel" name="title"></textarea>
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                      <mat-label>Your student will write their essay here...</mat-label>
+                      <input matInput placeholder="Your student's answer will go here..." disabled>
+                    </mat-form-field>
+                  </div>
                 </div>
-              </div>
-            </mat-expansion-panel>
-          </mat-accordion>
+              </mat-expansion-panel>
+            </mat-accordion>
+        </div>
       </div>
     </div>
   </div>

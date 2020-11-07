@@ -39,3 +39,11 @@
 .mat-icon-button .mat-icon, .mat-icon-button i {
   line-height: 30px;
 }
+
+.button_container {
+  display: inline-block;
+}
+
+.helpIcon {
+  color:var(--lighter-blue);
+}

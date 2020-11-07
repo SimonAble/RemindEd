@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { config } from 'process';
 import { environment } from 'src/environments/environment';
 import { AuthenticationService } from 'src/app/Authentication/Authentication.service';
+import { Photo } from './Photo.model';
 
 @Component({
   selector: 'app-PhotoEditor',
@@ -11,6 +12,7 @@ import { AuthenticationService } from 'src/app/Authentication/Authentication.ser
 })
 export class PhotoEditorComponent implements OnInit {
 
+  @Input() photos: Photo[];
   public fileToUpload: File;
   private url: string;
 

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RemindEd.API.Data;
 
 namespace RemindEd.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20201030021802_QuestionEntity")]
+    partial class QuestionEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,21 +45,6 @@ namespace RemindEd.API.Migrations
                     b.HasKey("CourseID");
 
                     b.ToTable("Courses");
-                });
-
-            modelBuilder.Entity("RemindEd.API.Models.CourseFollower", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("UserId", "CourseId");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("CourseFollower");
                 });
 
             modelBuilder.Entity("RemindEd.API.Models.Lecture", b =>
@@ -174,9 +161,6 @@ namespace RemindEd.API.Migrations
                 {
                     b.Property<int>("QuestionOptionsId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsCorrectAnswer")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("OptionText")
@@ -297,21 +281,6 @@ namespace RemindEd.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Values");
-                });
-
-            modelBuilder.Entity("RemindEd.API.Models.CourseFollower", b =>
-                {
-                    b.HasOne("RemindEd.API.Models.Course", "Course")
-                        .WithMany("CourseFollowers")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RemindEd.API.Models.User", "User")
-                        .WithMany("CourseFollowers")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("RemindEd.API.Models.Lecture", b =>

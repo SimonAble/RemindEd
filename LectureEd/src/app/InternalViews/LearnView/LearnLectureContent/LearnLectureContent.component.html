@@ -61,9 +61,10 @@
             <p class="explanationText">Now you can add some topics to your lecture. You can choose from premade templates, such as (concept, history, resources, quiz), or you can create you own custom topic.</p>
           </div>
         </div>
+
         <!-- Main Viewers -->
-        <div *ngIf="activeTopic && activeLecture.topics.length > 0" class="p-2">
-          <div [ngSwitch]="activeTopic.topicTypeCode">
+        <div *ngIf="activeTopic && activeLecture.topics.length > 0" class="p-5" >
+          <div [ngSwitch]="activeTopic.topicTypeCode" class="px-5">
             <div *ngSwitchCase="topicType.Article">
               <app-CoLabEditor
               #editor

@@ -47,7 +47,14 @@ export class TopNavLoginComponent implements OnInit {
     this.authenticationService.login(this.loginModel)
       .subscribe(
         next => {
-        // this.router.navigate(['dashboard']);
+        console.log("URL: ",this.router.url);
+
+        if(this.router.url == "/home") {
+          this.router.navigate(['dashboard']);
+        }
+        else if(this.router.url != "/create/course") {
+          window.location.reload();
+        }
         this.materialService.openSnackBar("Login Succesful!")
       }, error => {
         console.log("Error: ", error);
@@ -108,7 +115,8 @@ export class TopNavLoginComponent implements OnInit {
     localStorage.removeItem('token');
     this.loginToggled = false;
     console.log("User Logged Out");
-    this.router.navigate(['home']);
+    //this.router.navigate(['home']);
+    window.location.reload();
     this.materialService.openSnackBar("Logout Succesful!")
   }
 

@@ -8,7 +8,6 @@ export class LeftMenuModel {
 }
 
 export class MenuItem {
-  itemId: string;
   itemName: string;
   itemViewed: boolean;
   itemCompleted: boolean;

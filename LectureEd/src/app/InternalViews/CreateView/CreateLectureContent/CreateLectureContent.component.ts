@@ -93,6 +93,8 @@ export class CreateLectureContentComponent implements OnInit {
             this.activeTopic.topicTypeCode = topicType;
 
             console.log("Logging active topic: ", JSON.stringify(this.activeTopic));
+            console.log("QUestions: " + JSON.stringify(this.activeTopic.questions));
+            console.log("QUestions Length: " + JSON.stringify(this.activeTopic.questions.length));
             this.switchActiveTopic(newTopicIndex);
 
             this.navTopicItem = "";

@@ -6,10 +6,10 @@ export class QuizModel {
 export class QuestionModel {
   picture: string;
   title: string;
-  question: string;
+  questionText: string;
   questionType: QuestionTypeEnum;
-  autoGrade: boolean;
-  questionOptions: string[];
+  autograde: boolean;
+  questionOptions: QuestionOption[];
   questionAnswer: number;
 
   constructor() {
@@ -18,6 +18,7 @@ export class QuestionModel {
 }
 
 export class QuestionOption {
+  questionOptionsId: number;
   optionText: string;
   isCorrectAnswer: boolean;
 
@@ -26,10 +27,10 @@ export class QuestionOption {
   }
 }
 export enum QuestionTypeEnum {
-  MultipleChoice = "MultipleChoice",
-  TrueFalse = "TrueFalse",
-  FillInBlanks = "FillInBlanks",
-  MultipleAnswers = "MultipleAnswers",
-  Essay = "Essay",
-  SingleInput = "SingleInput"
+  MultipleChoice = 0,
+  TrueFalse = 1,
+  FillInBlanks = 2,
+  MultipleAnswers = 3,
+  Essay = 4,
+  SingleInput = 5
 }

@@ -16,6 +16,8 @@ namespace RemindEd.API.Data
         Task<Course> GetCourseByCourseId(int id);
         Task<IEnumerable<Course>> GetCoursesByUserId(int userId);
         void DeleteCourseById(int courseId);
+        void FollowCourse(int userId, int courseId);
+        void UnfollowCourse(int userId, int courseId);
         // Task<IEnumerable<Course>> GetCoursesByUserId(int id);
 
     }

@@ -101,8 +101,8 @@
           </div>
         </div>
         <!-- Main Viewers -->
-        <div *ngIf="activeTopic && activeLecture.topics.length > 0" class="p-2">
-          <div [ngSwitch]="activeTopic.topicTypeCode">
+        <div *ngIf="activeTopic && activeLecture.topics.length > 0" class="px-5 pt-3">
+          <div [ngSwitch]="activeTopic.topicTypeCode" class="px-5">
             <div *ngSwitchCase="topicType.Article">
               <app-CoLabEditor
               #editor
@@ -125,11 +125,15 @@
               </app-VideoEditor>
             </div>
             <div *ngSwitchCase="topicType.Questions">
-              <app-CoLabEditor
+              <!-- <app-CoLabEditor
               #editor
               [activeTopic]="activeTopic"
               [isReadOnly]="false">
-              </app-CoLabEditor>
+              </app-CoLabEditor> -->
+              <app-QuizEditor
+              [activeTopic]="activeTopic"
+              [isReadOnly]="false">
+              </app-QuizEditor>
             </div>
             <div *ngSwitchDefault>output2</div>
           </div>

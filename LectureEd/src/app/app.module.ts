@@ -8,12 +8,6 @@ import { SafePipe } from './safe.pipe';
 
 //Material Imports
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTooltipModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule, MatSnackBarModule, MatProgressSpinnerModule, MatProgressBarModule, MatSelectModule, MatRadioModule, MatCheckboxModule, MatToolbarModule } from '@angular/material/';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatSidenavModule } from '@angular/material/sidenav';
 
 //App Imports
 import { AppRoutingModule } from './app-routing.module';
@@ -70,6 +64,8 @@ import { LeftMenuComponent } from './CoreComponents/LeftMenu/LeftMenu.component'
 import { ConfirmationModalComponent } from './CoreComponents/ConfirmationModal/ConfirmationModal.component';
 import { VideoEditorComponent } from './CoreComponents/VideoEditor/VideoEditor.component';
 import { ExploreGlobalComponent } from './GlobalViews/ExploreGlobal/ExploreGlobal.component';
+import { MaterialModule } from './material.module';
+import { OverviewComponent } from './InternalViews/Dashboard/Overview/Overview.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -110,7 +106,8 @@ export function tokenGetter() {
     LeftMenuComponent,
     ConfirmationModalComponent,
     VideoEditorComponent,
-    ExploreGlobalComponent
+    ExploreGlobalComponent,
+    OverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -118,27 +115,10 @@ export function tokenGetter() {
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatTooltipModule,
-    DragDropModule,
-    MatIconModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    MatDividerModule,
-    CKEditorModule,
-    MatSnackBarModule,
-    MatMenuModule,
-    MatProgressSpinnerModule,
-    MatProgressBarModule,
-    MatExpansionModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatCheckboxModule,
     FileUploadModule,
-    MatSidenavModule,
-    MatToolbarModule,
+    CKEditorModule,
+    ReactiveFormsModule,
+    MaterialModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

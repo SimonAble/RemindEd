@@ -40,4 +40,12 @@ export class CourseService {
       })
   }
 
+  public followCourse(courseId: number) {
+    return this.http.put(this.baseUrl + 'FollowCourse/' + this.activeUserId, courseId);
+  }
+
+  public unfollowCourse(courseId: number) {
+    return this.http.put(this.baseUrl + 'UnfollowCourse/' + this.activeUserId, courseId);
+  }
+
 }

@@ -107,6 +107,7 @@ export class CreateLectureLayoutComponent implements OnInit {
           }, 600);
         },
         error => {
+          console.log(error);
           this.materialService.openSnackBar('Error saving course: ' + error, SnackBarStateClass.Error);
         });
     }

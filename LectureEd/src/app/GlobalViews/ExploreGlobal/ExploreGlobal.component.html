@@ -3,14 +3,26 @@
     <div class="course p-2 col-4" *ngFor="let course of courses; let i = index">
       <div class="course_content h-100">
         <img class="course_img" src="https://picsum.photos/1920/1080?random={{i}}" alt="">
+        <mat-icon *ngIf="!course.courseFollowed" mat-button class="follow_course" mat-icon-button aria-hidden="false" aria-label="Follow Course" (click)="followCourse(course.courseID)">star_border</mat-icon>
+        <mat-icon *ngIf="course.courseFollowed" mat-button class="follow_course" mat-icon-button aria-hidden="false" aria-label="Follow Course" (click)="unfollowCourse(course.courseID)">grade</mat-icon>
+        <mat-icon mat-button [matMenuTriggerFor]="menu" class="course_settings" mat-icon-button [matMenuTriggerFor]="menu" aria-hidden="false" aria-label="Course Settings" >more_vert</mat-icon>
+        <!-- #enddocregion mat-menu-trigger-for -->
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="viewCourse(course.courseID)"><mat-icon class="menu_icon">preview</mat-icon>View Course</button>
+          <button mat-menu-item (click)="followCourse(course.courseID)"><mat-icon class="menu_icon">star_border</mat-icon>Take Course</button>
+          <button mat-menu-item><mat-icon class="menu_icon">share</mat-icon>Share Course</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item disabled><mat-icon class="menu_icon">timelapse</mat-icon>Last Upated On: {{course.lastUpdatedDate | date}}</button>
+          <button mat-menu-item disabled><mat-icon class="menu_icon">timer</mat-icon>Created On: {{course.createdDate | date}}</button>
+        </mat-menu>
         <div (click)="navigateToCourse(course.courseID)">
           <p *ngIf="!course.courseTitle" class="course_title pt-2">No Title</p>
           <p *ngIf="course.courseTitle" class="course_title pt-2">{{course.courseTitle}}</p>
           <p class="course_creator">Course Creator: {{course.courseID}}</p>
-          <div class="mt-3 course_progress">
+          <!-- <div class="mt-3 course_progress">
             <mat-progress-bar mode="determinate" value="20"></mat-progress-bar>
             <p class="percent_complete pt-2">20% Completed</p>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

@@ -9,8 +9,15 @@ export class CourseModel {
   lectures: Lecture[];
   createdDate: Date;
   lastUpdatedDate: Date;
+  courseFollowers: CourseFollower[];
+  courseFollowed: boolean;
 
   constructor() {
     this.lectures = [];
   }
+}
+
+export class CourseFollower {
+  courseId: number;
+  userId: number;
 }
