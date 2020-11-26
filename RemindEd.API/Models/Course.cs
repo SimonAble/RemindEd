@@ -8,8 +8,10 @@ namespace RemindEd.API.Models
         public int CourseID { get; set; }
         public int UserID { get; set; }
         public string CourseTitle { get; set; }
+        public string CourseDescription { get; set; }
         public virtual ICollection<Lecture> Lectures { get; set; }
         public IList<CourseFollower> CourseFollowers { get; set; }
+        public CourseUserDetails CourseUserDetails { get; set; }
         public DateTime CreatedDate { get; set; }
         public int CreatedByID { get; set; }
         public DateTime LastUpdatedDate { get; set; }

@@ -66,6 +66,11 @@ import { VideoEditorComponent } from './CoreComponents/VideoEditor/VideoEditor.c
 import { ExploreGlobalComponent } from './GlobalViews/ExploreGlobal/ExploreGlobal.component';
 import { MaterialModule } from './material.module';
 import { OverviewComponent } from './InternalViews/Dashboard/Overview/Overview.component';
+import { PhotoUploadModalComponent } from './CoreComponents/PhotoUploadModal/PhotoUploadModal.component';
+import { CourseCardComponent } from './CoreComponents/CourseCard/CourseCard.component';
+import { CoLabCarouselComponent } from './CoreComponents/CoLabCarousel/CoLabCarousel.component';
+import { CourseCardPlaceholderComponent } from './CoreComponents/CourseCardPlaceholder/CourseCardPlaceholder.component';
+import { ArticleCardComponent } from './CoreComponents/ArticleCard/ArticleCard.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -107,7 +112,12 @@ export function tokenGetter() {
     ConfirmationModalComponent,
     VideoEditorComponent,
     ExploreGlobalComponent,
-    OverviewComponent
+    OverviewComponent,
+    PhotoUploadModalComponent,
+    CourseCardComponent,
+    CoLabCarouselComponent,
+    CourseCardPlaceholderComponent,
+    ArticleCardComponent
   ],
   imports: [
     BrowserModule,
@@ -131,7 +141,8 @@ export function tokenGetter() {
     LoginModalComponent,
     RegistrationModalComponent,
     LearningModuleModalComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    PhotoUploadModalComponent
   ],
   providers: [
     Title,

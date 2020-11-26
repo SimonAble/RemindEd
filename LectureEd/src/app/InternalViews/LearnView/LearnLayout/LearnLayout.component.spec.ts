@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { CreateLectureLayoutComponent } from './CreateLectureLayout.component';
+import { LearnLayoutComponent } from './LearnLayout.component';
 
-describe('CreateLectureLayoutComponent', () => {
-  let component: CreateLectureLayoutComponent;
-  let fixture: ComponentFixture<CreateLectureLayoutComponent>;
+describe('LearnLayoutComponent', () => {
+  let component: LearnLayoutComponent;
+  let fixture: ComponentFixture<LearnLayoutComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateLectureLayoutComponent ]
+      declarations: [ LearnLayoutComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateLectureLayoutComponent);
+    fixture = TestBed.createComponent(LearnLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

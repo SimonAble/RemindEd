@@ -6,9 +6,8 @@
     <ckeditor
     #contentEditor
     [editor]="ContentEditor"
-    [config]= ckConfig
+    [config]= "ckConfig"
     data = {{activeTopic.topicContents}}
-    class="ckContent"
     (change)="syncConceptContent()"
     [disabled]="isReadOnly">
   </ckeditor>
@@ -17,7 +16,7 @@
 
 <!-- Article -->
 <div class="editorContainer" *ngIf="activeTopic.topicTypeCode === topicType.Article">
-  <ckeditor
+  <!-- <ckeditor
     #titleEditor
     [editor]="TitleEditor"
     [config]="{ placeholder:'Title'}"
@@ -25,15 +24,16 @@
     class="ckTitle"
     (change)="syncTopicContent()"
     [disabled]="isReadOnly">
-  </ckeditor>
+  </ckeditor> -->
   <ckeditor
     #contentEditor
     [editor]="ContentEditor"
-    [config]="{ placeholder:'You can talk about the subject more here...'}"
+    [config]="ckConfig"
     data = "{{activeTopic.topicContents}}"
     class="ckContent"
     (change)="syncTopicContent()"
-    [disabled]="isReadOnly">
+    [disabled]="isReadOnly"
+    (ready)="onReady($event)">
   </ckeditor>
 </div>
 

@@ -1,3 +1,5 @@
+import { Photo } from '../CoreComponents/PhotoEditor/Photo.model';
+
 export class User {
   id: number;
   username: string;
@@ -7,6 +9,7 @@ export class User {
   professionalTitle: string;
   professionalDescription: string;
   language: string;
+  photos: Photo[];
   profilePhotoUrl: string;
   backgroundPhotoUrl: string;
   twitterLink: string;

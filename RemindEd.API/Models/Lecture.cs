@@ -12,6 +12,7 @@ namespace RemindEd.API.Models
         public bool? LectureCompleted { get; set; }
         public bool? LectureLocked { get; set; }
         public virtual ICollection<Topic> Topics { get; set; }
+        public CourseLectureDetails CourseLectureDetails { get; set; }
         public DateTime CreatedDate { get; set; }
         public int CreatedByID { get; set; }
         public DateTime LastUpdatedDate{ get; set; }

@@ -16,11 +16,64 @@ namespace RemindEd.API.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.0.0");
 
+            modelBuilder.Entity("RemindEd.API.Models.Article", b =>
+                {
+                    b.Property<int>("ArticleID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ArticleContents")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ArticleDescription")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ArticleTitle")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("CreatedByID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("LastUpdatedByID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("LastUpdatedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ArticleID");
+
+                    b.ToTable("Article");
+                });
+
+            modelBuilder.Entity("RemindEd.API.Models.ArticleFollower", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ArticleId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("UserId", "ArticleId");
+
+                    b.HasIndex("ArticleId");
+
+                    b.ToTable("ArticleFollower");
+                });
+
             modelBuilder.Entity("RemindEd.API.Models.Course", b =>
                 {
                     b.Property<int>("CourseID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("CourseDescription")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CourseTitle")
                         .HasColumnType("TEXT");
@@ -58,6 +111,84 @@ namespace RemindEd.API.Migrations
                     b.HasIndex("CourseId");
 
                     b.ToTable("CourseFollower");
+                });
+
+            modelBuilder.Entity("RemindEd.API.Models.CourseLectureDetails", b =>
+                {
+                    b.Property<int>("CourseLectureDetailsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CreatedByID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsGraded")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("LastUpdatedByID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("LastUpdatedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("LectureGrade")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("LectureID")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("CourseLectureDetailsId");
+
+                    b.HasIndex("LectureID")
+                        .IsUnique();
+
+                    b.ToTable("CourseLectureDetails");
+                });
+
+            modelBuilder.Entity("RemindEd.API.Models.CourseUserDetails", b =>
+                {
+                    b.Property<int>("CourseUserDetailsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CreatedByID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("LastUpdatedByID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("LastUpdatedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("LastViewedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("OverallGrade")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Progress")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("CourseUserDetailsId");
+
+                    b.HasIndex("CourseId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CourseUserDetails");
                 });
 
             modelBuilder.Entity("RemindEd.API.Models.Lecture", b =>
@@ -299,6 +430,21 @@ namespace RemindEd.API.Migrations
                     b.ToTable("Values");
                 });
 
+            modelBuilder.Entity("RemindEd.API.Models.ArticleFollower", b =>
+                {
+                    b.HasOne("RemindEd.API.Models.Article", "Article")
+                        .WithMany("ArticleFollowers")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RemindEd.API.Models.User", "User")
+                        .WithMany("ArticleFollowers")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("RemindEd.API.Models.CourseFollower", b =>
                 {
                     b.HasOne("RemindEd.API.Models.Course", "Course")
@@ -309,6 +455,30 @@ namespace RemindEd.API.Migrations
 
                     b.HasOne("RemindEd.API.Models.User", "User")
                         .WithMany("CourseFollowers")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RemindEd.API.Models.CourseLectureDetails", b =>
+                {
+                    b.HasOne("RemindEd.API.Models.Lecture", "Lecture")
+                        .WithOne("CourseLectureDetails")
+                        .HasForeignKey("RemindEd.API.Models.CourseLectureDetails", "LectureID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RemindEd.API.Models.CourseUserDetails", b =>
+                {
+                    b.HasOne("RemindEd.API.Models.Course", "Course")
+                        .WithOne("CourseUserDetails")
+                        .HasForeignKey("RemindEd.API.Models.CourseUserDetails", "CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RemindEd.API.Models.User", "User")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

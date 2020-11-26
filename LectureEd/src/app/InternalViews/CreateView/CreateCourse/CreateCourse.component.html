@@ -1,13 +1,22 @@
 <div class="selectionContainer">
 
   <div class="cardContainer" id="article" (click)="navigateToArticleCreation()">
-    <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">article</mat-icon>
-    <p class="cardText">Create Article</p>
-    <p class="subtext">Write a standalone article to share knowledge on a specific subject.</p>
+    <div class="row p-0 m-0">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">article</mat-icon>
+    </div>
+    <div class="row">
+      <p class="cardText w-100">Create Article</p>
+      <p class="subtext">Write a standalone article to share knowledge on a specific subject.</p>
+    </div>
   </div>
   <div class="cardContainer" id="course" (click)="navigateToCourseCreation()">
-    <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">menu_book</mat-icon>
-    <p class="cardText">Create Course</p>
-    <p class="subtext">Develop a comprehensive course with multiple lectures and subjects.</p>
+
+    <div class="row p-0 m-0">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" class="cardIcon">menu_book</mat-icon>
+    </div>
+    <div class="row p-0 m-0">
+      <p class="cardText w-100">Create Course</p>
+      <p class="subtext">Develop a comprehensive course with multiple lectures and subjects.</p>
+    </div>
   </div>
 </div>

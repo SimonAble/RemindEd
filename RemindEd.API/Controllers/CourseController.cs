@@ -11,8 +11,6 @@ using RemindEd.API.Data;
 using RemindEd.API.DTO;
 using RemindEd.API.Models;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace RemindEd.API.Controllers
 {
     [Authorize]
@@ -45,10 +43,6 @@ namespace RemindEd.API.Controllers
         [HttpPut("UpdateCourse")]
         public async Task<IActionResult> UpdateCourse(Course course)
         {
-            Console.WriteLine("\n\n<<--------------------------->>\n\n");
-            string output = JsonConvert.SerializeObject(course);
-            Console.WriteLine(output);
-            Console.WriteLine("\n\n<<--------------------------->>\n\n");
             var savedCourse = this.courseRepository.UpdateCourse(course);
             Console.WriteLine($"Updating Course with Id {course.CourseID}");
             if(await savedCourse != null) 
@@ -72,6 +66,46 @@ namespace RemindEd.API.Controllers
         [HttpGet("GetCourses/{userId}")]
         public async Task<IActionResult> GetCoursesForUser(int userId) {
             var coursesFromRepo = await this.courseRepository.GetCoursesByUserId(userId);
+
+            if(coursesFromRepo != null) 
+                return Ok(coursesFromRepo);
+
+            throw new Exception($"Could not retrieve courses with id: {userId}...");
+        }
+
+        [HttpGet("GetCourses/RecentlyViewed/{userId}/{recordsReturned}")]
+        public async Task<IActionResult> GetRecentlyViewedCourses(int userId, int recordsReturned) {
+            var coursesFromRepo = await this.courseRepository.GetRecentlyViewed(userId, recordsReturned);
+
+            if(coursesFromRepo != null) 
+                return Ok(coursesFromRepo);
+
+            throw new Exception($"Could not retrieve courses with id: {userId}...");
+        }
+
+        [HttpGet("GetCourses/RecentlyCreated/{userId}/{recordsReturned}")]
+        public async Task<IActionResult> GetRecentlyCreatedCourses(int userId, int recordsReturned) {
+            var coursesFromRepo = await this.courseRepository.GetRecentlyCreated(userId, recordsReturned);
+
+            if(coursesFromRepo != null) 
+                return Ok(coursesFromRepo);
+
+            throw new Exception($"Could not retrieve courses with id: {userId}...");
+        }
+
+        [HttpGet("GetCourses/ForLearning/{userId}")]
+        public async Task<IActionResult> GetLearningForUser(int userId) {
+            var coursesFromRepo = await this.courseRepository.GetLearningCoursesByUserId(userId);
+
+            if(coursesFromRepo != null) 
+                return Ok(coursesFromRepo);
+
+            throw new Exception($"Could not retrieve courses with id: {userId}...");
+        }
+
+        [HttpGet("GetCourses/ForTeaching/{userId}")]
+        public async Task<IActionResult> GetTeachingsForUser(int userId) {
+            var coursesFromRepo = await this.courseRepository.GetTeachingCoursesByUserId(userId);
 
             if(coursesFromRepo != null) 
                 return Ok(coursesFromRepo);

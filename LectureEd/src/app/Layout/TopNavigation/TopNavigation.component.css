@@ -14,3 +14,23 @@
 .colab-text {
   font-size: 1.4em;
 }
+
+.searchContainer {
+  display: flex;
+  align-items: center
+}
+
+.searchInput{
+  height:24px !important;
+  width: 20rem;
+  border:1px solid white;
+  margin-left:0.5em;
+}
+
+
+.searchButton {
+  height: 24px !important;
+  padding: 0px 10px !important;
+  border: 1px solid var(--lighter-grey);
+  background-color: var(--lighter-grey);
+}

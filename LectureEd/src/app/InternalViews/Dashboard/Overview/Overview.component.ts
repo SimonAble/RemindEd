@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material';
 import { Title } from '@angular/platform-browser';
 import { CourseService } from 'src/app/CoreServices/Course.service';
 import { Router } from '@angular/router';
-import { CourseModel } from '../../CreateView/CreateLectureLayout/Course.model';
+import { CourseModel, CourseInfoModel } from '../../../CoreModels/Course.model';
 
 @Component({
   selector: 'app-Overview',
@@ -13,12 +13,18 @@ import { CourseModel } from '../../CreateView/CreateLectureLayout/Course.model';
 })
 export class OverviewComponent implements OnInit {
 
-  public courses: CourseModel[] = [];
+  public courses: CourseInfoModel[] = [];
+  public recentlyViewed: CourseInfoModel[] = [];
+  public recentlyCreated: CourseInfoModel[] = [];
+
+  public recentlyCreatedPlaceholder: string = "Your recently created courses will show up here.."
+  public recentlyViewedPlaceholder: string = "Your recently viewed courses will show up here.."
 
   constructor(private courseService: CourseService, private router:Router, public dialog: MatDialog, private titleService: Title) { }
 
   ngOnInit() {
-    this.getCoursesForUser();
+    this.getRecentlyCreated();
+    this.getRecentlyViewed();
     this.titleService.setTitle("CoLab | Dashboard");
   }
 
@@ -41,11 +47,25 @@ export class OverviewComponent implements OnInit {
     });
   }
 
-  getCoursesForUser() {
-    this.courseService.getCoursesByUserId()
+  // getCoursesForUser() {
+  //   this.courseService.getCoursesByUserId()
+  //     .subscribe( res => {
+  //       this.courses = res;
+  //       console.log(JSON.stringify(this.courses));
+  //     })
+  // }
+
+  getRecentlyViewed() {
+    this.courseService.getRecentlyViewed(10)
       .subscribe( res => {
-        this.courses = res;
-        console.log(JSON.stringify(this.courses));
+        this.recentlyViewed = res;
+      })
+  }
+
+  getRecentlyCreated() {
+    this.courseService.getRecentlyCreated(10)
+      .subscribe( res => {
+        this.recentlyCreated = res;
       })
   }
 

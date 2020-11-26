@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using RemindEd.API.DTO;
 using RemindEd.API.Models;
 
 namespace RemindEd.API.Data
@@ -12,9 +13,13 @@ namespace RemindEd.API.Data
         Task<bool> SaveAll();
         Task<Course> SaveCourse(Course course);
         Task<Course> UpdateCourse(Course course);
-        Task<IEnumerable<Course>> GetCourses();
+        Task<IEnumerable<CourseInfoDTO>> GetCourses();
         Task<Course> GetCourseByCourseId(int id);
-        Task<IEnumerable<Course>> GetCoursesByUserId(int userId);
+        Task<IEnumerable<CourseInfoDTO>> GetCoursesByUserId(int userId);
+        Task<IEnumerable<CourseInfoDTO>> GetLearningCoursesByUserId(int userId);
+        Task<IEnumerable<CourseInfoDTO>> GetTeachingCoursesByUserId(int userId);
+        Task<IEnumerable<CourseInfoDTO>> GetRecentlyViewed(int userId, int recordsReturned);
+        Task<IEnumerable<CourseInfoDTO>> GetRecentlyCreated(int userId, int recordsReturned);
         void DeleteCourseById(int courseId);
         void FollowCourse(int userId, int courseId);
         void UnfollowCourse(int userId, int courseId);

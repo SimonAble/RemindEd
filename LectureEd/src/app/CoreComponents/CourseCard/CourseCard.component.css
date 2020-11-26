@@ -1,0 +1,122 @@
+
+.course_container {
+  /* background-color: var(--star-white); */
+  max-height: 430px;
+  border-radius: 4px;
+  transition: 0.4s;
+  overflow: scroll;
+  z-index: 10;
+  min-width:300px;
+  display: inline-block;
+}
+
+.article_container {
+  /* background-color: var(--star-white); */
+  height: 300px;
+  border-radius: 4px;
+  box-shadow: var(--float-shadow);
+  transition: 0.4s;
+  overflow: scroll;
+}
+
+.container_heading {
+  color:var(--dark-blue);
+  width:100%;
+  /* border-bottom: 1px solid var(--light-grey); */
+  /* padding: 10px; */
+  /* background-color: var(--star-white); */
+  position: sticky;
+  top: 0;
+  /* box-shadow: var(--bottom-shadow); */
+  border-radius: 2px;
+  font-size: 22px;
+}
+
+.course {
+  width:100%;
+  min-height:220px;
+  padding: 10px;
+  height:100px;
+  padding:6px;
+}
+
+.course_content {
+  background-color: var(--star-white);
+  border-radius: 2px;
+  box-shadow: var(--float-shadow);
+  transition: 0.4s;
+  cursor: pointer;
+  width:100%;
+}
+
+.course_content:hover {
+  box-shadow: var(--hover-shadow);
+}
+
+.course_img {
+  width:100%;
+  object-fit: cover;
+  height:80px;
+  cursor:default;
+}
+
+.course_title {
+  padding:0px 10px;
+  color: var(--medium-blue);
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.course_creator {
+  padding:0px 10px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.course_progress {
+  padding:0px 10px;
+  margin:0 auto;
+}
+
+.course_details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.percent_complete {
+  font-size: 14px;
+  display: inline;
+}
+
+.overall_grade {
+  font-size: 14px;
+  display: inline;
+}
+
+.course_settings {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: white;
+  background-color: var(--dark-blue);
+  border-radius: 4px;
+  width: 10p;
+  transition: 0.4s;
+}
+
+.course_settings:hover {
+  background-color: var(--lab-accent);
+}
+
+.menu_icon {
+  vertical-align: middle;
+}
+
+.date_info {
+  color:var(--light-grey);
+  font-size: 12px;
+}
+
+.courseDetailItem {
+  font-size: 14px;
+}

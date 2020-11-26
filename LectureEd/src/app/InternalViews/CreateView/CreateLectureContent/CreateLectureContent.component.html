@@ -102,7 +102,7 @@
         </div>
         <!-- Main Viewers -->
         <div *ngIf="activeTopic && activeLecture.topics.length > 0" class="px-5 pt-3">
-          <div [ngSwitch]="activeTopic.topicTypeCode" class="px-5">
+          <div [ngSwitch]="activeTopic.topicTypeCode" class="px-4">
             <div *ngSwitchCase="topicType.Article">
               <app-CoLabEditor
               #editor

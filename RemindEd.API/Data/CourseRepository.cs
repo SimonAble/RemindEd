@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using RemindEd.API.DTO;
 using RemindEd.API.Models;
 
 namespace RemindEd.API.Data
@@ -56,10 +57,26 @@ namespace RemindEd.API.Data
             return course;
         }
 
-        public async Task<IEnumerable<Course>> GetCourses()
+        public async Task<IEnumerable<CourseInfoDTO>> GetCourses()
         {
             var course = await context.Courses
-            .Include(cf => cf.CourseFollowers)
+                .Include(cf => cf.CourseFollowers)
+                .Join(context.Users,
+                    course => course.UserID,
+                    user => user.Id,
+                    (course,user) => new CourseInfoDTO() {
+                        CourseID = course.CourseID,
+                        UserID = course.UserID,
+                        CourseTitle = course.CourseTitle,
+                        OverallGrade = course.CourseUserDetails.OverallGrade,
+                        CourseDescription = course.CourseDescription,
+                        Progress = course.CourseUserDetails.Progress,
+                        CourseFollowers = course.CourseFollowers,
+                        CreatorName = $"{user.FirstName} {user.LastName}",
+                        CreatedDate = course.CreatedDate,
+                        LastUpdatedDate = course.LastUpdatedDate
+                    })
+            
             .ToListAsync();
 
             if (course == null)
@@ -70,9 +87,25 @@ namespace RemindEd.API.Data
             return course;
         }
 
-        public async Task<IEnumerable<Course>> GetCoursesByUserId(int userId)
+        public async Task<IEnumerable<CourseInfoDTO>> GetCoursesByUserId(int userId)
         {
-            var courses = await context.Courses.Where(c => c.CreatedByID == userId).ToListAsync();
+            var courses = await context.Courses.Where(c => c.CreatedByID == userId)
+                    .Join(context.Users.Where(u => u.Id == userId),
+                        course => course.UserID,
+                        user => user.Id,
+                        (course,user) => new CourseInfoDTO() {
+                            CourseID = course.CourseID,
+                            UserID = course.UserID,
+                            CourseTitle = course.CourseTitle,
+                            CourseDescription = course.CourseDescription,
+                            OverallGrade = course.CourseUserDetails.OverallGrade,
+                            Progress = course.CourseUserDetails.Progress,
+                            CourseFollowers = course.CourseFollowers,
+                            CreatorName = $"{user.FirstName} {user.LastName}",
+                            CreatedDate = course.CreatedDate,
+                            LastUpdatedDate = course.LastUpdatedDate
+                        })
+                    .ToListAsync();
 
             if(courses == null) {
                 throw new Exception("Courses not found");
@@ -105,7 +138,33 @@ namespace RemindEd.API.Data
             course.CreatedDate = DateTime.Now;
             course.LastUpdatedDate = DateTime.Now;
 
+            course.CourseUserDetails = new CourseUserDetails {
+                Progress = 0,
+                OverallGrade = 0,
+                CourseId = course.CourseID,
+                UserId = course.UserID,
+                CreatedByID = course.UserID,
+                LastUpdatedByID = course.UserID,
+                CreatedDate = DateTime.Now,
+                LastUpdatedDate = DateTime.Now
+            };
+
+            if(course.Lectures.Count > 0) {
+                foreach (var lecture in course.Lectures)
+                {
+                    lecture.CourseLectureDetails = new CourseLectureDetails {
+                        IsGraded = false,
+                        LectureGrade = 100,
+                        CreatedByID = course.UserID,
+                        LastUpdatedByID = course.UserID,
+                        CreatedDate = DateTime.Now,
+                        LastUpdatedDate = DateTime.Now
+                    };
+                }
+            }
+
             this.context.Courses.Add(course);
+
             await this.context.SaveChangesAsync();
 
             return course;
@@ -178,6 +237,119 @@ namespace RemindEd.API.Data
 
             this.context.CourseFollower.Remove(unfollowedCourse);
             this.context.SaveChanges();
+        }
+
+        public async Task<IEnumerable<CourseInfoDTO>> GetLearningCoursesByUserId(int userId)
+        {
+            var courses = await context.Courses
+                .Join(context.Users,
+                    course => course.UserID,
+                    user => user.Id,
+                    (course,user) => new CourseInfoDTO() {
+                        CourseID = course.CourseID,
+                        UserID = course.UserID,
+                        CourseTitle = course.CourseTitle,
+                        OverallGrade = course.CourseUserDetails.OverallGrade,
+                        CourseDescription = course.CourseDescription,
+                        Progress = course.CourseUserDetails.Progress,
+                        CourseFollowers = course.CourseFollowers,
+                        CreatorName = $"{user.FirstName} {user.LastName}",
+                        CreatedDate = course.CreatedDate,
+                        LastUpdatedDate = course.LastUpdatedDate
+                    })
+                    //Todo: add ordering by course details last viewed
+                    .Where(c => c.CourseFollowers
+                    .Any(cf => cf.UserId == userId))
+                .ToListAsync();
+
+            if(courses == null) {
+                throw new Exception("Courses not found");
+            }
+
+            return courses;
+        }
+
+        public async Task<IEnumerable<CourseInfoDTO>> GetTeachingCoursesByUserId(int userId)
+        {
+            var courses = await context.Courses.Where(c => c.CreatedByID == userId)
+                    .Join(context.Users.Where(u => u.Id == userId),
+                    course => course.UserID,
+                    user => user.Id,
+                    (course,user) => new CourseInfoDTO() {
+                        CourseID = course.CourseID,
+                        UserID = course.UserID,
+                        CourseTitle = course.CourseTitle,
+                        OverallGrade = course.CourseUserDetails.OverallGrade,
+                        CourseDescription = course.CourseDescription,
+                        Progress = course.CourseUserDetails.Progress,
+                        CourseFollowers = course.CourseFollowers,
+                        CreatorName = $"{user.FirstName} {user.LastName}",
+                        CreatedDate = course.CreatedDate,
+                        LastUpdatedDate = course.LastUpdatedDate
+                    })
+            .ToListAsync();
+
+            if(courses == null) {
+                throw new Exception("Courses not found");
+            }
+
+            return courses;
+        }
+
+        public async Task<IEnumerable<CourseInfoDTO>> GetRecentlyViewed(int userId, int recordsReturned)
+        {
+            var courses = await context.Courses
+                .Join(context.Users.Where(u => u.Id == userId),
+                    course => course.UserID,
+                    user => user.Id,
+                    (course,user) => new CourseInfoDTO() {
+                        CourseID = course.CourseID,
+                        UserID = course.UserID,
+                        CourseTitle = course.CourseTitle,
+                        OverallGrade = course.CourseUserDetails.OverallGrade,
+                        CourseDescription = course.CourseDescription,
+                        Progress = course.CourseUserDetails.Progress,
+                        CourseFollowers = course.CourseFollowers,
+                        CreatorName = $"{user.FirstName} {user.LastName}",
+                        CreatedDate = course.CreatedDate,
+                        LastUpdatedDate = course.LastUpdatedDate
+                    })
+                    .OrderByDescending(c => c.LastUpdatedDate)
+                    .Take(recordsReturned)
+                    .ToListAsync();
+
+            if(courses == null) {
+                throw new Exception("Courses not found");
+            }
+
+            return courses;
+        }
+
+        public async Task<IEnumerable<CourseInfoDTO>> GetRecentlyCreated(int userId, int recordsReturned)
+        {
+            var courses = await context.Courses
+                .Join(context.Users.Where(u => u.Id == userId),
+                    course => course.UserID,
+                    user => user.Id,
+                    (course,user) => new CourseInfoDTO() {
+                        CourseID = course.CourseID,
+                        UserID = course.UserID,
+                        CourseTitle = course.CourseTitle,
+                        CourseDescription = course.CourseDescription,
+                        CourseFollowers = course.CourseFollowers,
+                        CreatorName = $"{user.FirstName} {user.LastName}",
+                        CreatedDate = course.CreatedDate,
+                        LastUpdatedDate = course.LastUpdatedDate
+                    })
+                    .OrderByDescending(c => c.LastUpdatedDate)
+                    .Take(recordsReturned)
+                    .ToListAsync();
+
+            if(courses == null) {
+                throw new Exception("Courses not found");
+            }
+
+            return courses;
         }
     }
 }

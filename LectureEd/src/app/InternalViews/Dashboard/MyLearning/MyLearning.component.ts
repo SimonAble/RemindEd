@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, LeftMenuModel } from 'src/app/CoreComponents/LeftMenu/LeftMenuModel';
-import { CourseModel } from '../../CreateView/CreateLectureLayout/Course.model';
+import { CourseModel, CourseInfoModel } from '../../../CoreModels/Course.model';
 import { CourseService } from 'src/app/CoreServices/Course.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { Title } from '@angular/platform-browser';
 import { ConfirmationModalComponent } from 'src/app/CoreComponents/ConfirmationModal/ConfirmationModal.component';
+import { MaterialService } from 'src/app/CoreServices/Material.service';
+import { SnackBarStateClass } from 'src/app/CoreModels/enum';
 
 @Component({
   selector: 'app-MyLearning',
@@ -15,10 +17,11 @@ import { ConfirmationModalComponent } from 'src/app/CoreComponents/ConfirmationM
 export class MyLearningComponent implements OnInit {
 
   public leftMenuCollapsed: boolean = false;
-  public courses: CourseModel[] = [];
+  public courses: CourseInfoModel[] = [];
   public leftMenuItems: LeftMenuModel = new LeftMenuModel();
+  public placeholder:string = "Your learning will show up here..."
 
-  constructor(private courseService: CourseService, private router:Router, public dialog: MatDialog, private titleService: Title) { }
+  constructor(private courseService: CourseService, private router:Router, public dialog: MatDialog, private titleService: Title, private materialService:MaterialService) { }
 
   ngOnInit() {
     this.getCoursesForUser();
@@ -46,7 +49,7 @@ export class MyLearningComponent implements OnInit {
   }
 
   getCoursesForUser() {
-    this.courseService.getCoursesByUserId()
+    this.courseService.getCoursesForLearning()
       .subscribe( res => {
         this.courses = res;
         console.log(JSON.stringify(this.courses));
@@ -59,7 +62,7 @@ export class MyLearningComponent implements OnInit {
   }
 
   navigateToCourse(courseId:number) {
-    this.router.navigate(['create/course/' + courseId]);
+    this.router.navigate(['learn/course/' + courseId]);
   }
 
   navigateToDashboard() {
@@ -69,14 +72,31 @@ export class MyLearningComponent implements OnInit {
   setLeftMenu() {
     this.leftMenuItems.leftMenuTitle = "Dashboard";
     this.leftMenuItems.menuItems.push(new MenuItem('Overview', false, 'Overview', 'dashboard', true));
-    this.leftMenuItems.menuItems.push(new MenuItem('My Teaching', true, 'My Teaching','post_add', true));
-    this.leftMenuItems.menuItems.push(new MenuItem('My Learning', false, 'My Learning', 'library_books', true));
+    this.leftMenuItems.menuItems.push(new MenuItem('My Teaching', false, 'My Teaching','post_add', true));
+    this.leftMenuItems.menuItems.push(new MenuItem('My Learning', true, 'My Learning', 'library_books', true));
+    this.leftMenuItems.menuItems.push(new MenuItem('Articles', false, 'Articles', 'library_books', true));
     this.leftMenuItems.menuItems.push(new MenuItem('Student Portal', false, 'Look forward to this feature in a future update!', 'assignment_ind', false));
     this.leftMenuItems.menuItems.push(new MenuItem('Grading Portal', false, 'Look forward to this feature in a future update!', 'grade', false));
   }
 
   viewCourse(courseId:number) {
     this.router.navigate(['learn/course/' + courseId])
+  }
+
+  unfollowCourse(courseID: number) {
+    console.log("Unfollowing Course");
+    this.courseService.unfollowCourse(courseID)
+      .subscribe(
+        next => {
+          var followedCourse = this.courses.find(c => c.courseID == courseID);
+
+          followedCourse.courseFollowed = false;
+        // this.router.navigate(['dashboard']);
+        this.materialService.openSnackBar("Course Dropped!")
+      }, error => {
+        console.log("Error: ", error);
+        this.materialService.openSnackBar("Hm, something went wrong when following the course...", SnackBarStateClass.Error)
+      });
   }
 
 }

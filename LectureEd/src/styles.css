@@ -32,10 +32,12 @@
   /* Green */
   --active-green: #5BA28B;
   --lab-accent: rgb(17, 182, 146);
-  --background-green: #97cfba;
+  --background-green: #8be2b2;
 
   /* Yellow */
   --background-yellow: rgb(255, 255, 210);
+  --star-yellow: rgb(243, 194, 31);
+  --star-yellow-text: rgb(209, 149, 20);
 
   /* Purple */
   --light-purple: rgb(188, 178, 238);
@@ -62,6 +64,7 @@
   --blue: rgb(19, 38, 145);
   --purple: rgb(83, 41, 95);
   --grey: rgb(81, 81, 87);
+  --explore: rgb(87, 51, 109);
 
   /* Shadow */
   --shadow: 5px 5px 10px rgb(182, 182, 182);
@@ -74,7 +77,7 @@
   --leftnav-collapsed-width: 6%;
   --leftnav-expanded-width: ;
 
-  --editorFont:'Georgia', serif;
+  --editorFont:'roboto', serif;
 }
 
 /* Base Browser Reset */
@@ -94,11 +97,12 @@ p {
 }
 
 h1 {
-  color: var(--medium-blue) ;
-  font-size: 50px;
+  color: var(--medium-blue);
+  font-size: 36px;
   font-weight: 400;
-  padding-top: 8px;
-  font-family: var(--editorFont) ;
+  padding-top: 0px;
+  padding-bottom: 16px;
+  font-family: var(--editorFont);
 }
 h2 {
   color: var(--light-blue) ;

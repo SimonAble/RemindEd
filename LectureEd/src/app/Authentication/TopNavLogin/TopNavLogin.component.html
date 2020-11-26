@@ -24,7 +24,7 @@
     </div>
 
     <mat-menu #menu="matMenu">
-      <button mat-menu-item disabled *ngIf="this.authenticationService.activeUser.fullName">
+      <button class="menu" mat-menu-item disabled *ngIf="this.authenticationService.activeUser.fullName">
         <mat-icon>insert_emoticon</mat-icon>
         <span>{{this.authenticationService.activeUser.fullName}}</span>
       </button>

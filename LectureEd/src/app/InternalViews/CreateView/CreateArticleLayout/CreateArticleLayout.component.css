@@ -1,15 +1,90 @@
 .content-container {
-  background-color: white;
-  min-height: 100vh;
+  min-height: 80vh;
   min-width: 100%;
 }
 
 .editTopicContent {
-  width:100%;
+  width:80%;
   background-color: white;
   border-radius: 6px;
-  height: 86vh;
+  height: 90vh;
   overflow: hidden;
-  overflow: scroll;
   padding-bottom: 40px;
+  overflow: scroll;
+}
+
+.editorContainer {
+  width:90%;
+  margin: 0px auto;
+}
+
+
+.saveIcon {
+  font-size: 30px;
+  color: var(--medium-blue);
+}
+
+.saveIcon:hover {
+  color:var(--lab-accent);
+}
+
+.save {
+  width: 100%;
+  text-align: end;
+  position: relative;
+  height:0px;
+  top: -60px;
+  right: -20px;
+}
+
+.editorBar {
+  width:100%;
+  margin:0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+  height:70px;
+  background-color: white;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+}
+
+#articleTitle {
+  border-radius: 0;
+  width: 100%;
+  border-bottom: 0;
+  border-top: 0;
+  border-left: 0;
+  border-right: none;
+  text-align: center;
+  font-size: 24px;
+  color: var(--text-grey);
+}
+
+.saveIcon {
+  font-size: 30px;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  color: var(--medium-blue);
+  box-shadow: 0px 0px 4px -1px var(--gray);
+  transition: .2s;
+  padding-top: 7px;
+  padding-left: 1px;
+}
+
+.saveIcon:hover {
+  box-shadow: 0px 0px 12px -1px var(--gray);
+  color: var(--light-blue);
+}
+
+.saveButton {
+  border-bottom: 0;
+  border-radius: 0;
+  border-right: 0;
+  border-left: 0;
 }

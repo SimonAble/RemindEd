@@ -1,27 +1,21 @@
 <div class="ProfileContainer w-75 mx-auto mt-4">
 
-  <ng-container *ngIf="user.profilePhotoUrl">
-    <div id="frame" class="mx-auto" style="background-image: url(../../../../assets/backgroundSample.jpg);">
-      <div class="profileImageContainer">
-        <img id="myImg" src="{{user.profilePhotoUrl}}">
-        <mat-icon class="editPictureButton">edit</mat-icon>
-      </div>
+  <div id="frame" class="mx-auto">
+    <div class="backgroundImageContainer" (click)="openBackgroundPhotoUploadModal()">
+      <img *ngIf="user.backgroundPhotoUrl" class="background" src="{{user.backgroundPhotoUrl}}" alt="">
+      <img *ngIf="!user.backgroundPhotoUrl" class="background" src="https://picsum.photos/1920/1080?random" alt="">
+      <mat-icon class="editBackgroundPictureButton">edit</mat-icon>
     </div>
-  </ng-container>
-
-  <ng-container *ngIf="!user.profilePhotoUrl">
-    <div id="frame" class="mx-auto" style="background-image: url(../../../../assets/backgroundSample.jpg);">
-      <div class="profileImageContainer">
-        <img id="myImg" src="../../../../assets/defaultAvatar.jpg">
-        <mat-icon class="editPictureButton">edit</mat-icon>
-      </div>
+    <div class="profileImageContainer" (click)="openProfilePhotoUploadModal()">
+      <img *ngIf="user.profilePhotoUrl" id="myImg" src="{{user.profilePhotoUrl}}">
+      <img *ngIf="!user.profilePhotoUrl" id="myImg" src="../../../../assets/defaultAvatar.jpg">
+      <mat-icon class="editPictureButton">edit</mat-icon>
     </div>
-  </ng-container>
-
+  </div>
 
  <div class="formContain pb-3">
   <form #heroForm="ngForm" class="profileInput mx-auto">
-    <p class="text-center mt-3">Your Information:</p>
+    <p class="text-center my-3">Your Information:</p>
     <div class="form-group">
       <input type="text"  class="form-control" id="firstname" placeholder="First Name"
              [(ngModel)]="user.firstName" name="firstname"
@@ -69,7 +63,7 @@
 
     <mat-divider class="pb-2"></mat-divider>
 
-    <p class="text-center mt-3">Your Links:</p>
+    <p class="text-center my-3">Your Links:</p>
 
     <div class="form-group">
       <div class="input-group mb-3">

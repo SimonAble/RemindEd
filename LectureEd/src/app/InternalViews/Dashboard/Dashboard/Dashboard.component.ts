@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseModel } from '../../CreateView/CreateLectureLayout/Course.model';
+import { CourseModel } from '../../../CoreModels/Course.model';
 import { CourseService } from 'src/app/CoreServices/Course.service';
 import { Router } from '@angular/router';
 import { LeftMenuModel, MenuItem } from 'src/app/CoreComponents/LeftMenu/LeftMenuModel';
@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   public leftMenuCollapsed: boolean = false;
   public courses: CourseModel[] = [];
   public leftMenuItems: LeftMenuModel = new LeftMenuModel();
-  public activeItemIndex: number;
+  public activeItemIndex: number = 0;
   public dashboardMenu = DashboardMenu;
 
   constructor(private courseService: CourseService, private router:Router, public dialog: MatDialog, private titleService: Title) { }
@@ -63,18 +63,14 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['create/course/' + courseId]);
   }
 
-  navigateToDashboard() {
-
-  }
-
   setLeftMenu() {
     this.leftMenuItems.leftMenuTitle = "Dashboard";
     this.leftMenuItems.menuItems.push(new MenuItem('Overview', true, 'Overview', 'dashboard', true));
     this.leftMenuItems.menuItems.push(new MenuItem('My Teaching', false, 'My Teaching','post_add', true));
     this.leftMenuItems.menuItems.push(new MenuItem('My Learning', false, 'My Learning', 'library_books', true));
+    this.leftMenuItems.menuItems.push(new MenuItem('Articles', false, 'Articles', 'library_books', true));
     this.leftMenuItems.menuItems.push(new MenuItem('Student Portal', false, 'Look forward to this feature in a future update!', 'assignment_ind', false));
     this.leftMenuItems.menuItems.push(new MenuItem('Grading Portal', false, 'Look forward to this feature in a future update!', 'grade', false));
-    this.activeItemIndex = 0;
   }
 
   changeLeftMenuTab(index: number) {
@@ -100,6 +96,7 @@ export enum DashboardMenu {
   Overview,
   MyTeaching,
   MyLearning,
+  Articles,
   StudentPortal,
   GradingPortal
 }

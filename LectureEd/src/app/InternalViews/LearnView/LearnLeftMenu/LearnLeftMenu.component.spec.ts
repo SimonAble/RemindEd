@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { CreateLeftMenuComponent } from './CreateLeftMenu.component';
+import { LearnLeftMenuComponent } from './LearnLeftMenu.component';
 
-describe('CreateLeftMenuComponent', () => {
-  let component: CreateLeftMenuComponent;
-  let fixture: ComponentFixture<CreateLeftMenuComponent>;
+describe('LearnLeftMenuComponent', () => {
+  let component: LearnLeftMenuComponent;
+  let fixture: ComponentFixture<LearnLeftMenuComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateLeftMenuComponent ]
+      declarations: [ LearnLeftMenuComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateLeftMenuComponent);
+    fixture = TestBed.createComponent(LearnLeftMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

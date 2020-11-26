@@ -80,7 +80,7 @@ export class TopNavLoginComponent implements OnInit {
 
   openLoginModal(): void {
     const dialogRef = this.dialog.open(LoginModalComponent, {
-      width: '400px'
+      width: '500px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -95,7 +95,7 @@ export class TopNavLoginComponent implements OnInit {
 
   openRegistrationModal() {
     const dialogRef = this.dialog.open(RegistrationModalComponent, {
-      width: '400px'
+      width: '500px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

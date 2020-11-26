@@ -70,7 +70,6 @@ namespace RemindEd.API.Controllers
             //Pull user from db
             var dbUser = await this.authRepository.Login(userToLogin.Username.ToLower(), userToLogin.Password);
 
-            Console.WriteLine();
             //Check if user exists
             if (dbUser == null)
             {
@@ -103,7 +102,7 @@ namespace RemindEd.API.Controllers
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddDays(1),
+                Expires = DateTime.Now.AddDays(180),
                 SigningCredentials = creds
             };
 

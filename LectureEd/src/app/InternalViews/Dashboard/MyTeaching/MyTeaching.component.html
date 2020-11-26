@@ -1,3 +1,13 @@
-<p>
-  MyTeaching works!
-</p>
+<!--Dashboard Courses-->
+<div class="media_container row p-0 mx-auto mt-2">
+  <p class="m-2 container_heading">My Teaching</p>
+
+  <div *ngIf="courses.length == 0" class="col-4">
+    <app-CourseCardPlaceholder [placeholderMessage]="placeholder"></app-CourseCardPlaceholder>
+  </div>
+  <div class="course_container m-0 row justify-content-start">
+    <div class="course p-2 col-4" *ngFor="let course of courses; let i = index">
+      <app-CourseCard [course]="course"></app-CourseCard>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,7 @@ export class CourseModel {
   // leftMenu: CreateLeftMenuModel;
   courseID: number;
   courseTitle: string;
+  courseDescription: string;
   userId: number;
   lectures: Lecture[];
   createdDate: Date;

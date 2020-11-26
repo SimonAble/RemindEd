@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CourseModel } from '../InternalViews/CreateView/CreateLectureLayout/Course.model';
+import { CourseModel } from '../CoreModels/Course.model';
 import { CreateLeftMenuModel, Lecture } from '../InternalViews/CreateView/CreateLeftMenu/CreateLeftMenu.model';
 import { LectureNavigationModel } from '../InternalViews/CreateView/CreateLectureContent/CreateLectureContent.model';
 import { HttpClient } from '@angular/common/http';

@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { CourseModel } from 'src/app/InternalViews/LearnView/LearnLayout/Course.model';
 import { MaterialService } from 'src/app/CoreServices/Material.service';
 import { SnackBarStateClass } from 'src/app/CoreModels/enum';
+import { CourseInfoModel } from 'src/app/CoreModels/Course.model';
 
 @Component({
   selector: 'app-ExploreGlobal',
@@ -13,7 +14,7 @@ import { SnackBarStateClass } from 'src/app/CoreModels/enum';
 })
 export class ExploreGlobalComponent implements OnInit {
 
-  public courses: CourseModel[] = [];
+  public courses: CourseInfoModel[] = [];
 
   constructor(private courseService: CourseService, private router:Router, private titleService: Title, private materialService: MaterialService) { }
 

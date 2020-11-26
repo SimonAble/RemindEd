@@ -1,0 +1,14 @@
+<h1 mat-dialog-title class="text-center photoHeader m-0 pt-0 pb-2">{{data.title}}</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content class="my-2">
+  <app-PhotoEditor
+  [currentPhotoUrl]="data.currentPhotoUrl"
+  [photoApiSignature]="data.photoApiSignature"
+  (emitPhotoUploadedUrl)="updatePhotoUrl($event)"
+  ></app-PhotoEditor>
+</div>
+
+<div mat-dialog-actions class="text-center mb-1 mt-4 dialogActions">
+  <button mat-stroked-button color="primary" class="mx-0" (click)="cancel()">Cancel</button>
+  <button mat-stroked-button color="primary" class="mx-0" (click)="confirm()">Confirm</button>
+</div>

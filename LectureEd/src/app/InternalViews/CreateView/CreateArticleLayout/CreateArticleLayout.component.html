@@ -1,10 +1,34 @@
 
 <div class="content-container">
-  <div class="editTopicContent mx-auto px-2">
-    <app-CoLabEditor
-    #editor
-    [activeTopic]="article"
-    (emitSetTopicContents)="setActiveTopicContents($event)">
-  </app-CoLabEditor>
+  <div class="editTopicContent mx-auto">
+    <div class="editorBar mb-3">
+      <button (click)="saveArticle(articleTopic.topicContents)" class="btn px-2 saveButton" type="button" *ngIf="!articleService.saving">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" class="add-new-topic-icon saveIcon inline-icon--round"
+          matTooltip="Publish"
+          matTooltipClass="custom-tooltip-blue"
+          matTooltipPosition="below">add_circle
+        </mat-icon>
+      </button>
+      <button class="btn px-2 saveButton" type="button" *ngIf="articleService.saving">
+        <mat-spinner [diameter]="46" class="saveIcon"></mat-spinner>
+      </button>
+      <button (click)="saveArticle(articleTopic.topicContents)" class="btn px-2 saveButton" type="button" *ngIf="!articleService.saving">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" class="add-new-topic-icon saveIcon inline-icon--round"
+          matTooltip="Save"
+          matTooltipClass="custom-tooltip-blue"
+          matTooltipPosition="below">save
+        </mat-icon>
+      </button>
+      <button class="btn px-2 saveButton" type="button" *ngIf="articleService.saving">
+        <mat-spinner [diameter]="46" class="saveIcon"></mat-spinner>
+      </button>
+      <input type="text" id="articleTitle" placeholder="Article Title" [(ngModel)]="article.articleTitle">
+    </div>
+    <div class="editorContainer" *ngIf="articleTopic.topicContents || articleId == null">
+      <app-CoLabEditor
+      #editor
+      [activeTopic]="articleTopic">
+    </app-CoLabEditor>
+    </div>
   </div>
 </div>

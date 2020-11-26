@@ -1,0 +1,31 @@
+<div class="course_container m-0 justify-content-start">
+  <div class="course p-2 col">
+    <div class="course_content h-100">
+      <img class="course_img" src="https://picsum.photos/1920/1080?random={{randomNumber}}" alt="">
+
+      <mat-icon mat-button [matMenuTriggerFor]="menu" class="course_settings" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" aria-hidden="false" aria-label="Article Settings" >more_vert</mat-icon>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="viewArticle(article.articleID)"><mat-icon class="menu_icon">preview</mat-icon>View Article</button>
+        <button mat-menu-item><mat-icon class="menu_icon">edit</mat-icon>Edit Article</button>
+        <button mat-menu-item><mat-icon class="menu_icon">settings</mat-icon>Article Settings</button>
+        <button mat-menu-item><mat-icon class="menu_icon">person_add</mat-icon>Add Collaborator</button>
+        <button mat-menu-item><mat-icon class="menu_icon">share</mat-icon>Share Article</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item disabled><mat-icon class="menu_icon">timelapse</mat-icon>Last Upated On: {{article.lastUpdatedDate | date}}</button>
+        <button mat-menu-item disabled><mat-icon class="menu_icon">timer</mat-icon>Created On: {{article.createdDate | date}}</button>
+        <button mat-menu-item (click)="deleteArticle(article.articleID)"><mat-icon class="menu_icon">delete_outline</mat-icon>Delete Course</button>
+      </mat-menu>
+      <div (click)="navigateToArticle(article.articleID)" class="w-100">
+        <p *ngIf="!article.articleTitle" class="course_title pt-2">No Title</p>
+        <p *ngIf="article.articleTitle" class="course_title pt-2">{{article.articleTitle}}</p>
+        <!-- <p class="course_creator">Article Creator: {{article.creatorName}}</p> -->
+        <div class="mt-1 course_progress">
+          <div class="pt-0">
+            <p class="courseDetailItem pt-1">Taking Article: {{article.lastUpdatedDate | date}}</p>
+            <p class="courseDetailItem pt-1">Created On: {{article.createdDate | date}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

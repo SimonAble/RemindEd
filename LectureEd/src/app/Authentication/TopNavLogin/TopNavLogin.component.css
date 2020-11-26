@@ -47,3 +47,7 @@
 .helpIcon {
   color:var(--lighter-blue);
 }
+
+.menu {
+  width: 230px;
+}

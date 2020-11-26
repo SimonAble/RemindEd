@@ -23,6 +23,9 @@
   box-shadow: var(--float-shadow);
   transition: 0.4s;
   cursor: pointer;
+  overflow: hidden;
+  padding-bottom: 10px;
+  text-overflow: ellipsis;
 }
 
 .course_content:hover {
@@ -43,6 +46,43 @@
   font-weight: 400;
 }
 
+.course_description {
+  padding:0px 10px;
+  font-size: 14px;
+  font-weight: 400;
+  overflow: hidden;
+
+}
+
+.menuTitle {
+  font-size: 20px;
+  width:300px;
+}
+
+.menuDescription {
+  font-size: 14px;
+}
+
+.menuCourseType {
+  display: inline;
+  padding:4px 14px;
+  background-color: var(--background-green);
+  border-radius: 6px;
+  font-size: 12px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.menuInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menuCourseRating {
+  display: inline;
+}
+
 .course_creator {
   padding:0px 10px;
   font-size: 14px;
@@ -52,6 +92,41 @@
 .course_progress {
   padding:0px 10px;
   margin:0 auto;
+}
+
+.courseType {
+  display: inline;
+  padding:4px 14px;
+  background-color: var(--background-green);
+  border-radius: 6px;
+  font-size: 12px;
+  text-align: center;
+  position: absolute;
+  bottom: 14px;
+  left: 16px;
+  font-weight: 500;
+}
+
+.courseRating {
+  position: absolute;
+  bottom: 18px;
+  right: 16px;
+  height:20px;
+}
+
+.ratingText {
+  font-size: 16px;
+  font-weight: 500;
+  height:20px;
+  vertical-align: text-bottom;
+  color: var(--star-yellow-text);
+}
+
+.rating {
+  height:16px;
+  width:16px;
+  font-size: 16px;
+  color: var(--star-yellow);
 }
 
 .percent_complete {

@@ -1,5 +1,5 @@
-<h1 mat-dialog-title class="text-center loginHeader mb-3" *ngIf="overlayModel">{{overlayModel.overlayTitle}}</h1>
-<h1 mat-dialog-title class="text-center loginHeader mb-3" *ngIf="!overlayModel">{{defaultOverlayTitle}}</h1>
+<h1 mat-dialog-title class="text-center mb-3" *ngIf="overlayModel">{{overlayModel.overlayTitle}}</h1>
+<h1 mat-dialog-title class="text-center mb-3" *ngIf="!overlayModel">{{defaultOverlayTitle}}</h1>
 <mat-divider></mat-divider>
 <div mat-dialog-content class="mt-2" *ngIf="overlayModel">
   {{overlayModel.overlayMessage}}

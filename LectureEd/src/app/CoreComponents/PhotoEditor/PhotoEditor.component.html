@@ -1,11 +1,31 @@
-<div class="row">
-  <h2>Photo Editor:</h2>
-  <div class="col-sm-2" *ngFor="let photo of photos">
-    <img src="{{photo.url}}" alt="" class="img-thumbnail p-1">
-    <div class="text-center">
-      <button class="btn btn-sm">Main</button>
-      <button class="btn btn-sm btn-danger"></button>
-    </div>
+<div class="container">
+  <div class="row p-0">
+    <div class="col p-0">
+      <div class="imageContainer my-3"
+      ng2FileDrop
+      (fileOver)="fileOverAnother($event)" *ngIf="currentPhotoUrl && !responseUrl"
+      [uploader]="uploader">
+        <img src="{{currentPhotoUrl}}" alt="">
+        <div class="spinnerContainer" *ngFor="let item of uploader.queue">
+          <mat-progress-spinner mode="indeterminate" *ngIf="item.progress" class="spinner"></mat-progress-spinner>
+        </div>
+      </div>
 
+      <div class="imageContainer my-3" *ngIf="responseUrl">
+        <img src="{{responseUrl}}" alt="">
+      </div>
+    </div>
   </div>
+
+  <div class="row p-0">
+      <div class="col p-0">
+          <div ng2FileDrop
+               [ngClass]="{'another-file-over-class': hasAnotherDropZoneOver}"
+               (fileOver)="fileOverAnother($event)"
+               [uploader]="uploader"
+               class="well my-drop-zone p-3 w-100 text-center">
+              Drop or choose your image here
+              <input #fileInput type="file" ng2FileSelect [uploader]="uploader" />
+          </div>
+      </div>
 </div>

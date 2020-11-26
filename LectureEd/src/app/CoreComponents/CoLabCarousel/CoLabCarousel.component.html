@@ -1,0 +1,20 @@
+<div class="carouselContainer">
+  <!-- carousel -->
+  <div class="row py-0 px-5 m-0">
+    <ng-container *ngFor="let course of currentArray; let i = index;">
+      <div class="col-4 m-0 p-0">
+        <app-CourseCard [course]="course"></app-CourseCard>
+      </div>
+    </ng-container >
+  </div>
+  <button class="control prev" (click)="onPreviousClick()">
+    <mat-icon class="icon">keyboard_arrow_left</mat-icon>
+  </button>
+  <button class="control next" (click)="onNextClick()">
+    <mat-icon class="icon">keyboard_arrow_right</mat-icon>
+  </button>
+</div>
+
+
+
+

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { CourseModel } from '../InternalViews/CreateView/CreateLectureLayout/Course.model';
+import { CourseModel, CourseInfoModel } from '../CoreModels/Course.model';
 import { HttpClient } from '@angular/common/http';
 import { AuthenticationService } from '../Authentication/Authentication.service';
 import { MaterialService } from './Material.service';
@@ -19,11 +19,27 @@ export class CourseService {
   }
 
   public getCoursesByUserId() {
-    return this.http.get<CourseModel[]>(this.baseUrl + 'GetCourses/' + this.activeUserId);
+    return this.http.get<CourseModel[]>(`${this.baseUrl}GetCourses/${this.activeUserId}`);
+  }
+
+  public getRecentlyViewed(returnedCourses: number) {
+    return this.http.get<CourseInfoModel[]>(`${this.baseUrl}GetCourses/RecentlyViewed/${this.activeUserId}/${returnedCourses}`);
+  }
+
+  public getRecentlyCreated(returnedCourses: number) {
+    return this.http.get<CourseInfoModel[]>(`${this.baseUrl}GetCourses/RecentlyCreated/${this.activeUserId}/${returnedCourses}`);
+  }
+
+  public getCoursesForLearning() {
+    return this.http.get<CourseInfoModel[]>(this.baseUrl + 'GetCourses/ForLearning/' + this.activeUserId);
+  }
+
+  public getCoursesForTeaching() {
+    return this.http.get<CourseInfoModel[]>(this.baseUrl + 'GetCourses/ForTeaching/' + this.activeUserId);
   }
 
   public getCoursesForGlobalExplore() {
-    return this.http.get<CourseModel[]>(this.baseUrl + 'GetCoursesForGlobalExplore');
+    return this.http.get<CourseInfoModel[]>(this.baseUrl + 'GetCoursesForGlobalExplore');
   }
 
   public deleteCourseById(courseId: number) {

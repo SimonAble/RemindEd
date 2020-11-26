@@ -13,8 +13,6 @@ namespace RemindEd.API.DTO
         public string ProfessionalTitle { get; set; }
         public string ProfessionalDescription { get; set; }
         public string Language { get; set; }
-        public string ProfilePhotoUrl { get; set; }
-        public string BackgroundPhotoUrl { get; set; }
         public ICollection<PhotosForUserDTO> Photos { get; set; }
 
         //Affiliated Links

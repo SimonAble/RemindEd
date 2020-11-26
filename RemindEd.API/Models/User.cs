@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using RemindEd.API.Models.Constants;
 
 namespace RemindEd.API.Models
 {
@@ -16,9 +17,12 @@ namespace RemindEd.API.Models
         public string ProfessionalTitle { get; set; }
         public string ProfessionalDescription { get; set; }
         public string Language { get; set; }
-
         public ICollection<Photo> Photos { get; set; }
         public IList<CourseFollower> CourseFollowers { get; set; }
+        public IList<ArticleFollower> ArticleFollowers { get; set; }
+
+        // public int? UserTypeId { get; set; }
+        // public UserType UserType { get; set; }
 
         //Affiliated Links
         public string TwitterLink { get; set; }

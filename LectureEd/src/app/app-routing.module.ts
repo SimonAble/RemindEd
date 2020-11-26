@@ -14,6 +14,7 @@ import { MyTeachingComponent } from './InternalViews/Dashboard/MyTeaching/MyTeac
 import { MyResourcesComponent } from './InternalViews/Dashboard/MyResources/MyResources.component';
 import { FollowingComponent } from './InternalViews/Dashboard/Following/Following.component';
 import { ExploreGlobalComponent } from './GlobalViews/ExploreGlobal/ExploreGlobal.component';
+import { PhotoEditorComponent } from './CoreComponents/PhotoEditor/PhotoEditor.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -26,6 +27,8 @@ const routes: Routes = [
   { path: 'create/course', component: CreateLectureLayoutComponent},
   { path: 'create/course/:id', component: CreateLectureLayoutComponent},
   { path: 'create/article', component: CreateArticleLayoutComponent},
+  { path: 'create/article/:id', component: CreateArticleLayoutComponent},
+  { path: 'learn/article/:id', component: CreateArticleLayoutComponent},
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService] },
   { path: 'dashboard/mylearning', component: MyLearningComponent, canActivate: [AuthGuardService] },
   { path: 'dashboard/myteaching', component: MyTeachingComponent, canActivate: [AuthGuardService] },
@@ -34,6 +37,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileManagementComponent, canActivate: [AuthGuardService] },
   { path: 'profile/settings', component: UserSettingsComponent, canActivate: [AuthGuardService] },
   { path: 'explore', component: ExploreGlobalComponent},
+  { path: 'photo', component: PhotoEditorComponent}
 ];
 
 @NgModule({

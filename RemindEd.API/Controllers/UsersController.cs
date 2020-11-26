@@ -63,11 +63,10 @@ namespace RemindEd.API.Controllers
                 return Unauthorized();
             }
 
-            var userFromRepo = await userRepository.GetUser(id);
+            var userToSave = mapper.Map<User>(user);
+            var userFromRepo = await userRepository.SaveUser(id, userToSave);
 
-            mapper.Map(user, userFromRepo);
-
-            if(await userRepository.SaveAll())
+            if(userFromRepo != null)
                 return NoContent();
 
             throw new Exception($"Updating user with id: {id} failed...");
